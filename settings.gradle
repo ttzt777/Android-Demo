@@ -1,0 +1,4 @@
+include ':view'
+include ':util'
+include ':app'
+rootProject.name = "Android_Demo"
