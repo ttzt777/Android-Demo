@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import cc.bear3.android.demo.data.ItemMenu
 import cc.bear3.android.demo.databinding.FragmentMenuListBinding
 import cc.bear3.android.demo.manager.refresh.RefreshProxy
@@ -21,14 +22,10 @@ class MenuListFragment : BaseFragment() {
 
     private lateinit var binding: FragmentMenuListBinding
 
-    private val adapter by lazy {
-        MenuListAdapter()
-    }
-
     private val refreshProxy by lazy {
         RefreshProxy(
             binding.include.refreshLayout,
-            adapter,
+            MenuListAdapter(),
             noMore = false
         )
     }
@@ -42,11 +39,7 @@ class MenuListFragment : BaseFragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateContentView(inflater: LayoutInflater, container: ViewGroup?): View {
         binding = FragmentMenuListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -54,10 +47,19 @@ class MenuListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.titleBar.hasIcon = canBack
+        with(binding) {
+            titleBar.hasIcon = canBack
 
-        target?.let {
+            with(include.recyclerView) {
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = refreshProxy.adapter
+            }
 
+            target?.let {
+                titleBar.title = getString(it.stringId)
+
+                refreshProxy.onFinish(dataList = it.createList())
+            }
         }
     }
 

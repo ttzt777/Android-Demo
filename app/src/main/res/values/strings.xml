@@ -6,6 +6,8 @@
     <string name="menu_bitmap">图片</string>
     <string name="menu_util">工具</string>
 
+    <string name="menu_view_textView">TextView</string>
+
     <string name="menu_util_qr">二维码</string>
 
     <string name="http_network">似乎已断开与互联网的链接</string>

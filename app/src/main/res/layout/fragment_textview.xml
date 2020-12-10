@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:viewBindingIgnore="true">
+
+    <cc.bear3.android.view.statusbar.StatusBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <cc.bear3.android.view.toolbar.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tb_has_divide="true"
+        app:tb_title="@string/menu_view_textView" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="16dp"
+                    android:background="@color/color_accent" />
+
+                <TextView
+                    style="@style/Text.Title"
+                    android:layout_marginStart="8dp"
+                    android:text="跟随标签的实现" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Text.Hint"
+                android:layout_marginTop="4dp"
+                android:text="LinearLayout实现" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- 用于可复用或者动态改变文字的地方需要在setText后调用requestLayout -->
+                <TextView
+                    style="@style/Text.Secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="我是可变长度的需要折叠的字符串" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/shape_solid_coloraccent_4dp"
+                    android:padding="2dp"
+                    android:text="跟随标签"
+                    android:textColor="@color/text_light"
+                    android:textSize="8sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- 用于可复用或者动态改变文字的地方需要在setText后调用requestLayout -->
+                <TextView
+                    style="@style/Text.Secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="我是可变长度的需要折叠的字符串我是可变长度的需要折叠的字符串我是可变长度的需要折叠的字符串我是可变长度的需要折叠的字符串" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/shape_solid_coloraccent_4dp"
+                    android:padding="2dp"
+                    android:text="跟随标签"
+                    android:textColor="@color/text_light"
+                    android:textSize="8sp" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Text.Hint"
+                android:layout_marginTop="4dp"
+                android:text="ConstraintLayout实现" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:id="@+id/textView1"
+                    style="@style/Text.Secondary"
+                    android:layout_width="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="我是可变长度的需要折叠的字符串"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tag1"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tag1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/shape_solid_coloraccent_4dp"
+                    android:padding="2dp"
+                    android:text="跟随标签"
+                    android:textColor="@color/text_light"
+                    android:textSize="8sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/textView1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    style="@style/Text.Secondary"
+                    android:layout_width="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="我是可变长度的需要折叠的字符串我是可变长度的需要折叠的字符串我是可变长度的需要折叠的字符串我是可变长度的需要折叠的字符串"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tag2"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tag2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/shape_solid_coloraccent_4dp"
+                    android:padding="2dp"
+                    android:text="跟随标签"
+                    android:textColor="@color/text_light"
+                    android:textSize="8sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/textView2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

@@ -23,8 +23,8 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
  * *-*
  */
 class RefreshProxy<AD : BaseAdapter<T, *>, T>(
-    private val layout: SmartRefreshLayout,
-    private val adapter: AD,
+    val layout: SmartRefreshLayout,
+    val adapter: AD,
     private val type: Type = Type.Page,
     private val noMore: Boolean = true
 )  {
@@ -160,7 +160,7 @@ class RefreshProxy<AD : BaseAdapter<T, *>, T>(
 
     @JvmOverloads
     fun onFinish(
-        errorType: HttpError,
+        errorType: HttpError = HttpError.Success,
         dataList: List<T>? = null,
         loadAll: Boolean = false
     ) {

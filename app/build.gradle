@@ -46,7 +46,10 @@ dependencies {
 
     implementation "androidx.core:core-ktx:$ktxVersion"
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
     implementation "com.google.android.material:material:$materialVersion"
 
@@ -54,4 +57,7 @@ dependencies {
 
     implementation "com.scwang.smart:refresh-layout-kernel:$refreshLayoutVersion"
     implementation "com.scwang.smart:refresh-header-classics:$refreshLayoutVersion"
+
+    implementation "com.gyf.immersionbar:immersionbar:$immersionbarVersion"
+    implementation "com.jakewharton.timber:timber:$timberVersion"
 }

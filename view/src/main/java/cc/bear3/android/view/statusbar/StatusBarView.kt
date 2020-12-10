@@ -1,4 +1,4 @@
-package hash.cloud.ui.common.weight
+package cc.bear3.android.view.statusbar
 
 import android.app.Activity
 import android.content.Context
