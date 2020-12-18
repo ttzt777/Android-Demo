@@ -5,10 +5,27 @@
     <string name="menu_view">控件</string>
     <string name="menu_bitmap">图片</string>
     <string name="menu_util">工具</string>
+    <string name="menu_jetpack">Jetpack</string>
+
+    <string name="menu_system_crashHandler">Crash Handler</string>
+    <string name="menu_system_bluetooth">Bluetooth</string>
+    <string name="menu_system_socket">Socket</string>
 
     <string name="menu_view_textView">TextView</string>
+    <string name="menu_view_smartRefreshLayout">SmartRefreshLayout</string>
+    <string name="menu_view_spannableTextView">SpannableTextView</string>
+    <string name="menu_view_collapseTextView">CollapseTextView</string>
+    <string name="menu_view_roundView">RoundView</string>
 
     <string name="menu_util_qr">二维码</string>
+    <string name="menu_util_singleClick">SingleClick</string>
+    <string name="menu_util_multiLanguage">多语言</string>
+
+    <string name="menu_jetpack_room">Room</string>
+    <string name="menu_jetpack_dataStore">DataStore</string>
+    <string name="menu_jetpack_navigation">Navigation</string>
+    <string name="menu_jetpack_mvvm">Mvvm</string>
+    <string name="menu_jetpack_workManager">WorkManager</string>
 
     <string name="http_network">似乎已断开与互联网的链接</string>
     <string name="http_server">似乎已断开与互联网的链接</string>
