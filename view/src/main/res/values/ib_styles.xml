@@ -14,4 +14,8 @@
     <style name="ImageButton.TitleBar.Back">
         <item name="android:src">@mipmap/ic_arrow_left_bold</item>
     </style>
+
+    <style name="ImageButton.Normal">
+        <item name="android:padding">4dp</item>
+    </style>
 </resources>

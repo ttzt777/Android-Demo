@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:viewBindingIgnore="true">
+
+    <cc.bear3.android.view.statusbar.StatusBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <cc.bear3.android.view.toolbar.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tb_has_divide="true"
+        app:tb_title="@string/menu_view_editView" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="16dp"
+                    android:background="@color/color_accent" />
+
+                <TextView
+                    style="@style/Text.Title"
+                    android:layout_marginStart="8dp"
+                    android:text="登录输入框" />
+            </LinearLayout>
+
+<!--            <TextView-->
+<!--                style="@style/Text.Hint"-->
+<!--                android:layout_marginTop="4dp"-->
+<!--                android:text="LinearLayout实现" />-->
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

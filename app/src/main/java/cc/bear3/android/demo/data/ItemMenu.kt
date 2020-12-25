@@ -29,6 +29,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
 
     // 二级菜单 - View
     View_TextView(R.string.menu_view_textView),
+    View_EditView(R.string.menu_view_editView),
     View_SmartRefreshLayout(R.string.menu_view_smartRefreshLayout),
     View_SpannableTextView(R.string.menu_view_spannableTextView),
     View_CollapseTextView(R.string.menu_view_collapseTextView),
@@ -63,7 +64,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
             App -> listOf(System, View, Bitmap, Util, Jetpack)
 
             System -> listOf(System_CrashHandler, System_Bluetooth, System_Socket)
-            View -> listOf(View_TextView, View_SmartRefreshLayout, View_SpannableTextView, View_CollapseTextView, View_RoundView)
+            View -> listOf(View_TextView, View_EditView, View_SmartRefreshLayout, View_SpannableTextView, View_CollapseTextView, View_RoundView)
             Bitmap -> listOf()
             Util -> listOf(Util_SingleClick, Util_MultiLanguage)
             Jetpack -> listOf(Jetpack_Room, Jetpack_DataStore, Jetpack_Navigation, Jetpack_Mvvm, Jetpack_WorkManager)
