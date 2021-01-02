@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <cc.bear3.android.view.statusbar.StatusBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <cc.bear3.android.view.toolbar.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tb_has_divide="true"
+        app:tb_title="@string/menu_util_permission" />
+
+    <Button
+        android:id="@+id/single"
+        style="@style/Button.Normal"
+        android:layout_marginTop="16dp"
+        android:text="请求单个存储权限" />
+
+    <Button
+        android:id="@+id/multi"
+        style="@style/Button.Normal"
+        android:layout_marginTop="16dp"
+        android:text="请求存储、相机、联系人权限" />
+
+</LinearLayout>

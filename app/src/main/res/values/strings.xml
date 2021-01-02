@@ -21,6 +21,7 @@
     <string name="menu_util_qr">二维码</string>
     <string name="menu_util_singleClick">SingleClick</string>
     <string name="menu_util_multiLanguage">多语言</string>
+    <string name="menu_util_permission">权限请求</string>
 
     <string name="menu_jetpack_room">Room</string>
     <string name="menu_jetpack_dataStore">DataStore</string>
