@@ -95,7 +95,7 @@
         app:layout_constraintTop_toTopOf="@id/edit" />
 
     <View
-        android:id="@+id/v_content"
+        android:id="@+id/content"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="@id/edit"
@@ -104,29 +104,29 @@
         app:layout_constraintTop_toTopOf="@id/edit" />
 
     <View
-        android:id="@+id/v_divide"
+        android:id="@+id/divide"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="@color/app_error"
-        app:layout_constraintBottom_toTopOf="@id/v_error"
+        app:layout_constraintBottom_toTopOf="@id/error"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit" />
 
     <TextView
-        android:id="@+id/v_error"
+        android:id="@+id/error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/text_error"
+        android:textColor="@color/app_error"
         android:textSize="13sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/gl_bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/v_divide"
+        app:layout_constraintTop_toBottomOf="@id/divide"
         tools:text="请输入该项内容" />
 
 

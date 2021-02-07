@@ -3,6 +3,7 @@
     <style name="ImageButton">
         <item name="android:scaleType">fitXY</item>
         <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:contentDescription">""</item>
     </style>
 
     <style name="ImageButton.TitleBar">
