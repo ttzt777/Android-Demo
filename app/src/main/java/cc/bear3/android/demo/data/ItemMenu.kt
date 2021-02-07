@@ -40,6 +40,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
     // 二级菜单 - Util
     Util_SingleClick(R.string.menu_util_singleClick),
     Util_MultiLanguage(R.string.menu_util_multiLanguage),
+    Util_Permission(R.string.menu_util_permission),
 
     // 二级菜单 - Jetpack
     Jetpack_Room(R.string.menu_jetpack_room),
@@ -55,6 +56,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
         when(this) {
             System, View, Bitmap, Util, Jetpack -> navController.navigate(this)
             View_TextView -> navController.navigate(R.id.textView_fragment)
+            Util_Permission -> navController.navigate(R.id.permission_fragment)
             else -> {}
         }
     }
@@ -66,7 +68,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
             System -> listOf(System_CrashHandler, System_Bluetooth, System_Socket)
             View -> listOf(View_TextView, View_EditView, View_SmartRefreshLayout, View_SpannableTextView, View_CollapseTextView, View_RoundView)
             Bitmap -> listOf()
-            Util -> listOf(Util_SingleClick, Util_MultiLanguage)
+            Util -> listOf(Util_SingleClick, Util_MultiLanguage, Util_Permission)
             Jetpack -> listOf(Jetpack_Room, Jetpack_DataStore, Jetpack_Navigation, Jetpack_Mvvm, Jetpack_WorkManager)
             else -> null
         }

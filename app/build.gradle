@@ -60,4 +60,5 @@ dependencies {
 
     implementation "com.gyf.immersionbar:immersionbar:$immersionbarVersion"
     implementation "com.jakewharton.timber:timber:$timberVersion"
+    implementation "com.permissionx.guolindev:permissionx:$permissionxVersion"
 }
