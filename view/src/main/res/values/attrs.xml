@@ -6,4 +6,20 @@
         <attr name="tb_title" format="string" />
         <attr name="tb_has_divide" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="LoginEditView">
+        <attr name="let_type" format="enum">
+            <enum name="undefine" value="0" />
+            <enum name="password" value="1" />
+            <enum name="code" value="2" />
+            <enum name="choose" value="3" />
+        </attr>
+        <attr name="let_hint" format="string" />
+        <attr name="let_ime_options" format="enum">
+            <enum name="none" value="0" />
+            <enum name="next" value="1" />
+            <enum name="done" value="2" />
+            <enum name="search" value="3" />
+        </attr>
+    </declare-styleable>
 </resources>
