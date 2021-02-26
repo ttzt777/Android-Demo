@@ -14,8 +14,8 @@ import cc.bear3.util.statusadapter.*
 abstract class BaseAdapter<T, VH : AContentViewHolder> :
     AStatusAdapter<T, VH>() {
 
-    override fun getInitStatus(): AdapterStatus {
-        return AdapterStatus.Null
+    init {
+        status = AdapterStatus.Loading
     }
 
     override fun onCreateEmptyViewHolder(

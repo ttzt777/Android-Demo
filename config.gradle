@@ -28,5 +28,6 @@ ext {
     refreshLayoutVersion = '2.0.1'
     immersionbarVersion = '3.0.0'
     timberVersion = '4.7.1'
+    permissionxVersion = '1.4.0'
 
 }
