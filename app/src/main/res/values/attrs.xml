@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TitleBar">
+        <attr name="tb_has_icon" format="boolean" />
+        <attr name="tb_icon_res" format="reference" />
+        <attr name="tb_title" format="string" />
+        <attr name="tb_has_divide" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="LoginEditView">
+        <attr name="let_type" format="enum">
+            <enum name="undefine" value="0" />
+            <enum name="password" value="1" />
+            <enum name="code" value="2" />
+            <enum name="choose" value="3" />
+        </attr>
+        <attr name="let_hint" format="string" />
+        <attr name="let_ime_options" format="enum">
+            <enum name="none" value="0" />
+            <enum name="next" value="1" />
+            <enum name="done" value="2" />
+            <enum name="search" value="3" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ConfirmButton">
+        <attr name="cb_enable_solid_color" format="color" />
+        <attr name="cb_disable_solid_color" format="color" />
+        <attr name="cb_enable_stroke_color" format="color" />
+        <attr name="cb_disable_stroke_color" format="color" />
+        <attr name="cb_enable_text_color" format="color" />
+        <attr name="cb_disable_text_color" format="color" />
+        <attr name="cb_is_half_height_corner" format="boolean" />
+        <attr name="cb_corner_radius" format="dimension" />
+        <attr name="cb_stroke_width" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundView">
+        <attr name="radius_size" format="dimension" />
+        <attr name="radius_left_top_enable" format="boolean" />
+        <attr name="radius_left_bottom_enable" format="boolean" />
+        <attr name="radius_right_top_enable" format="boolean" />
+        <attr name="radius_right_bottom_enable" format="boolean" />
+        <attr name="stroke_width" format="dimension" />
+        <attr name="stroke_color" format="color" />
+    </declare-styleable>
+</resources>

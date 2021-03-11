@@ -16,9 +16,24 @@
         tools:layout="@layout/fragment_menu_list" />
 
     <fragment
+        android:id="@+id/mediapick_fragment"
+        android:name="cc.bear3.android.demo.ui.media.pick.MediaPickFragment"
+        tools:layout="@layout/fragment_media_pick" />
+
+    <fragment
+        android:id="@+id/mediagallery_fragment"
+        android:name="cc.bear3.android.demo.ui.media.pick.gallery.MediaGalleryFragment"
+        tools:layout="@layout/fragment_media_gallery" />
+
+    <fragment
         android:id="@+id/textView_fragment"
         android:name="cc.bear3.android.demo.ui.view.textView.TextViewFragment"
         tools:layout="@layout/fragment_textview" />
+
+    <fragment
+        android:id="@+id/button_fragment"
+        android:name="cc.bear3.android.demo.ui.view.button.ButtonFragment"
+        tools:layout="@layout/fragment_button" />
 
     <fragment
         android:id="@+id/permission_fragment"

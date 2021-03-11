@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tb_has_divide="true"
-        app:tb_title="@string/menu_view_editView" />
+        app:tb_title="@string/menu_view_button" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -41,13 +41,30 @@
                 <TextView
                     style="@style/Text.Title"
                     android:layout_marginStart="8dp"
-                    android:text="登录输入框" />
+                    android:text="自定义的点击按钮" />
             </LinearLayout>
 
-<!--            <TextView-->
-<!--                style="@style/Text.Hint"-->
-<!--                android:layout_marginTop="4dp"-->
-<!--                android:text="LinearLayout实现" />-->
+            <cc.bear3.android.demo.view.button.ConfirmButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:enabled="true"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="我是可以点击的按钮"
+                android:textSize="16sp"
+                app:cb_enable_stroke_color="@color/text_hint"
+                app:cb_stroke_width="2dp" />
+
+            <cc.bear3.android.demo.view.button.ConfirmButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:enabled="false"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="我是不可以点击的按钮"
+                android:textSize="16sp" />
 
         </LinearLayout>
 

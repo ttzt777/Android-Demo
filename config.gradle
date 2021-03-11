@@ -24,10 +24,11 @@ ext {
     zxingVersion = '3.4.0'
 
     statusAdapterVersion = '1.0.0'
+    utilsVersion = '1.0.0-alpha03'
 
     refreshLayoutVersion = '2.0.1'
     immersionbarVersion = '3.0.0'
     timberVersion = '4.7.1'
     permissionxVersion = '1.4.0'
-
+    glideVersion = '4.11.0'
 }

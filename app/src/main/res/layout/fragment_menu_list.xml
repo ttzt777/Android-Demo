@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/app_background">
 
-    <cc.bear3.android.view.statusbar.StatusBarView
+    <cc.bear3.android.demo.view.statusbar.StatusBarView
         android:id="@+id/status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <cc.bear3.android.view.toolbar.TitleBar
+    <cc.bear3.android.demo.view.toolbar.TitleBar
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

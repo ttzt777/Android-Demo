@@ -18,7 +18,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
     // 一级主菜单
     System(R.string.menu_system),
     View(R.string.menu_view),
-    Bitmap(R.string.menu_bitmap),
+    Media(R.string.menu_media),
     Util(R.string.menu_util),
     Jetpack(R.string.menu_jetpack),
 
@@ -28,6 +28,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
     System_Socket(R.string.menu_system_socket),
 
     // 二级菜单 - View
+    View_Button(R.string.menu_view_button),
     View_TextView(R.string.menu_view_textView),
     View_EditView(R.string.menu_view_editView),
     View_SmartRefreshLayout(R.string.menu_view_smartRefreshLayout),
@@ -35,7 +36,8 @@ enum class ItemMenu(@StringRes val stringId: Int) {
     View_CollapseTextView(R.string.menu_view_collapseTextView),
     View_RoundView(R.string.menu_view_roundView),
 
-    // 二级菜单 - Bitmap
+    // 二级菜单 - Media
+    Media_Pick(R.string.menu_media_pick),
 
     // 二级菜单 - Util
     Util_SingleClick(R.string.menu_util_singleClick),
@@ -54,20 +56,26 @@ enum class ItemMenu(@StringRes val stringId: Int) {
 
     fun click(navController: NavController) {
         when(this) {
-            System, View, Bitmap, Util, Jetpack -> navController.navigate(this)
+            System, View, Media, Util, Jetpack -> navController.navigate(this)
+
+            Media_Pick -> navController.navigate(R.id.mediapick_fragment)
+
+            View_Button -> navController.navigate(R.id.button_fragment)
             View_TextView -> navController.navigate(R.id.textView_fragment)
+
             Util_Permission -> navController.navigate(R.id.permission_fragment)
+
             else -> {}
         }
     }
 
     fun createList() : List<ItemMenu>? {
         return when (this) {
-            App -> listOf(System, View, Bitmap, Util, Jetpack)
+            App -> listOf(System, View, Media, Util, Jetpack)
 
             System -> listOf(System_CrashHandler, System_Bluetooth, System_Socket)
             View -> listOf(View_TextView, View_EditView, View_SmartRefreshLayout, View_SpannableTextView, View_CollapseTextView, View_RoundView)
-            Bitmap -> listOf()
+            Media -> listOf(Media_Pick)
             Util -> listOf(Util_SingleClick, Util_MultiLanguage, Util_Permission)
             Jetpack -> listOf(Jetpack_Room, Jetpack_DataStore, Jetpack_Navigation, Jetpack_Mvvm, Jetpack_WorkManager)
             else -> null

@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
     id 'androidx.navigation.safeargs.kotlin'
 }
 
@@ -9,8 +10,12 @@ android {
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
 
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding = true
+    }
+
+    androidExtensions {
+        experimental = true
     }
 
     defaultConfig {
@@ -36,12 +41,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    packagingOptions {
+        exclude 'META-INF/*.kotlin_module'
+    }
 }
 
 dependencies {
-    implementation project(path: ':util')
-    implementation project(path: ':view')
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
     implementation "androidx.core:core-ktx:$ktxVersion"
@@ -53,6 +58,9 @@ dependencies {
 
     implementation "com.google.android.material:material:$materialVersion"
 
+    // google二维码
+    implementation "com.google.zxing:core:$zxingVersion"
+
     implementation "cc.bear3.util.statusadapter:statusadapter:$statusAdapterVersion"
 
     implementation "com.scwang.smart:refresh-layout-kernel:$refreshLayoutVersion"
@@ -61,4 +69,6 @@ dependencies {
     implementation "com.gyf.immersionbar:immersionbar:$immersionbarVersion"
     implementation "com.jakewharton.timber:timber:$timberVersion"
     implementation "com.permissionx.guolindev:permissionx:$permissionxVersion"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 }

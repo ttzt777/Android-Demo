@@ -20,7 +20,7 @@ class LoginEditView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr), TextWatcher {
 
-    private lateinit var binding: ViewLoginEditBinding
+    private var binding: ViewLoginEditBinding
 
     var type = Type.Undefine
         set(value) {

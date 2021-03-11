@@ -1,4 +1,2 @@
-include ':view'
-include ':util'
 include ':app'
 rootProject.name = "Android-Demo"

@@ -7,11 +7,11 @@
     android:orientation="vertical"
     tools:viewBindingIgnore="true">
 
-    <cc.bear3.android.view.statusbar.StatusBarView
+    <cc.bear3.android.demo.view.statusbar.StatusBarView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <cc.bear3.android.view.toolbar.TitleBar
+    <cc.bear3.android.demo.view.toolbar.TitleBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tb_has_divide="true"
