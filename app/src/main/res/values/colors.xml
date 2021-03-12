@@ -3,6 +3,7 @@
     <color name="transparent">#00000000</color>
 
     <color name="color_accent">#FFFFCE25</color>
+    <color name="color_accent_dark">#5FFFCE25</color>
 
     <color name="app_background">#FFFFFFFF</color>
     <color name="app_background_press">#FFEEEEEE</color>
@@ -10,9 +11,9 @@
     <color name="app_error">#FFFE5242</color>
 
     <color name="app_confirm_solid_enable">@color/color_accent</color>
-    <color name="app_confirm_solid_disable">#5FFFCE25</color>
+    <color name="app_confirm_solid_disable">@color/color_accent_dark</color>
     <color name="app_confirm_stroke_enable">@color/color_accent</color>
-    <color name="app_confirm_stroke_disable">#5FFFCE25</color>
+    <color name="app_confirm_stroke_disable">@color/color_accent_dark</color>
     <color name="app_confirm_text_enable">@color/text_light</color>
     <color name="app_confirm_text_disable">@color/text_hint</color>
 

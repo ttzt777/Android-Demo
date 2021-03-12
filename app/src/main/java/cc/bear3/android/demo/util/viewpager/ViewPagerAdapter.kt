@@ -1,17 +1,17 @@
-package cc.bear3.android.util.viewpager
+package cc.bear3.android.demo.util.viewpager
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 
 class ViewPagerAdapter<T : Fragment>(
     fm: FragmentManager,
     behavior: Int = BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-) : FragmentPagerAdapter(fm, behavior) {
+) : FragmentStatePagerAdapter(fm, behavior) {
     private val fragmentWrapperList: MutableList<FragmentWrapper<T>> = mutableListOf()
 
     fun setFragments(titles: List<CharSequence>, fragments: List<T>) {
-        if (titles.isEmpty() || fragments.isEmpty() || titles.size != fragments.size) {
+        if (titles.size != fragments.size) {
             throw IllegalStateException("Titles must match fragments!")
         }
 

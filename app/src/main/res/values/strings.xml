@@ -2,6 +2,7 @@
     <string name="app_name">AndroidDemo</string>
 
     <string name="menu_system">系统</string>
+    <string name="menu_demo">示例</string>
     <string name="menu_view">控件</string>
     <string name="menu_media">多媒体</string>
     <string name="menu_util">工具</string>
@@ -10,6 +11,8 @@
     <string name="menu_system_crashHandler">Crash Handler</string>
     <string name="menu_system_bluetooth">Bluetooth</string>
     <string name="menu_system_socket">Socket</string>
+
+    <string name="menu_demo_channel_manager">频道管理</string>
 
     <string name="menu_view_button">Button</string>
     <string name="menu_view_textView">TextView</string>

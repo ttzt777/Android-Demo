@@ -66,6 +66,9 @@ dependencies {
     implementation "com.scwang.smart:refresh-layout-kernel:$refreshLayoutVersion"
     implementation "com.scwang.smart:refresh-header-classics:$refreshLayoutVersion"
 
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+
     implementation "com.gyf.immersionbar:immersionbar:$immersionbarVersion"
     implementation "com.jakewharton.timber:timber:$timberVersion"
     implementation "com.permissionx.guolindev:permissionx:$permissionxVersion"

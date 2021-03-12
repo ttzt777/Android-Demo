@@ -9,7 +9,7 @@ import cc.bear3.android.demo.databinding.FragmentHomeBinding
 import cc.bear3.android.demo.ui.base.BaseFragment
 import cc.bear3.android.demo.ui.common.MenuListFragment
 import cc.bear3.android.demo.ui.todo.TodoFragment
-import cc.bear3.android.util.viewpager.ViewPagerAdapter
+import cc.bear3.android.demo.util.viewpager.ViewPagerAdapter
 
 /**
  *

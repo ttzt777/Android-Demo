@@ -17,6 +17,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
 
     // 一级主菜单
     System(R.string.menu_system),
+    Demo(R.string.menu_demo),
     View(R.string.menu_view),
     Media(R.string.menu_media),
     Util(R.string.menu_util),
@@ -26,6 +27,9 @@ enum class ItemMenu(@StringRes val stringId: Int) {
     System_CrashHandler(R.string.menu_system_crashHandler),
     System_Bluetooth(R.string.menu_system_bluetooth),
     System_Socket(R.string.menu_system_socket),
+
+    // 二级菜单 - Demo
+    Demo_ChannelManager(R.string.menu_demo_channel_manager),
 
     // 二级菜单 - View
     View_Button(R.string.menu_view_button),
@@ -56,7 +60,9 @@ enum class ItemMenu(@StringRes val stringId: Int) {
 
     fun click(navController: NavController) {
         when(this) {
-            System, View, Media, Util, Jetpack -> navController.navigate(this)
+            System, Demo, View, Media, Util, Jetpack -> navController.navigate(this)
+
+            Demo_ChannelManager -> navController.navigate(R.id.channelmanager_fragment)
 
             Media_Pick -> navController.navigate(R.id.mediapick_fragment)
 
@@ -71,9 +77,10 @@ enum class ItemMenu(@StringRes val stringId: Int) {
 
     fun createList() : List<ItemMenu>? {
         return when (this) {
-            App -> listOf(System, View, Media, Util, Jetpack)
+            App -> listOf(System, Demo, View, Media, Util, Jetpack)
 
             System -> listOf(System_CrashHandler, System_Bluetooth, System_Socket)
+            Demo -> listOf(Demo_ChannelManager)
             View -> listOf(View_TextView, View_EditView, View_SmartRefreshLayout, View_SpannableTextView, View_CollapseTextView, View_RoundView)
             Media -> listOf(Media_Pick)
             Util -> listOf(Util_SingleClick, Util_MultiLanguage, Util_Permission)

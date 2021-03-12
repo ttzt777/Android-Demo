@@ -14,11 +14,40 @@ import timber.log.Timber
  * @since 2020-12-4
  */
 abstract class BaseFragment : LecFragment() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Timber.d("Fragment onCreate: %s", javaClass.simpleName)
+        Timber.d("Fragment onCreate: %s", getFragmentName())
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        Timber.d("Fragment onStart: %s", getFragmentName())
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        Timber.d("Fragment onResume: %s", getFragmentName())
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        Timber.d("Fragment onPause: %s", getFragmentName())
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        Timber.d("Fragment onStop: %s", getFragmentName())
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        Timber.d("Fragment onDestroy: %s", getFragmentName())
     }
 
     override fun onCreateLoadingView(): View {
@@ -44,5 +73,9 @@ abstract class BaseFragment : LecFragment() {
         bundle?.let {
             block(it)
         }
+    }
+
+    protected fun getFragmentName() : String {
+        return javaClass.simpleName
     }
 }
