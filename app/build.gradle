@@ -55,6 +55,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    implementation "androidx.viewpager2:viewpager2:$viewpager2Version"
 
     implementation "com.google.android.material:material:$materialVersion"
 
@@ -62,6 +63,7 @@ dependencies {
     implementation "com.google.zxing:core:$zxingVersion"
 
     implementation "cc.bear3.util.statusadapter:statusadapter:$statusAdapterVersion"
+    implementation "cc.bear3.util.utils:utils:$utilsVersion"
 
     implementation "com.scwang.smart:refresh-layout-kernel:$refreshLayoutVersion"
     implementation "com.scwang.smart:refresh-header-classics:$refreshLayoutVersion"

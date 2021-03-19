@@ -2,46 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_home"
-    app:startDestination="@id/home_fragment">
+    android:id="@+id/nav_home" >
 
-    <fragment
-        android:id="@+id/home_fragment"
-        android:name="cc.bear3.android.demo.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/menu_list_fragment"
-        android:name="cc.bear3.android.demo.ui.common.MenuListFragment"
-        tools:layout="@layout/fragment_menu_list" />
-
-    <fragment
-        android:id="@+id/channelmanager_fragment"
-        android:name="cc.bear3.android.demo.ui.demo.channel.ChannelManagerFragment"
-        tools:layout="@layout/fragment_channel_manager" />
-
-    <fragment
-        android:id="@+id/mediapick_fragment"
-        android:name="cc.bear3.android.demo.ui.media.pick.MediaPickFragment"
-        tools:layout="@layout/fragment_media_pick" />
-
-    <fragment
-        android:id="@+id/mediagallery_fragment"
-        android:name="cc.bear3.android.demo.ui.media.pick.gallery.MediaGalleryFragment"
-        tools:layout="@layout/fragment_media_gallery" />
-
-    <fragment
-        android:id="@+id/textView_fragment"
-        android:name="cc.bear3.android.demo.ui.view.textView.TextViewFragment"
-        tools:layout="@layout/fragment_textview" />
-
-    <fragment
-        android:id="@+id/button_fragment"
-        android:name="cc.bear3.android.demo.ui.view.button.ButtonFragment"
-        tools:layout="@layout/fragment_button" />
-
-    <fragment
-        android:id="@+id/permission_fragment"
-        android:name="cc.bear3.android.demo.ui.util.permission.PermissionFragment"
-        tools:layout="@layout/fragment_permission" />
+<!--    app:startDestination="@id/home_fragment"-->
 </navigation>

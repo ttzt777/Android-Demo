@@ -3,7 +3,6 @@ package cc.bear3.android.demo.ui.common
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import cc.bear3.android.demo.R
 import cc.bear3.android.demo.data.ItemMenu
 import cc.bear3.android.demo.databinding.ItemMenuListBinding
@@ -37,7 +36,7 @@ class MenuListAdapter : BaseAdapter<ItemMenu, MenuListAdapter.MenuViewHolder>() 
             with(binding.title) {
                 setText(data.stringId)
                 setOnClickListener() {
-                    data.click(findNavController())
+                    data.click(context)
                 }
             }
         }

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import cc.bear3.android.demo.databinding.FragmentChannelItemBinding
 import cc.bear3.android.demo.ui.base.BaseFragment
-import cc.bear3.android.demo.ui.util.ext.onClick
 
 /**
  *
@@ -20,11 +19,11 @@ class ChannelItemFragment : BaseFragment() {
     private var count = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        getAvailableArgs(savedInstanceState) {
+        initParams(savedInstanceState) {
             channelData = it.getParcelable(ARG_CHANNEL_DATA)!!
         }
+
+        super.onCreate(savedInstanceState)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -37,9 +36,7 @@ class ChannelItemFragment : BaseFragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initView(savedInstanceState: Bundle?) {
         binding.title.text = channelData.name
         binding.count.text = count.toString()
         binding.root.setOnClickListener() {
@@ -48,10 +45,14 @@ class ChannelItemFragment : BaseFragment() {
         }
     }
 
+    override fun getTagName(): String {
+        return "${javaClass.simpleName} - ${channelData.name}"
+    }
+
     companion object {
         private const val ARG_CHANNEL_DATA = "arg_channel_data"
 
-        fun newInstance(data: ChannelData) : ChannelItemFragment {
+        fun newInstance(data: ChannelData): ChannelItemFragment {
             return ChannelItemFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_CHANNEL_DATA, data)

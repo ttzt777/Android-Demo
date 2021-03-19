@@ -1,9 +1,14 @@
 package cc.bear3.android.demo.data
 
+import android.content.Context
 import androidx.annotation.StringRes
-import androidx.navigation.NavController
 import cc.bear3.android.demo.R
-import cc.bear3.android.demo.ui.common.MenuListFragment
+import cc.bear3.android.demo.ui.common.MenuListPage
+import cc.bear3.android.demo.ui.demo.channel.ChannelDemoPage
+import cc.bear3.android.demo.ui.media.pick.MediaPickPage
+import cc.bear3.android.demo.ui.util.permission.PermissionPage
+import cc.bear3.android.demo.ui.view.button.ButtonPage
+import cc.bear3.android.demo.ui.view.textView.TextViewPage
 
 /**
  *
@@ -58,38 +63,49 @@ enum class ItemMenu(@StringRes val stringId: Int) {
     // 占位用，免得每次都去改最后的分号
     Null(-1);
 
-    fun click(navController: NavController) {
-        when(this) {
-            System, Demo, View, Media, Util, Jetpack -> navController.navigate(this)
+    fun click(context: Context) {
+        when (this) {
+            System, Demo, View, Media, Util, Jetpack -> MenuListPage.invoke(context, this)
 
-            Demo_ChannelManager -> navController.navigate(R.id.channelmanager_fragment)
+            Demo_ChannelManager -> ChannelDemoPage.invoke(context)
 
-            Media_Pick -> navController.navigate(R.id.mediapick_fragment)
+            Media_Pick -> MediaPickPage.invoke(context)
 
-            View_Button -> navController.navigate(R.id.button_fragment)
-            View_TextView -> navController.navigate(R.id.textView_fragment)
+            View_Button -> ButtonPage.invoke(context)
+            View_TextView -> TextViewPage.invoke(context)
 
-            Util_Permission -> navController.navigate(R.id.permission_fragment)
+            Util_Permission -> PermissionPage.invoke(context)
 
-            else -> {}
+            else -> {
+            }
         }
     }
 
-    fun createList() : List<ItemMenu>? {
+    fun createList(): List<ItemMenu>? {
         return when (this) {
             App -> listOf(System, Demo, View, Media, Util, Jetpack)
 
             System -> listOf(System_CrashHandler, System_Bluetooth, System_Socket)
             Demo -> listOf(Demo_ChannelManager)
-            View -> listOf(View_TextView, View_EditView, View_SmartRefreshLayout, View_SpannableTextView, View_CollapseTextView, View_RoundView)
+            View -> listOf(
+                View_Button,
+                View_TextView,
+                View_EditView,
+                View_SmartRefreshLayout,
+                View_SpannableTextView,
+                View_CollapseTextView,
+                View_RoundView
+            )
             Media -> listOf(Media_Pick)
             Util -> listOf(Util_SingleClick, Util_MultiLanguage, Util_Permission)
-            Jetpack -> listOf(Jetpack_Room, Jetpack_DataStore, Jetpack_Navigation, Jetpack_Mvvm, Jetpack_WorkManager)
+            Jetpack -> listOf(
+                Jetpack_Room,
+                Jetpack_DataStore,
+                Jetpack_Navigation,
+                Jetpack_Mvvm,
+                Jetpack_WorkManager
+            )
             else -> null
         }
-    }
-
-    private fun NavController.navigate(itemMenu: ItemMenu) {
-        navigate(R.id.menu_list_fragment, MenuListFragment.newBundle(itemMenu))
     }
 }

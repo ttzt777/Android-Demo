@@ -33,7 +33,7 @@ class MenuListFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        getAvailableArgs(savedInstanceState) {
+        initParams(savedInstanceState) {
             target = it.getSerializable(ARG_MENU_TARGET) as ItemMenu?
             canBack = it.getBoolean(ARG_CAN_BACK, canBack)
         }
@@ -44,9 +44,7 @@ class MenuListFragment : BaseFragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initView(savedInstanceState: Bundle?) {
         with(binding) {
             titleBar.hasIcon = canBack
 
@@ -63,9 +61,13 @@ class MenuListFragment : BaseFragment() {
         }
     }
 
+    override fun getTagName(): String {
+        return "${MenuListFragment::class.java.simpleName} - ${target?.name ?: ""}"
+    }
+
     companion object {
-        private const val ARG_MENU_TARGET = "arg_menu_target"
-        private const val ARG_CAN_BACK = "arg_can_back"
+        internal const val ARG_MENU_TARGET = "arg_menu_target"
+        internal const val ARG_CAN_BACK = "arg_can_back"
 
         fun newInstance(target: ItemMenu, canBack: Boolean = true): MenuListFragment {
             return MenuListFragment().apply {

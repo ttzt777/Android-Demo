@@ -12,4 +12,28 @@ import kotlinx.android.parcel.Parcelize
 data class ChannelData(
     val id: Long,
     val name: String
-) : Parcelable
+) : Parcelable {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) {
+            return true
+        }
+
+        val newData = other as? ChannelData ?: return false
+
+        if (this.id != newData.id) {
+            return false
+        }
+
+        if (this.name != newData.name) {
+            return false
+        }
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id.toInt()
+        result = 17 * result + name.hashCode()
+        return result
+    }
+}

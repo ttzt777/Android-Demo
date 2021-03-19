@@ -27,7 +27,7 @@
         android:id="@+id/tabs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/channelManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleBar"
         app:tabIndicator="@color/color_accent"
@@ -37,7 +37,17 @@
         app:tabSelectedTextColor="@color/color_accent"
         app:tabTextColor="@color/color_accent_dark" />
 
-    <androidx.viewpager.widget.ViewPager
+    <ImageView
+        android:id="@+id/channelManager"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        style="@style/ImageButton.Normal"
+        android:src="@drawable/ic_toc"
+        app:layout_constraintTop_toTopOf="@id/tabs"
+        app:layout_constraintBottom_toBottomOf="@id/tabs"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"
         android:layout_width="0dp"
         android:layout_height="0dp"

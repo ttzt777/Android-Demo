@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -16,7 +16,7 @@ import cc.bear3.android.demo.R
  * @author TT
  * @since 2020-12-8
  */
-abstract class LecFragment : Fragment() {
+abstract class LecActivity : AppCompatActivity() {
 
     protected lateinit var root: FrameLayout
         private set
@@ -31,23 +31,15 @@ abstract class LecFragment : Fragment() {
 
     private val state = MutableLiveData(LecState.Content)
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        root = inflater.inflate(R.layout.layout_lec, container, false) as FrameLayout
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.layout_lec)
+        root = findViewById(R.id.fl_layout_lec_root)
 
         params.topMargin = 0
-        root.addView(onCreateContentView(inflater, container), params)
+        root.addView(onCreateContentView(layoutInflater, root), params)
 
-        return root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        observeLecState {
+        observeLecState(this) {
             when (it) {
                 LecState.Loading -> showLoadingLayout()
                 LecState.Error -> showErrorLayout()
@@ -77,13 +69,9 @@ abstract class LecFragment : Fragment() {
         return 0
     }
 
-    protected fun observeLecState(onChanged: (LecState) -> Unit) {
+    protected fun observeLecState(owner: LifecycleOwner, onChanged: (LecState) -> Unit) {
         val wrappedObserver = Observer<LecState> { t -> onChanged.invoke(t) }
-        state.observe(viewLifecycleOwner, wrappedObserver)
-    }
-
-    protected fun removeObserveLecState() {
-        state.removeObservers(viewLifecycleOwner)
+        state.observe(owner, wrappedObserver)
     }
 
     protected fun changeLecState(lecState: LecState) {
