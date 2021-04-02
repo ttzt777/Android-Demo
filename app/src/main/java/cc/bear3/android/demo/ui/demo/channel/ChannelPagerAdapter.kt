@@ -43,6 +43,11 @@ class ChannelPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(act
         notifyDataSetChanged()
     }
 
+    fun getChannelPosition(data: ChannelData): Int {
+        val position = channelList.indexOf(data)
+        return if (position == -1) 0 else position
+    }
+
     private fun createFragment(channelData: ChannelData): Fragment {
         return ChannelItemFragment.newInstance(channelData)
     }

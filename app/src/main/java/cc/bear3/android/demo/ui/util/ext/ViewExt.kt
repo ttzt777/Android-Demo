@@ -25,6 +25,15 @@ inline fun View?.onClick(crossinline block: () -> Unit) {
     }
 }
 
+fun View?.removeOnClick() {
+    if (this == null) {
+        return
+    }
+
+    setOnClickListener(null)
+    isClickable = false
+}
+
 fun isAvailableClick(): Boolean {
     val crtTime = System.currentTimeMillis()
     val delta = crtTime - lastClickTime

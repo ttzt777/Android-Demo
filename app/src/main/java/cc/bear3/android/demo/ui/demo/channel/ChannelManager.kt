@@ -10,11 +10,14 @@ import androidx.lifecycle.Observer
  * @since 2021-3-11
  */
 object ChannelManager {
-    private val channelList = MutableLiveData<List<ChannelData>>()
+    val currentChannel = MutableLiveData<ChannelData?>()
+    val channelList = MutableLiveData<List<ChannelData>>()
+
+    private val testChannelList = getAllChannelList()
 
     init {
-        val testChannelList = getAllChannelList().subList(0, 5)
-        channelList.value = testChannelList
+        val originChannelList = testChannelList.subList(0, 5)
+        channelList.value = originChannelList
     }
 
     fun observeChannelList(owner: LifecycleOwner, onChanged: (List<ChannelData>) -> Unit) {
@@ -41,17 +44,17 @@ object ChannelManager {
     }
 
     fun requestSuggestChannelList() : List<ChannelData> {
-        val testChannelList = mutableListOf<ChannelData>().apply {
-            addAll(getAllChannelList())
+        val targetChannelList = mutableListOf<ChannelData>().apply {
+            addAll(testChannelList)
         }
         val myChannelList = channelList.value
-        if (myChannelList?.isNullOrEmpty() == true) {
+        if (myChannelList?.isNullOrEmpty() == false) {
             for (temp in myChannelList) {
-                testChannelList.remove(temp)
+                targetChannelList.remove(temp)
             }
         }
 
-        return testChannelList
+        return targetChannelList
     }
 
     private fun saveChannelListToLocal() {

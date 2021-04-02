@@ -11,9 +11,23 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class ChannelManagerData(
     val title: CharSequence,
-    val channelList: MutableList<ChannelData>,
-    val type: ChannelManagerType = ChannelManagerType.Suggest
-) : Parcelable
+    val type: ChannelManagerType = ChannelManagerType.Suggest,
+    val channelList: MutableList<ChannelData>
+) : Parcelable {
+    companion object {
+        fun newInstance(
+            type: ChannelManagerType,
+            channelList: MutableList<ChannelData>
+        ): ChannelManagerData {
+            val title = when (type) {
+                ChannelManagerType.Subscribed -> "我订阅的频道"
+                ChannelManagerType.Deleted -> "最近删除的频道"
+                ChannelManagerType.Suggest -> "推荐的频道"
+            }
+            return ChannelManagerData(title, type, channelList)
+        }
+    }
+}
 
 enum class ChannelManagerType {
     Subscribed,

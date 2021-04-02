@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.viewpager2.widget.ViewPager2
 import cc.bear3.android.demo.databinding.PageChannelDemoBinding
 import cc.bear3.android.demo.ui.base.BaseActivity
 import cc.bear3.android.demo.ui.util.ext.onClick
@@ -20,6 +22,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class ChannelDemoPage : BaseActivity() {
 
     private lateinit var binding: PageChannelDemoBinding
+    private lateinit var adapter: ChannelPagerAdapter
 
     private var tabLayoutMediator: TabLayoutMediator? = null
 
@@ -30,7 +33,7 @@ class ChannelDemoPage : BaseActivity() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        val adapter = ChannelPagerAdapter(this)
+        adapter = ChannelPagerAdapter(this)
         binding.pager.adapter = adapter
         tabLayoutMediator = TabLayoutMediator(binding.tabs, binding.pager) { tab, position ->
             tab.text = adapter.getChannelData(position).name
@@ -38,9 +41,24 @@ class ChannelDemoPage : BaseActivity() {
             attach()
         }
 
+        binding.pager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                val data = adapter.getChannelData(position)
+                if (data != ChannelManager.currentChannel.value) {
+                    ChannelManager.currentChannel.value = data
+                }
+            }
+        })
+
         ChannelManager.observeChannelList(this) {
             adapter.updateData(it)
+            moveToTab(ChannelManager.currentChannel.value)
         }
+
+        ChannelManager.currentChannel.observe(this,
+            Observer {
+                moveToTab(it)
+            })
 
         binding.channelManager.onClick {
             ChannelManagerPage.invoke(this)
@@ -50,6 +68,12 @@ class ChannelDemoPage : BaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
         tabLayoutMediator?.detach()
+    }
+
+    private fun moveToTab(data: ChannelData?) {
+        data?.let {
+            binding.pager.currentItem = adapter.getChannelPosition(it)
+        }
     }
 
     companion object {

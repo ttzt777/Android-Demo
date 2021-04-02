@@ -40,7 +40,7 @@ class ConfirmButton @JvmOverloads constructor(
         }
 
     // 圆角是否为高度的一半
-    var isHalfHeightCorner = true
+    var isHalfHeightCorner = false
         set(value) {
             field = value
             requestLayout()

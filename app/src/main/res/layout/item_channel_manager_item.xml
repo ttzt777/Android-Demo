@@ -21,4 +21,12 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="推荐" />
 
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@mipmap/ic_delete_channel" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

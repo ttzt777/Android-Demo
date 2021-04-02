@@ -20,7 +20,7 @@ class ChannelManagerPage : BaseActivity() {
     private lateinit var binding: PageChannelManagerBinding
 
     private val adapter by lazy {
-        ChannelManagerAdapter()
+        ChannelManagerAdapter(this)
     }
 
     override fun onCreateContentView(inflater: LayoutInflater, container: ViewGroup?): View {
@@ -34,21 +34,21 @@ class ChannelManagerPage : BaseActivity() {
             list.adapter = adapter
         }
 
-        ChannelManager.observeChannelList(this) {
-            val data = ChannelManagerData("我订阅的频道", it.toMutableList())
-            adapter.dataRefresh(listOf(data))
+        adapter.updateData(
+            ChannelManagerData.newInstance(
+                ChannelManagerType.Subscribed,
+                ChannelManager.channelList.value!!.toMutableList()
+            )
+        )
 
-            val suggestChannelList = ChannelManager.requestSuggestChannelList()
-            if (suggestChannelList.isNotEmpty()) {
-                adapter.dataMore(
-                    listOf(
-                        ChannelManagerData(
-                            "推荐的频道",
-                            suggestChannelList.toMutableList()
-                        )
-                    )
-                )
-            }
+        val suggestChannelList = ChannelManager.requestSuggestChannelList()
+        if (suggestChannelList.isNotEmpty()) {
+            adapter.updateData(
+                ChannelManagerData.newInstance(
+                    ChannelManagerType.Suggest,
+                    suggestChannelList.toMutableList()
+                ), false
+            )
         }
     }
 
