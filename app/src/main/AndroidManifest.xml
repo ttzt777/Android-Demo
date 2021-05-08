@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".app.App"
@@ -25,42 +26,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.common.MenuListPage"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.demo.channel.ChannelDemoPage"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.demo.channel.ChannelManagerPage"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.media.pick.gallery.MediaGalleryPage"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.media.pick.MediaPickPage"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.util.permission.PermissionPage"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.view.button.ButtonPage"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.view.textView.TextViewPage"
             android:screenOrientation="portrait" />
-
-        <!--        <activity-->
-        <!--            android:name=""-->
-        <!--            android:screenOrientation="portrait" />-->
+        <activity
+            android:name=".ui.demo.video.VideoDemoPage"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

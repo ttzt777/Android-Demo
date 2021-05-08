@@ -23,6 +23,7 @@ ext {
 
     materialVersion = '1.2.1'
     zxingVersion = '3.4.0'
+    exoPlayerVersion = '2.13.3'
 
     statusAdapterVersion = '1.0.0'
     utilsVersion = '1.0.0-alpha03'

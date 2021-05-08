@@ -13,6 +13,7 @@
     <string name="menu_system_socket">Socket</string>
 
     <string name="menu_demo_channel_manager">频道管理</string>
+    <string name="menu_demo_video">视频播放</string>
 
     <string name="menu_view_button">Button</string>
     <string name="menu_view_textView">TextView</string>

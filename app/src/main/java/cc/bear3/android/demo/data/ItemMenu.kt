@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import cc.bear3.android.demo.R
 import cc.bear3.android.demo.ui.common.MenuListPage
 import cc.bear3.android.demo.ui.demo.channel.ChannelDemoPage
+import cc.bear3.android.demo.ui.demo.video.VideoDemoPage
 import cc.bear3.android.demo.ui.media.pick.MediaPickPage
 import cc.bear3.android.demo.ui.util.permission.PermissionPage
 import cc.bear3.android.demo.ui.view.button.ButtonPage
@@ -35,6 +36,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
 
     // 二级菜单 - Demo
     Demo_ChannelManager(R.string.menu_demo_channel_manager),
+    Demo_Video(R.string.menu_demo_video),
 
     // 二级菜单 - View
     View_Button(R.string.menu_view_button),
@@ -68,6 +70,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
             System, Demo, View, Media, Util, Jetpack -> MenuListPage.invoke(context, this)
 
             Demo_ChannelManager -> ChannelDemoPage.invoke(context)
+            Demo_Video -> VideoDemoPage.invoke(context)
 
             Media_Pick -> MediaPickPage.invoke(context)
 
@@ -86,7 +89,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
             App -> listOf(System, Demo, View, Media, Util, Jetpack)
 
             System -> listOf(System_CrashHandler, System_Bluetooth, System_Socket)
-            Demo -> listOf(Demo_ChannelManager)
+            Demo -> listOf(Demo_ChannelManager, Demo_Video)
             View -> listOf(
                 View_Button,
                 View_TextView,

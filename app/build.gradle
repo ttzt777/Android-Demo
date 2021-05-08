@@ -61,6 +61,8 @@ dependencies {
 
     // google二维码
     implementation "com.google.zxing:core:$zxingVersion"
+    implementation "com.google.android.exoplayer:exoplayer-core:$exoPlayerVersion"
+    implementation "com.google.android.exoplayer:exoplayer-dash:$exoPlayerVersion"
 
     implementation "cc.bear3.util.statusadapter:statusadapter:$statusAdapterVersion"
     implementation "cc.bear3.util.utils:utils:$utilsVersion"
