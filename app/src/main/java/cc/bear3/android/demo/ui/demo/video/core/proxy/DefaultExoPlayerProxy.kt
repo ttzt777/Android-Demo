@@ -1,8 +1,10 @@
-package cc.bear3.android.demo.ui.demo.video.core
+package cc.bear3.android.demo.ui.demo.video.core.proxy
 
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import cc.bear3.android.demo.ui.demo.video.core.controller.IExoPlayerController
+import cc.bear3.android.demo.ui.demo.video.core.PlayerState
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -16,28 +18,22 @@ import java.util.*
  * @since 2021-4-26
  */
 open class DefaultExoPlayerProxy(
-    protected val context: Context
+    protected val context: Context,
+    final override val controller: IExoPlayerController? = null
 ) : IExoPlayerProxy, Player.EventListener {
 
-    override val player by lazy { SimpleExoPlayer.Builder(context).build() }
+    final override val player by lazy { SimpleExoPlayer.Builder(context).build() }
     override var playerState = PlayerState.Idle
-
-    override var viewController: IExoPlayerViewController? = null
 
     protected val uiHandler = Handler(Looper.getMainLooper())
     protected var progressTimer: Timer? = null
-    protected val progressTask: TimerTask
+    protected var progressTask: TimerTask? = null
 
     protected var duration = TIME_UNSET
 
     init {
-        progressTask = object : TimerTask() {
-            override fun run() {
-                uiHandler.post {
-                    updateProgress()
-                }
-            }
-        }
+        controller?.playerProxy = this
+        player.addListener(this)
     }
 
     companion object {
@@ -45,13 +41,12 @@ open class DefaultExoPlayerProxy(
         private const val TIME_UNSET = Long.MIN_VALUE + 1
     }
 
-    override fun prepare(source: MediaSource, autoPlay: Boolean) {
+    override fun prepare(source: MediaSource) {
         stop()
         reset()
 
         player.setMediaSource(source)
         player.prepare()
-        player.playWhenReady = autoPlay
     }
 
     override fun play() {
@@ -71,7 +66,10 @@ open class DefaultExoPlayerProxy(
     }
 
     override fun seekTo(positionMs: Long) {
+        pause()
+        changePlayerState(PlayerState.Buffering)
         player.seekTo(positionMs)
+        play()
     }
 
     override fun changeVolume(volume: Int) {
@@ -79,7 +77,7 @@ open class DefaultExoPlayerProxy(
     }
 
     override fun changePlayerState(targetState: PlayerState) {
-        Timber.d("Player state changed ${playerState.name} -> ${targetState.name}")
+        Timber.d("Player state changed -- ${playerState.name} -> ${targetState.name}")
 
         if (duration == TIME_UNSET) {
             duration = player.duration
@@ -92,7 +90,7 @@ open class DefaultExoPlayerProxy(
             else -> cancelProgressTimer()
         }
 
-        viewController?.onPlayerStateChanged(playerState)
+        controller?.onPlayerStateChanged(playerState)
     }
 
     override fun dispose() {
@@ -125,31 +123,33 @@ open class DefaultExoPlayerProxy(
 
     protected open fun updateProgress() {
         if (duration != TIME_UNSET) {
-            viewController?.onPlayerProgressChanged(player.currentPosition, duration)
+            controller?.onPlayerProgressChanged(player.currentPosition, duration)
         }
     }
 
     protected open fun startProgressTimer() {
-        if (viewController == null) {
-            return
-        }
+        cancelProgressTimer()
 
-        if (progressTimer != null) {
-            return
+        progressTask = object : TimerTask() {
+            override fun run() {
+                uiHandler.post {
+                    updateProgress()
+                }
+            }
         }
 
         progressTimer = Timer().apply {
-            schedule(progressTask, 0, DEFAULT_PROGRESS_PERIOD)
+            schedule(
+                progressTask, 0,
+                DEFAULT_PROGRESS_PERIOD
+            )
         }
     }
 
     protected open fun cancelProgressTimer() {
-        progressTask.cancel()
+        progressTask?.cancel()
 
-        progressTimer?.let {
-            it.cancel()
-            progressTimer = null
-        }
+        progressTimer?.cancel()
     }
 
     protected open fun reset() {

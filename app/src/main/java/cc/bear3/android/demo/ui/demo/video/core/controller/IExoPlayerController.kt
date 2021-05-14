@@ -1,16 +1,20 @@
-package cc.bear3.android.demo.ui.demo.video.core
+package cc.bear3.android.demo.ui.demo.video.core.controller
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cc.bear3.android.demo.manager.IDisposable
+import cc.bear3.android.demo.ui.demo.video.core.PlayerState
+import cc.bear3.android.demo.ui.demo.video.core.proxy.IExoPlayerProxy
 
 /**
  *
  * @author TT
  * @since 2021-4-26
  */
-interface IExoPlayerViewController : IDisposable{
+interface IExoPlayerController : IDisposable{
+    var playerProxy: IExoPlayerProxy
+
     fun getControllerView(inflater: LayoutInflater, container: ViewGroup?): View
 
     fun onPlayerStateChanged(playerState: PlayerState)

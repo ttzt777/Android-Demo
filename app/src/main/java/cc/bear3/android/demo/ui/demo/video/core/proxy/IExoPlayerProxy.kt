@@ -1,6 +1,8 @@
-package cc.bear3.android.demo.ui.demo.video.core
+package cc.bear3.android.demo.ui.demo.video.core.proxy
 
 import cc.bear3.android.demo.manager.IDisposable
+import cc.bear3.android.demo.ui.demo.video.core.controller.IExoPlayerController
+import cc.bear3.android.demo.ui.demo.video.core.PlayerState
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
 
@@ -11,10 +13,10 @@ import com.google.android.exoplayer2.source.MediaSource
  */
 interface IExoPlayerProxy : IDisposable {
     val player: ExoPlayer
+    val controller: IExoPlayerController?
     var playerState: PlayerState
-    var viewController: IExoPlayerViewController?
 
-    fun prepare(source: MediaSource, autoPlay: Boolean = true)
+    fun prepare(source: MediaSource)
 
     fun play()
 

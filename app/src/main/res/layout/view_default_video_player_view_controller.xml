@@ -5,6 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <cc.bear3.android.demo.ui.demo.video.core.view.VideoControllerEventView
+        android:id="@+id/touchView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ProgressBar
         android:id="@+id/progress"
         style="?android:attr/progressBarStyleHorizontal"
@@ -53,14 +62,26 @@
         android:id="@+id/totalText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="4dp"
         android:textColor="@color/text_light"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@id/seekBar"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fullScreen"
         app:layout_constraintStart_toEndOf="@id/seekBar"
         app:layout_constraintTop_toTopOf="@id/seekBar"
         tools:text="--:--" />
+
+    <ImageView
+        android:id="@+id/fullScreen"
+        style="@style/ImageButton.Normal"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_video_full_screen_enter"
+        app:layout_constraintBottom_toBottomOf="@id/seekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/totalText"
+        app:layout_constraintTop_toTopOf="@id/seekBar" />
 
     <ImageView
         android:id="@+id/playStatus"
@@ -127,5 +148,5 @@
         android:id="@+id/bottomInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="bottomBg, positionText, seekBar, totalText" />
+        app:constraint_referenced_ids="bottomBg, positionText, seekBar, totalText, fullScreen" />
 </androidx.constraintlayout.widget.ConstraintLayout>
