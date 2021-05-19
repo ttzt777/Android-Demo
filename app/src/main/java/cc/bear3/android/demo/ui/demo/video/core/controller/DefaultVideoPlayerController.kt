@@ -1,25 +1,19 @@
 package cc.bear3.android.demo.ui.demo.video.core.controller
 
-import android.app.Activity
 import android.content.Context
-import android.content.pm.ActivityInfo
-import android.os.Handler
-import android.os.Looper
+import android.media.AudioManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.FrameLayout
 import android.widget.SeekBar
+import cc.bear3.android.demo.BuildConfig
 import cc.bear3.android.demo.R
 import cc.bear3.android.demo.databinding.ViewDefaultVideoPlayerViewControllerBinding
 import cc.bear3.android.demo.ui.demo.video.core.PlayerState
-import cc.bear3.android.demo.ui.demo.video.core.proxy.IExoPlayerProxy
-import cc.bear3.android.demo.ui.demo.video.core.proxy.IVideoPlayerProxy
 import cc.bear3.android.demo.ui.demo.video.core.view.VideoControllerEventView
 import cc.bear3.android.demo.ui.util.ext.onClick
 import cc.bear3.android.demo.util.date.DateUtil
-import cc.bear3.android.demo.util.view.visible
+import timber.log.Timber
 
 /**
  *
@@ -27,29 +21,11 @@ import cc.bear3.android.demo.util.view.visible
  * @since 2021-4-26
  */
 open class DefaultVideoPlayerController(
-    val context: Context
-) : IVideoPlayerController, SeekBar.OnSeekBarChangeListener {
-    override lateinit var playerProxy: IExoPlayerProxy
-    override var fullScreenFlag = false
+    context: Context
+) : BaseVideoPlayerController(context), SeekBar.OnSeekBarChangeListener {
     private var binding: ViewDefaultVideoPlayerViewControllerBinding? = null
 
-    protected val uiHandler by lazy {
-        Handler(Looper.getMainLooper())
-    }
-    protected val dismissRunnable: Runnable by lazy {
-        Runnable { dismissControllerView() }
-    }
-
-    protected var seekBarTrackingTouchFlag = false
-    protected var controllerViewShowingFlag = false
-
-    protected var playerView: View? = null
-    protected var playerParent: ViewGroup? = null
-
-    protected var systemVisibility: Int = 0
-
     companion object {
-        private const val TIME_CONTROLLER_GONE_DELAY = 3000L
         private const val PROGRESS_MAX = 1000
     }
 
@@ -62,129 +38,24 @@ open class DefaultVideoPlayerController(
     }
 
     override fun onPlayerStateChanged(playerState: PlayerState) {
-        removeControllerRunnable()
-
-        controllerViewShowingFlag = true
-
         binding.goneAll()
 
-        when (playerState) {
-            PlayerState.Idle -> changeToIdle()
-            PlayerState.Confirm -> changeToConfirm()
-            PlayerState.Buffering -> changeToBuffering()
-            PlayerState.Playing -> changeToPlaying()
-            PlayerState.Paused -> changeToPaused()
-            PlayerState.Stop -> changeToStop()
-            PlayerState.Error -> changeToError()
-        }
+        super.onPlayerStateChanged(playerState)
     }
 
-    override fun onPlayerProgressChanged(positionMs: Long, totalMs: Long) {
-        updatePlayerTime(positionMs, totalMs)
+    override fun onVolumeUp() {
+        binding?.volumeFlag?.setImageResource(R.drawable.ic_video_volume_up)
 
-        if (!seekBarTrackingTouchFlag) {
-            val percent = positionMs.toFloat() / totalMs
-
-            updateSeekBarPercent(percent)
-            updateProgressPercent(percent)
-        }
+        super.onVolumeUp()
     }
 
-    override fun dispose() {
-        removeControllerRunnable()
+    override fun onVolumeOff() {
+        binding?.volumeFlag?.setImageResource(R.drawable.ic_video_volume_off)
+
+        super.onVolumeOff()
     }
 
-    override fun onProgressChanged(
-        seekBar: SeekBar,
-        progress: Int,
-        fromUser: Boolean
-    ) {
-
-    }
-
-    override fun onStartTrackingTouch(seekBar: SeekBar) {
-        seekBarTrackingTouchFlag = true
-
-        removeControllerRunnable()
-    }
-
-    override fun onStopTrackingTouch(seekBar: SeekBar) {
-        val percent = seekBar.progress.toFloat() / seekBar.max
-        updateProgressPercent(percent)
-        playerProxy.seekTo(percent)
-        seekBarTrackingTouchFlag = false
-    }
-
-    override fun enterFullScreen() {
-        if (fullScreenFlag) {
-            return
-        }
-
-        val playerProxy = this.playerProxy as? IVideoPlayerProxy ?: return
-        val activity = context as? Activity ?: return
-
-        val player = playerProxy.getWrapperView()
-        val parent = player.parent as? ViewGroup ?: return
-
-        this.playerView = player
-        this.playerParent = parent
-
-        changeFullScreenFlag(true)
-
-        // 从原来的地方移除
-        parent.removeView(player)
-
-        // 添加到Activity的content中
-        val activityContent = activity.findViewById(android.R.id.content) as FrameLayout
-        activityContent.addView(
-            player,
-            ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-        )
-
-        // 进入全屏状态
-        activity.window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-//        systemVisibility = activity.window.decorView.systemUiVisibility
-//        activity.window.decorView.systemUiVisibility =
-//            View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE
-    }
-
-    override fun exitFullScreen() {
-        if (!fullScreenFlag) {
-            return
-        }
-
-        val activity = context as? Activity ?: return
-        val activityContent = activity.findViewById(android.R.id.content) as FrameLayout
-
-        val parent = playerParent ?: return
-        val player = playerView ?: return
-
-        playerParent = null
-        playerView = null
-
-        changeFullScreenFlag(false)
-
-        // 从Activity的Content中移除
-        activityContent.removeView(player)
-
-        // 添加到原来的布局中
-        parent.addView(
-            player,
-            ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-        )
-
-        // 退出全屏状态
-        activity.window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-//        activity.window.decorView.systemUiVisibility = systemVisibility
-    }
-
-    protected open fun changeToIdle() {
+    override fun changeToIdle() {
         binding?.let {
             it.playStatus.setImageResource(R.drawable.ic_video_play)
 
@@ -192,7 +63,7 @@ open class DefaultVideoPlayerController(
         }
     }
 
-    protected open fun changeToConfirm() {
+    override fun changeToConfirm() {
         binding?.let {
             it.confirmHint.text = "当前是移动网络，是否继续播放"
 
@@ -200,13 +71,13 @@ open class DefaultVideoPlayerController(
         }
     }
 
-    protected open fun changeToBuffering() {
+    override fun changeToBuffering() {
         binding?.let {
             visible(it.loadingFlag, it.progress)
         }
     }
 
-    protected open fun changeToPlaying() {
+    override fun changeToPlaying() {
         binding?.let {
             it.playStatus.setImageResource(R.drawable.ic_video_pause)
 
@@ -216,7 +87,7 @@ open class DefaultVideoPlayerController(
         postControllerRunnable()
     }
 
-    protected open fun changeToPaused() {
+    override fun changeToPaused() {
         binding?.let {
             it.playStatus.setImageResource(R.drawable.ic_video_play)
 
@@ -224,7 +95,7 @@ open class DefaultVideoPlayerController(
         }
     }
 
-    protected open fun changeToStop() {
+    override fun changeToStop() {
         binding?.let {
             it.playStatus.setImageResource(R.drawable.ic_video_play)
 
@@ -232,7 +103,7 @@ open class DefaultVideoPlayerController(
         }
     }
 
-    protected open fun changeToError() {
+    override fun changeToError() {
         binding?.let {
             it.confirmHint.text = "资源错误，无法播放"
 
@@ -240,50 +111,7 @@ open class DefaultVideoPlayerController(
         }
     }
 
-    protected open fun showControllerView() {
-        if (playerProxy.playerState == PlayerState.Buffering) {
-            return
-        }
-
-        controllerViewShowingFlag = true
-
-        onPlayerStateChanged(playerProxy.playerState)
-    }
-
-    protected open fun dismissControllerView() {
-        if (playerProxy.playerState == PlayerState.Buffering) {
-            return
-        }
-
-        removeControllerRunnable()
-
-        binding?.goneAll()
-        binding?.let {
-            visible(it.progress)
-        }
-
-        controllerViewShowingFlag = false
-    }
-
-    protected open fun toggleControllerView() {
-        if (controllerViewShowingFlag) {
-            dismissControllerView()
-        } else {
-            showControllerView()
-        }
-    }
-
-    protected open fun postControllerRunnable() {
-        removeControllerRunnable()
-
-        uiHandler.postDelayed(dismissRunnable, TIME_CONTROLLER_GONE_DELAY)
-    }
-
-    protected open fun removeControllerRunnable() {
-        uiHandler.removeCallbacks(dismissRunnable)
-    }
-
-    protected open fun updatePlayerTime(positionMs: Long, totalMs: Long) {
+    override fun updatePlayerTime(positionMs: Long, totalMs: Long) {
         if (positionMs < 0 || totalMs <= 0) {
             return
         }
@@ -294,71 +122,36 @@ open class DefaultVideoPlayerController(
         }
     }
 
-    protected open fun updateSeekBarPercent(percent: Float) {
+    override fun updateProgressPercent(percent: Float) {
         binding?.seekBar?.let {
             it.progress = (percent * it.max).toInt()
         }
-    }
 
-    protected open fun updateProgressPercent(percent: Float) {
         binding?.progress?.let {
             it.progress = (percent * it.max).toInt()
         }
     }
 
-    protected open fun toggleFullScreen() {
-        if (fullScreenFlag) {
-            exitFullScreen()
-        } else {
-            enterFullScreen()
+    override fun dismissControllerView(): Boolean {
+        if (super.dismissControllerView()) {
+            binding?.goneAll()
+            binding?.let {
+                visible(it.progress)
+            }
+
+            return true
         }
+
+        return false
     }
 
-    protected open fun changeFullScreenFlag(target: Boolean) {
-        fullScreenFlag = target
+
+    override fun changeFullScreenFlag(target: Boolean) {
+        super.changeFullScreenFlag(target)
 
         binding?.fullScreen?.setImageResource(
             if (fullScreenFlag) R.drawable.ic_video_fullscreen_exit else R.drawable.ic_video_full_screen_enter
         )
-
-        changeOrientationIfNeeded()
-    }
-
-    protected open fun changeOrientationIfNeeded() {
-        val playerRenderer = (playerProxy as? IVideoPlayerProxy)?.renderer ?: return
-
-        if (playerRenderer.videoWidth == 0f || playerRenderer.videoHeight == 0f) {
-            return
-        }
-
-        if (playerRenderer.videoWidth >= playerRenderer.videoHeight) {
-            // 切换方向
-            val activity = context as? Activity ?: return
-
-            activity.requestedOrientation = if (fullScreenFlag) {
-                ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
-            } else {
-                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-            }
-        }
-    }
-
-    protected fun visible(vararg views: View) {
-        for (view in views) {
-            view.visible(true)
-        }
-    }
-
-    protected fun gone(vararg views: View) {
-        for (view in views) {
-            view.visible(false)
-        }
-    }
-
-    protected fun ViewDefaultVideoPlayerViewControllerBinding?.goneAll() {
-        this?.let {
-            gone(it.loadingFlag, it.playStatus, it.confirmInfo, it.bottomInfo, it.progress)
-        }
     }
 
     private fun bindViewClickListener(binding: ViewDefaultVideoPlayerViewControllerBinding) {
@@ -372,7 +165,7 @@ open class DefaultVideoPlayerController(
             touchView.callback = object : VideoControllerEventView.Callback {
                 override fun onBackClick(): Boolean {
                     return if (fullScreenFlag) {
-                        exitFullScreen()
+                        onExitFullScreen()
                         true
                     } else {
                         false
@@ -380,11 +173,30 @@ open class DefaultVideoPlayerController(
                 }
 
                 override fun onVolumeUpClick() {
+                    playerProxy.volumeUp()
 
+                    if (BuildConfig.DEBUG) {
+                        val am =
+                            context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
+                                ?: return
+
+                        val volume = am.getStreamVolume(AudioManager.STREAM_MUSIC)
+
+                        Timber.i("volume up click -- $volume")
+                    }
                 }
 
                 override fun onVolumeDownClick() {
+                    val am =
+                        context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager ?: return
 
+                    val volume = am.getStreamVolume(AudioManager.STREAM_MUSIC)
+
+                    Timber.d("volume down click -- $volume")
+
+                    if (volume <= 0) {
+                        playerProxy.volumeOff()
+                    }
                 }
             }
 
@@ -399,11 +211,25 @@ open class DefaultVideoPlayerController(
                 }
             }
 
+            volumeFlag.onClick {
+                if (volumeUpFlag) {
+                    playerProxy.volumeOff()
+                } else {
+                    playerProxy.volumeUp()
+                }
+            }
+
             seekBar.setOnSeekBarChangeListener(this@DefaultVideoPlayerController)
 
             fullScreen.onClick {
                 toggleFullScreen()
             }
+        }
+    }
+
+    private fun ViewDefaultVideoPlayerViewControllerBinding?.goneAll() {
+        this?.let {
+            gone(it.loadingFlag, it.playStatus, it.confirmInfo, it.bottomInfo, it.progress)
         }
     }
 }

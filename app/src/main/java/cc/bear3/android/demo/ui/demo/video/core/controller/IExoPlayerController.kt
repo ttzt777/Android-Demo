@@ -20,4 +20,8 @@ interface IExoPlayerController : IDisposable{
     fun onPlayerStateChanged(playerState: PlayerState)
 
     fun onPlayerProgressChanged(positionMs: Long, totalMs: Long)
+
+    fun onVolumeUp()
+
+    fun onVolumeOff()
 }

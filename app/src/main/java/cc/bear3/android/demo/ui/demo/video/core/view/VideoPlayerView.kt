@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import cc.bear3.android.demo.BuildConfig
+import cc.bear3.android.demo.ui.demo.video.core.VideoEntity
 import cc.bear3.android.demo.ui.demo.video.core.controller.DefaultVideoPlayerController
 import cc.bear3.android.demo.ui.demo.video.core.proxy.DefaultVideoPlayerProxy
 import cc.bear3.android.demo.ui.demo.video.core.proxy.IVideoPlayerProxy
@@ -48,16 +49,7 @@ class VideoPlayerView @JvmOverloads constructor(
         addView(playerProxy.getWrapperView(), layoutParams)
     }
 
-    open fun start() {
-        val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(
-            context,
-            Util.getUserAgent(context, BuildConfig.APPLICATION_ID)
-        )
-        val videoSource: MediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
-//            .createMediaSource(Uri.parse("https://media.w3.org/2010/05/sintel/trailer.mp4"))
-//            .createMediaSource(Uri.parse("http://vfx.mtime.cn/Video/2019/03/13/mp4/190313094901111138.mp4"))
-            .createMediaSource(MediaItem.fromUri("http://vfx.mtime.cn/Video/2019/03/09/mp4/190309153658147087.mp4"))
-        playerProxy.prepare(videoSource)
-        playerProxy.play()
+    open fun updateData(entity: VideoEntity) {
+        playerProxy.prepareVideo(entity)
     }
 }

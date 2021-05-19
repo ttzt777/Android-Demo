@@ -3,6 +3,7 @@ package cc.bear3.android.demo.ui.demo.video.core.proxy
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import cc.bear3.android.demo.BuildConfig
 import cc.bear3.android.demo.ui.demo.video.core.controller.IExoPlayerController
 import cc.bear3.android.demo.ui.demo.video.core.PlayerState
 import com.google.android.exoplayer2.ExoPlaybackException
@@ -72,8 +73,16 @@ open class DefaultExoPlayerProxy(
         play()
     }
 
-    override fun changeVolume(volume: Int) {
+    override fun volumeUp() {
+        setVolume(IExoPlayerProxy.VOLUME_ON)
 
+        controller?.onVolumeUp()
+    }
+
+    override fun volumeOff() {
+        setVolume(IExoPlayerProxy.VOLUME_OFF)
+
+        controller?.onVolumeOff()
     }
 
     override fun changePlayerState(targetState: PlayerState) {
@@ -99,6 +108,17 @@ open class DefaultExoPlayerProxy(
     }
 
     override fun onPlaybackStateChanged(state: Int) {
+        if (BuildConfig.DEBUG) {
+            val tempState = when (state) {
+                Player.STATE_IDLE -> PlayerState.Idle.name
+                Player.STATE_BUFFERING -> PlayerState.Buffering.name
+                Player.STATE_READY -> PlayerState.Paused.name
+                Player.STATE_ENDED -> PlayerState.Stop.name
+                else -> ""
+            }
+            Timber.d("On playback state changed -- $tempState")
+        }
+
         when (state) {
             Player.STATE_IDLE -> changePlayerState(PlayerState.Idle)
             Player.STATE_BUFFERING -> changePlayerState(PlayerState.Buffering)
@@ -108,6 +128,7 @@ open class DefaultExoPlayerProxy(
     }
 
     override fun onIsPlayingChanged(isPlaying: Boolean) {
+        Timber.d("On is playing changed -- isPlaying($isPlaying)")
         changePlayerState(
             if (isPlaying) {
                 PlayerState.Playing
@@ -118,6 +139,7 @@ open class DefaultExoPlayerProxy(
     }
 
     override fun onPlayerError(error: ExoPlaybackException) {
+        Timber.e("On player error -- ${error.message ?: ""}")
         changePlayerState(PlayerState.Error)
     }
 
@@ -154,5 +176,9 @@ open class DefaultExoPlayerProxy(
 
     protected open fun reset() {
         duration = TIME_UNSET
+    }
+
+    protected open fun setVolume(volPercent: Float) {
+        player.volume = volPercent
     }
 }

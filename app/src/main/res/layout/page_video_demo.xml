@@ -24,67 +24,15 @@
         app:tb_has_divide="true"
         app:tb_title="@string/menu_demo_video" />
 
-    <cc.bear3.android.demo.ui.demo.video.core.view.VideoPlayerView
-        android:id="@+id/playerView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#FF000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="h, 16:9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleBar"
-        app:layout_constraintVertical_bias="0" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="#FFCE25"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/playerView">
-
-        <TextView
-            android:id="@+id/topic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:textColor="@color/text_light"
-            android:textSize="16sp"
-            android:lines="1"
-            android:ellipsize="end"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintWidth_default="wrap"
-            app:layout_constraintEnd_toStartOf="@id/circle"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            tools:text="话题" />
-
-        <TextView
-            android:id="@+id/circle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:textColor="@color/text_light"
-            android:textSize="16sp"
-            android:lines="1"
-            android:ellipsize="end"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/topic"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_goneMarginStart="0dp"
-            tools:text="圈子圈子圈子圈子圈子圈子圈子圈子圈子圈子圈子" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        tools:itemCount="2"
+        tools:listitem="@layout/item_video_list"
+        app:layout_constraintTop_toBottomOf="@id/titleBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
