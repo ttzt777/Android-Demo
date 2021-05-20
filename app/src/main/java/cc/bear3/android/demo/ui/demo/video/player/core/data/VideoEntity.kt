@@ -1,4 +1,4 @@
-package cc.bear3.android.demo.ui.demo.video.core
+package cc.bear3.android.demo.ui.demo.video.player.core.data
 
 /**
  *
@@ -16,8 +16,20 @@ fun createVideoEntityList(): MutableList<VideoEntity> {
     val resultList = mutableListOf<VideoEntity>()
 
     with(resultList) {
-        add(VideoEntity("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4", 640, 360))
-        add(VideoEntity("https://media.w3.org/2010/05/sintel/trailer.mp4", 854, 480))
+        add(
+            VideoEntity(
+                "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",
+                640,
+                360
+            )
+        )
+        add(
+            VideoEntity(
+                "https://media.w3.org/2010/05/sintel/trailer.mp4",
+                854,
+                480
+            )
+        )
         add(
             VideoEntity(
                 "http://vfx.mtime.cn/Video/2019/02/04/mp4/190204084208765161.mp4",
@@ -130,7 +142,13 @@ fun createVideoEntityList(): MutableList<VideoEntity> {
                 270
             )
         )
-        add(VideoEntity("http://vjs.zencdn.net/v/oceans.mp4", 960, 400))
+        add(
+            VideoEntity(
+                "http://vjs.zencdn.net/v/oceans.mp4",
+                960,
+                400
+            )
+        )
         add(
             VideoEntity(
                 "http://zkvideo-oss.myzaker.com/rgcms/201911/5ddcd82a1bc8e079430001e9_LD.mp4",
@@ -139,7 +157,13 @@ fun createVideoEntityList(): MutableList<VideoEntity> {
             )
         )
         // 貌似有点问题的源
-        add(VideoEntity("https://media.w3.org/2010/05/sintel/trailer.mp4", 854, 480))
+        add(
+            VideoEntity(
+                "https://media.w3.org/2010/05/sintel/trailer.mp4",
+                854,
+                480
+            )
+        )
     }
 
     return resultList

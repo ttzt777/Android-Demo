@@ -1,10 +1,9 @@
-package cc.bear3.android.demo.ui.demo.video.core.view
+package cc.bear3.android.demo.ui.demo.video.player.core.view
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.KeyEvent
 import android.view.View
-import androidx.viewbinding.ViewBinding
 
 /**
  *

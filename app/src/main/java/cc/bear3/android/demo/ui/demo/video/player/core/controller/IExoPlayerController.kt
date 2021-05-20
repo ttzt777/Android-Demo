@@ -1,11 +1,11 @@
-package cc.bear3.android.demo.ui.demo.video.core.controller
+package cc.bear3.android.demo.ui.demo.video.player.core.controller
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cc.bear3.android.demo.manager.IDisposable
-import cc.bear3.android.demo.ui.demo.video.core.PlayerState
-import cc.bear3.android.demo.ui.demo.video.core.proxy.IExoPlayerProxy
+import cc.bear3.android.demo.ui.demo.video.player.core.PlayerState
+import cc.bear3.android.demo.ui.demo.video.player.core.proxy.IExoPlayerProxy
 
 /**
  *

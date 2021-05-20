@@ -1,8 +1,8 @@
-package cc.bear3.android.demo.ui.demo.video.core.proxy
+package cc.bear3.android.demo.ui.demo.video.player.core.proxy
 
 import android.view.View
-import cc.bear3.android.demo.ui.demo.video.core.VideoEntity
-import cc.bear3.android.demo.ui.demo.video.core.renderer.IVideoPlayerRenderer
+import cc.bear3.android.demo.ui.demo.video.player.core.data.VideoEntity
+import cc.bear3.android.demo.ui.demo.video.player.core.renderer.IVideoPlayerRenderer
 
 /**
  *

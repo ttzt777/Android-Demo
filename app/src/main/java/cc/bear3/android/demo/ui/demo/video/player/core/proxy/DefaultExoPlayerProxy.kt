@@ -1,11 +1,11 @@
-package cc.bear3.android.demo.ui.demo.video.core.proxy
+package cc.bear3.android.demo.ui.demo.video.player.core.proxy
 
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import cc.bear3.android.demo.BuildConfig
-import cc.bear3.android.demo.ui.demo.video.core.controller.IExoPlayerController
-import cc.bear3.android.demo.ui.demo.video.core.PlayerState
+import cc.bear3.android.demo.ui.demo.video.player.core.controller.IExoPlayerController
+import cc.bear3.android.demo.ui.demo.video.player.core.PlayerState
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer

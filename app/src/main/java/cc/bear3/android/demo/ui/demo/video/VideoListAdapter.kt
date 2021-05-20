@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import cc.bear3.android.demo.R
 import cc.bear3.android.demo.databinding.ItemVideoListBinding
 import cc.bear3.android.demo.ui.base.BaseAdapter
-import cc.bear3.android.demo.ui.demo.video.core.VideoEntity
+import cc.bear3.android.demo.ui.demo.video.player.core.data.VideoEntity
 
 /**
  *

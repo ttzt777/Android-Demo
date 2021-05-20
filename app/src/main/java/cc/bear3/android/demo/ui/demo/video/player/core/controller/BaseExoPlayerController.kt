@@ -1,9 +1,9 @@
-package cc.bear3.android.demo.ui.demo.video.core.controller
+package cc.bear3.android.demo.ui.demo.video.player.core.controller
 
 import android.content.Context
 import android.widget.SeekBar
-import cc.bear3.android.demo.ui.demo.video.core.PlayerState
-import cc.bear3.android.demo.ui.demo.video.core.proxy.IExoPlayerProxy
+import cc.bear3.android.demo.ui.demo.video.player.core.PlayerState
+import cc.bear3.android.demo.ui.demo.video.player.core.proxy.IExoPlayerProxy
 
 /**
  *

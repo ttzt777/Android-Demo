@@ -1,4 +1,4 @@
-package cc.bear3.android.demo.ui.demo.video.core.proxy
+package cc.bear3.android.demo.ui.demo.video.player.core.proxy
 
 import android.content.Context
 import android.graphics.Color
@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cc.bear3.android.demo.BuildConfig
-import cc.bear3.android.demo.ui.demo.video.core.PlayerState
-import cc.bear3.android.demo.ui.demo.video.core.VideoEntity
-import cc.bear3.android.demo.ui.demo.video.core.controller.IExoPlayerController
-import cc.bear3.android.demo.ui.demo.video.core.renderer.IVideoPlayerRenderer
-import cc.bear3.android.demo.ui.demo.video.core.view.VideoPlayerWrapper
+import cc.bear3.android.demo.ui.demo.video.player.core.PlayerState
+import cc.bear3.android.demo.ui.demo.video.player.core.data.VideoEntity
+import cc.bear3.android.demo.ui.demo.video.player.core.controller.IExoPlayerController
+import cc.bear3.android.demo.ui.demo.video.player.core.controller.IVideoPlayerController
+import cc.bear3.android.demo.ui.demo.video.player.core.renderer.IVideoPlayerRenderer
+import cc.bear3.android.demo.ui.demo.video.player.core.view.VideoPlayerWrapper
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
@@ -32,7 +33,11 @@ open class DefaultVideoPlayerProxy(
 ) : DefaultExoPlayerProxy(context, controller),
     IVideoPlayerProxy, VideoListener, VideoPlayerWrapper.Callback {
 
-    protected val wrapper = VideoPlayerWrapper(context, callback = this)
+    protected val wrapper =
+        VideoPlayerWrapper(
+            context,
+            callback = this
+        )
     protected var videoEntity : VideoEntity? = null
 
     init {
@@ -77,6 +82,8 @@ open class DefaultVideoPlayerProxy(
 
     override fun prepareVideo(entity: VideoEntity) {
         this.videoEntity = entity
+        (controller as? IVideoPlayerController)?.onVideoEntityPrepared(entity)
+        changePlayerState(PlayerState.Idle)
     }
 
     override fun dispose() {

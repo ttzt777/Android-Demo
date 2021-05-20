@@ -1,4 +1,4 @@
-package cc.bear3.android.demo.ui.demo.video.core
+package cc.bear3.android.demo.ui.demo.video.player.core
 
 /**
  *

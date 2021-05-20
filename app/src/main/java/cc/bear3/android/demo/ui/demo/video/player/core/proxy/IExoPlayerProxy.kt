@@ -1,8 +1,8 @@
-package cc.bear3.android.demo.ui.demo.video.core.proxy
+package cc.bear3.android.demo.ui.demo.video.player.core.proxy
 
 import cc.bear3.android.demo.manager.IDisposable
-import cc.bear3.android.demo.ui.demo.video.core.controller.IExoPlayerController
-import cc.bear3.android.demo.ui.demo.video.core.PlayerState
+import cc.bear3.android.demo.ui.demo.video.player.core.controller.IExoPlayerController
+import cc.bear3.android.demo.ui.demo.video.player.core.PlayerState
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
 

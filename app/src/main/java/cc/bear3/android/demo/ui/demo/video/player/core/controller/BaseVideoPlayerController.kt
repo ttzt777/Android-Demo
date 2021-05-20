@@ -1,4 +1,4 @@
-package cc.bear3.android.demo.ui.demo.video.core.controller
+package cc.bear3.android.demo.ui.demo.video.player.core.controller
 
 import android.app.Activity
 import android.content.Context
@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.FrameLayout
-import cc.bear3.android.demo.ui.demo.video.core.PlayerState
-import cc.bear3.android.demo.ui.demo.video.core.proxy.IVideoPlayerProxy
+import cc.bear3.android.demo.ui.demo.video.player.core.PlayerState
+import cc.bear3.android.demo.ui.demo.video.player.core.proxy.IVideoPlayerProxy
 import cc.bear3.android.demo.util.view.visible
 
 /**

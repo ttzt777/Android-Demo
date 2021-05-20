@@ -5,8 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <cc.bear3.android.demo.ui.demo.video.core.view.VideoControllerEventView
+    <cc.bear3.android.demo.ui.demo.video.player.core.view.VideoControllerEventView
         android:id="@+id/touchView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/bgImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,21 +1,14 @@
-package cc.bear3.android.demo.ui.demo.video.core.view
+package cc.bear3.android.demo.ui.demo.video.player.view
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import cc.bear3.android.demo.BuildConfig
-import cc.bear3.android.demo.ui.demo.video.core.VideoEntity
-import cc.bear3.android.demo.ui.demo.video.core.controller.DefaultVideoPlayerController
-import cc.bear3.android.demo.ui.demo.video.core.proxy.DefaultVideoPlayerProxy
-import cc.bear3.android.demo.ui.demo.video.core.proxy.IVideoPlayerProxy
-import cc.bear3.android.demo.ui.demo.video.core.renderer.DefaultVideoRenderer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.source.MediaSource
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.upstream.DataSource
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import com.google.android.exoplayer2.util.Util
+import cc.bear3.android.demo.ui.demo.video.player.core.controller.DefaultVideoPlayerController
+import cc.bear3.android.demo.ui.demo.video.player.core.data.VideoEntity
+import cc.bear3.android.demo.ui.demo.video.player.core.proxy.DefaultVideoPlayerProxy
+import cc.bear3.android.demo.ui.demo.video.player.core.proxy.IVideoPlayerProxy
+import cc.bear3.android.demo.ui.demo.video.player.core.renderer.DefaultVideoRenderer
 
 
 /**
@@ -27,7 +20,7 @@ class VideoPlayerView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+) : FrameLayout(context, attrs, defStyleAttr), IVideoPlayerView {
 
     private val playerProxy: IVideoPlayerProxy
 
@@ -47,6 +40,10 @@ class VideoPlayerView @JvmOverloads constructor(
             )
         )
         addView(playerProxy.getWrapperView(), layoutParams)
+    }
+
+    override fun getVideoPlayerProxy(): IVideoPlayerProxy {
+        return playerProxy
     }
 
     open fun updateData(entity: VideoEntity) {

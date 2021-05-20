@@ -1,4 +1,4 @@
-package cc.bear3.android.demo.ui.demo.video.core.renderer
+package cc.bear3.android.demo.ui.demo.video.player.core.renderer
 
 import android.content.Context
 import android.view.Gravity

@@ -1,4 +1,4 @@
-package cc.bear3.android.demo.ui.demo.video.core.controller
+package cc.bear3.android.demo.ui.demo.video.player.core.controller
 
 import android.content.Context
 import android.media.AudioManager
@@ -9,10 +9,12 @@ import android.widget.SeekBar
 import cc.bear3.android.demo.BuildConfig
 import cc.bear3.android.demo.R
 import cc.bear3.android.demo.databinding.ViewDefaultVideoPlayerViewControllerBinding
-import cc.bear3.android.demo.ui.demo.video.core.PlayerState
-import cc.bear3.android.demo.ui.demo.video.core.view.VideoControllerEventView
+import cc.bear3.android.demo.ui.demo.video.player.core.PlayerState
+import cc.bear3.android.demo.ui.demo.video.player.core.data.VideoEntity
+import cc.bear3.android.demo.ui.demo.video.player.core.view.VideoControllerEventView
 import cc.bear3.android.demo.ui.util.ext.onClick
 import cc.bear3.android.demo.util.date.DateUtil
+import com.bumptech.glide.Glide
 import timber.log.Timber
 
 /**
@@ -55,11 +57,17 @@ open class DefaultVideoPlayerController(
         super.onVolumeOff()
     }
 
+    override fun onVideoEntityPrepared(entity: VideoEntity) {
+        binding?.let {
+            Glide.with(it.bgImage).load(entity.url).into(it.bgImage)
+        }
+    }
+
     override fun changeToIdle() {
         binding?.let {
             it.playStatus.setImageResource(R.drawable.ic_video_play)
 
-            visible(it.playStatus)
+            visible(it.bgImage, it.playStatus)
         }
     }
 
@@ -229,7 +237,7 @@ open class DefaultVideoPlayerController(
 
     private fun ViewDefaultVideoPlayerViewControllerBinding?.goneAll() {
         this?.let {
-            gone(it.loadingFlag, it.playStatus, it.confirmInfo, it.bottomInfo, it.progress)
+            gone(it.bgImage, it.loadingFlag, it.playStatus, it.confirmInfo, it.bottomInfo, it.progress)
         }
     }
 }
