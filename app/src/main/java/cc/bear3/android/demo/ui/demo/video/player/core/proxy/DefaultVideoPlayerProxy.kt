@@ -80,6 +80,13 @@ open class DefaultVideoPlayerProxy(
         }
     }
 
+    override fun pause() {
+        super.pause()
+        if (playerState == PlayerState.Buffering) {
+            changePlayerState(PlayerState.Paused)
+        }
+    }
+
     override fun prepareVideo(entity: VideoEntity) {
         this.videoEntity = entity
         (controller as? IVideoPlayerController)?.onVideoEntityPrepared(entity)

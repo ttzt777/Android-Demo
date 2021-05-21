@@ -10,8 +10,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
+import cc.bear3.android.demo.R
 import cc.bear3.android.demo.databinding.PageVideoDemoBinding
 import cc.bear3.android.demo.ui.base.BaseActivity
+import cc.bear3.android.demo.ui.demo.video.player.autoplay.builder.AutoPlayerControllerBuilder
+import cc.bear3.android.demo.ui.demo.video.player.autoplay.controller.ListAutoplayController
 import cc.bear3.android.demo.ui.demo.video.player.core.data.createVideoEntityList
 import cc.bear3.android.demo.util.context.startWithAnim
 import timber.log.Timber
@@ -33,6 +36,12 @@ class VideoDemoPage : BaseActivity() {
         }
 
         lifecycle.addObserver(Observer())
+
+        AutoPlayerControllerBuilder
+            .newBuilder(ListAutoplayController::class.java)
+            .setRecyclerView(binding.recyclerView)
+            .setVideoPlayerId(R.id.playerView)
+            .monitor(lifecycle)
     }
 
     override fun onCreateContentView(inflater: LayoutInflater, container: ViewGroup?): View {
