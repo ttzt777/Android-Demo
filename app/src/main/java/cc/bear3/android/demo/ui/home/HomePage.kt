@@ -1,5 +1,7 @@
 package cc.bear3.android.demo.ui.home
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +12,7 @@ import cc.bear3.android.demo.ui.base.BaseActivity
 import cc.bear3.android.demo.ui.base.BaseFragment
 import cc.bear3.android.demo.ui.common.MenuListFragment
 import cc.bear3.android.demo.ui.todo.TodoFragment
+import cc.bear3.android.demo.util.context.startWithAnim
 import cc.bear3.android.demo.util.viewpager.ViewPagerAdapter
 
 /**
@@ -36,5 +39,12 @@ class HomePage : BaseActivity() {
         )
 
         binding.viewPager.adapter = adapter
+    }
+
+    companion object {
+        fun invoke(context: Context) {
+            val intent = Intent(context, HomePage::class.java)
+            context.startWithAnim(intent)
+        }
     }
 }

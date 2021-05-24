@@ -3,6 +3,7 @@ package cc.bear3.android.demo.ui.base
 import android.os.Bundle
 import android.view.View
 import cc.bear3.android.demo.R
+import cc.bear3.android.demo.app.ActivityStackManager
 import cc.bear3.android.demo.ui.base.lec.LecActivity
 import cc.bear3.android.demo.ui.base.lec.LecState
 import com.gyf.immersionbar.ImmersionBar
@@ -18,6 +19,8 @@ abstract class BaseActivity : LecActivity() {
         super.onCreate(savedInstanceState)
 
         Timber.d("Activity onCreate: %s", getTagName())
+
+        ActivityStackManager.addActivity(this)
 
         setImmersionBar()
 
@@ -50,6 +53,8 @@ abstract class BaseActivity : LecActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+
+        ActivityStackManager.removeActivity(this)
 
         Timber.d("Activity onDestroy: %s", getTagName())
     }
