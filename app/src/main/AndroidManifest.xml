@@ -62,6 +62,10 @@
             android:name=".ui.demo.video.VideoDemoPage"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.demo.video.VideoDetailPage"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

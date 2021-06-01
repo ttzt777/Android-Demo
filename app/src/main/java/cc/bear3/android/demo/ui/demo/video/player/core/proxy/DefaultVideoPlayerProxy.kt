@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cc.bear3.android.demo.BuildConfig
-import cc.bear3.android.demo.ui.demo.video.player.core.PlayerState
+import cc.bear3.android.demo.ui.demo.video.player.core.state.PlayerState
 import cc.bear3.android.demo.ui.demo.video.player.core.data.VideoEntity
 import cc.bear3.android.demo.ui.demo.video.player.core.controller.IExoPlayerController
 import cc.bear3.android.demo.ui.demo.video.player.core.controller.IVideoPlayerController
@@ -28,7 +28,7 @@ import timber.log.Timber
  */
 open class DefaultVideoPlayerProxy(
     context: Context,
-    controller: IExoPlayerController,
+    controller: IVideoPlayerController,
     final override val renderer: IVideoPlayerRenderer
 ) : DefaultExoPlayerProxy(context, controller),
     IVideoPlayerProxy, VideoListener, VideoPlayerWrapper.Callback {
@@ -54,10 +54,6 @@ open class DefaultVideoPlayerProxy(
         player.setVideoTextureView(renderer.textureView)
     }
 
-//    override fun getTextureView(): TextureView {
-//        return renderer.textureView
-//    }
-
     override fun getWrapperView(): View {
         return wrapper
     }
@@ -66,6 +62,7 @@ open class DefaultVideoPlayerProxy(
         when (playerState) {
             PlayerState.Playing, PlayerState.Buffering -> return
             PlayerState.Paused, PlayerState.Confirm -> super.play()
+//            PlayerState.Ended -> seekTo(0)
             else -> {
                 val entity = videoEntity ?: return
                 val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(

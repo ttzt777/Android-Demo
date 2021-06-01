@@ -1,16 +1,20 @@
 package cc.bear3.android.demo.ui.demo.video.player.core.data
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 /**
  *
  * @author TT
  * @since 2021-5-18
  */
+@Parcelize
 data class VideoEntity(
     val url: String,
     val width: Int = 0,
     val height: Int = 0,
     val imgUrl: String = ""
-)
+) : Parcelable
 
 fun createVideoEntityList(): MutableList<VideoEntity> {
     val resultList = mutableListOf<VideoEntity>()

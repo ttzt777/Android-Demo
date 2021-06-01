@@ -13,7 +13,7 @@
     </style>
 
     <style name="ImageButton.TitleBar.Back">
-        <item name="android:src">@mipmap/ic_arrow_left_bold</item>
+        <item name="android:src">@mipmap/ic_arrow_left_black</item>
     </style>
 
     <style name="ImageButton.Normal">

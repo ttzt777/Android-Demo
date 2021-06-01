@@ -5,13 +5,15 @@ import android.os.Handler
 import android.os.Looper
 import cc.bear3.android.demo.BuildConfig
 import cc.bear3.android.demo.ui.demo.video.player.core.controller.IExoPlayerController
-import cc.bear3.android.demo.ui.demo.video.player.core.PlayerState
+import cc.bear3.android.demo.ui.demo.video.player.core.state.IPlayerStateChangeListener
+import cc.bear3.android.demo.ui.demo.video.player.core.state.PlayerState
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
 import timber.log.Timber
 import java.util.*
+import kotlin.collections.HashSet
 
 /**
  *
@@ -31,6 +33,10 @@ open class DefaultExoPlayerProxy(
     protected var progressTask: TimerTask? = null
 
     protected var duration = TIME_UNSET
+
+    private val playerStateListeners: MutableSet<IPlayerStateChangeListener> by lazy {
+        HashSet<IPlayerStateChangeListener>()
+    }
 
     init {
         controller?.playerProxy = this
@@ -67,7 +73,6 @@ open class DefaultExoPlayerProxy(
     }
 
     override fun seekTo(positionMs: Long) {
-        pause()
         changePlayerState(PlayerState.Buffering)
         player.seekTo(positionMs)
         play()
@@ -100,6 +105,22 @@ open class DefaultExoPlayerProxy(
         }
 
         controller?.onPlayerStateChanged(playerState)
+
+        notifyPlayerStateChangeListeners()
+    }
+
+    override fun addPlayerStateChangedListener(listener: IPlayerStateChangeListener) {
+        playerStateListeners.add(listener)
+    }
+
+    override fun removePlayerStateChangedListener(listener: IPlayerStateChangeListener) {
+        playerStateListeners.remove(listener)
+    }
+
+    override fun removeAllPlayerStateChangedListener() {
+        for (listener in playerStateListeners) {
+            playerStateListeners.remove(listener)
+        }
     }
 
     override fun dispose() {
@@ -113,7 +134,7 @@ open class DefaultExoPlayerProxy(
                 Player.STATE_IDLE -> PlayerState.Idle.name
                 Player.STATE_BUFFERING -> PlayerState.Buffering.name
                 Player.STATE_READY -> PlayerState.Paused.name
-                Player.STATE_ENDED -> PlayerState.Stop.name
+                Player.STATE_ENDED -> PlayerState.Ended.name
                 else -> ""
             }
             Timber.d("On playback state changed -- $tempState")
@@ -123,19 +144,23 @@ open class DefaultExoPlayerProxy(
             Player.STATE_IDLE -> changePlayerState(PlayerState.Idle)
             Player.STATE_BUFFERING -> changePlayerState(PlayerState.Buffering)
             Player.STATE_READY -> changePlayerState(PlayerState.Paused)
-            Player.STATE_ENDED -> changePlayerState(PlayerState.Stop)
+            Player.STATE_ENDED -> changePlayerState(PlayerState.Ended)
         }
     }
 
     override fun onIsPlayingChanged(isPlaying: Boolean) {
         Timber.d("On is playing changed -- isPlaying($isPlaying)")
-        changePlayerState(
-            if (isPlaying) {
-                PlayerState.Playing
-            } else {
-                PlayerState.Paused
-            }
-        )
+
+        if (isPlaying) {
+            changePlayerState(PlayerState.Playing)
+            return
+        }
+
+        if (playerState != PlayerState.Playing) {
+            return
+        }
+
+        changePlayerState(PlayerState.Paused)
     }
 
     override fun onPlayerError(error: ExoPlaybackException) {
@@ -180,5 +205,15 @@ open class DefaultExoPlayerProxy(
 
     protected open fun setVolume(volPercent: Float) {
         player.volume = volPercent
+    }
+
+    protected fun notifyPlayerStateChangeListeners() {
+        if (playerStateListeners.size == 0) {
+            return
+        }
+
+        for (listener in playerStateListeners) {
+            listener.onPlayerStateChanged(playerState)
+        }
     }
 }

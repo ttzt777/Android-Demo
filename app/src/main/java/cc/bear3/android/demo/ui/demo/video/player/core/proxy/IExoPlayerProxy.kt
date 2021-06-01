@@ -2,7 +2,8 @@ package cc.bear3.android.demo.ui.demo.video.player.core.proxy
 
 import cc.bear3.android.demo.manager.IDisposable
 import cc.bear3.android.demo.ui.demo.video.player.core.controller.IExoPlayerController
-import cc.bear3.android.demo.ui.demo.video.player.core.PlayerState
+import cc.bear3.android.demo.ui.demo.video.player.core.state.IPlayerStateChangeListener
+import cc.bear3.android.demo.ui.demo.video.player.core.state.PlayerState
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
 
@@ -38,4 +39,10 @@ interface IExoPlayerProxy : IDisposable {
     fun volumeOff()
 
     fun changePlayerState(targetState: PlayerState)
+
+    fun addPlayerStateChangedListener(listener: IPlayerStateChangeListener)
+
+    fun removePlayerStateChangedListener(listener: IPlayerStateChangeListener)
+
+    fun removeAllPlayerStateChangedListener()
 }

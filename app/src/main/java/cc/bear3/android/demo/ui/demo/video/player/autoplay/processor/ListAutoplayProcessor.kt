@@ -5,11 +5,10 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cc.bear3.android.demo.ui.demo.video.player.autoplay.data.AutoplayControllerParam
-import cc.bear3.android.demo.ui.demo.video.player.core.PlayerState
+import cc.bear3.android.demo.ui.demo.video.player.core.state.PlayerState
 import cc.bear3.android.demo.ui.demo.video.player.core.proxy.IExoPlayerProxy
 import cc.bear3.android.demo.ui.demo.video.player.view.IVideoPlayerView
 import timber.log.Timber
-import kotlin.math.abs
 
 /**
  *
@@ -17,7 +16,7 @@ import kotlin.math.abs
  * @since 2021-5-21
  */
 class ListAutoplayProcessor(controllerParam: AutoplayControllerParam) :
-    DefaultAutoplayProcessor(controllerParam), IListAutoplayProcessor {
+    AutoplayProcessor(controllerParam), IListAutoplayProcessor {
 
     private val viewLocalVisibleRect = Rect()
 
@@ -64,6 +63,11 @@ class ListAutoplayProcessor(controllerParam: AutoplayControllerParam) :
                 targetPlayerProxy = tempPlayerProxy
                 break
             }
+        }
+
+        if (crtPlayerProxy == targetPlayerProxy) {
+            crtPlayerProxy?.play()
+            return
         }
 
         if (crtPlayerProxy != null) {

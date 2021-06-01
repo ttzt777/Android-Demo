@@ -41,11 +41,11 @@ enum class ItemMenu(@StringRes val stringId: Int) {
     // 二级菜单 - View
     View_Button(R.string.menu_view_button),
     View_TextView(R.string.menu_view_textView),
+    View_ImageView(R.string.menu_view_imageView),
     View_EditView(R.string.menu_view_editView),
     View_SmartRefreshLayout(R.string.menu_view_smartRefreshLayout),
     View_SpannableTextView(R.string.menu_view_spannableTextView),
     View_CollapseTextView(R.string.menu_view_collapseTextView),
-    View_RoundView(R.string.menu_view_roundView),
 
     // 二级菜单 - Media
     Media_Pick(R.string.menu_media_pick),
@@ -93,11 +93,11 @@ enum class ItemMenu(@StringRes val stringId: Int) {
             View -> listOf(
                 View_Button,
                 View_TextView,
+                View_ImageView,
                 View_EditView,
                 View_SmartRefreshLayout,
                 View_SpannableTextView,
-                View_CollapseTextView,
-                View_RoundView
+                View_CollapseTextView
             )
             Media -> listOf(Media_Pick)
             Util -> listOf(Util_SingleClick, Util_MultiLanguage, Util_Permission)

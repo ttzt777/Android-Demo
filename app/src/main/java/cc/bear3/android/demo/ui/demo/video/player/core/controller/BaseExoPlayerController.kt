@@ -1,9 +1,10 @@
 package cc.bear3.android.demo.ui.demo.video.player.core.controller
 
 import android.content.Context
+import android.view.View
 import android.widget.SeekBar
-import cc.bear3.android.demo.ui.demo.video.player.core.PlayerState
 import cc.bear3.android.demo.ui.demo.video.player.core.proxy.IExoPlayerProxy
+import cc.bear3.android.demo.util.view.visible
 
 /**
  *
@@ -16,23 +17,6 @@ abstract class BaseExoPlayerController(
     override lateinit var playerProxy: IExoPlayerProxy
 
     protected var seekBarTrackingTouchFlag = false
-
-    companion object {
-        private const val TIME_CONTROLLER_GONE_DELAY = 3000L
-        private const val PROGRESS_MAX = 1000
-    }
-
-    override fun onPlayerStateChanged(playerState: PlayerState) {
-        when (playerState) {
-            PlayerState.Idle -> changeToIdle()
-            PlayerState.Confirm -> changeToConfirm()
-            PlayerState.Buffering -> changeToBuffering()
-            PlayerState.Playing -> changeToPlaying()
-            PlayerState.Paused -> changeToPaused()
-            PlayerState.Stop -> changeToStop()
-            PlayerState.Error -> changeToError()
-        }
-    }
 
     override fun onPlayerProgressChanged(positionMs: Long, totalMs: Long) {
         updatePlayerTime(positionMs, totalMs)
@@ -73,21 +57,19 @@ abstract class BaseExoPlayerController(
         seekBarTrackingTouchFlag = false
     }
 
-    abstract fun changeToIdle()
-
-    abstract fun changeToConfirm()
-
-    abstract fun changeToBuffering()
-
-    abstract fun changeToPlaying()
-
-    abstract fun changeToPaused()
-
-    abstract fun changeToStop()
-
-    abstract fun changeToError()
-
     abstract fun updatePlayerTime(positionMs: Long, totalMs: Long)
 
     abstract fun updateProgressPercent(percent: Float)
+
+    protected open fun visible(vararg views: View) {
+        for (view in views) {
+            view.visible(true)
+        }
+    }
+
+    protected open fun gone(vararg views: View) {
+        for (view in views) {
+            view.visible(false)
+        }
+    }
 }

@@ -9,7 +9,7 @@ import android.widget.SeekBar
 import cc.bear3.android.demo.BuildConfig
 import cc.bear3.android.demo.R
 import cc.bear3.android.demo.databinding.ViewDefaultVideoPlayerViewControllerBinding
-import cc.bear3.android.demo.ui.demo.video.player.core.PlayerState
+import cc.bear3.android.demo.ui.demo.video.player.core.state.PlayerState
 import cc.bear3.android.demo.ui.demo.video.player.core.data.VideoEntity
 import cc.bear3.android.demo.ui.demo.video.player.core.view.VideoControllerEventView
 import cc.bear3.android.demo.ui.util.ext.onClick
@@ -32,6 +32,10 @@ open class DefaultVideoPlayerController(
     }
 
     override fun getControllerView(inflater: LayoutInflater, container: ViewGroup?): View {
+        if (binding != null) {
+            return binding!!.root
+        }
+
         val binding =
             ViewDefaultVideoPlayerViewControllerBinding.inflate(inflater, container, false)
         bindViewClickListener(binding)

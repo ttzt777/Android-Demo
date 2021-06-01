@@ -28,7 +28,7 @@ class TitleBar @JvmOverloads constructor(
             binding.back.visibility = if (value) View.VISIBLE else View.GONE
         }
 
-    var iconResId: Int = R.mipmap.ic_arrow_left_bold
+    var iconResId: Int = R.mipmap.ic_arrow_left_black
         set(value) {
             field = value
             binding.back.setImageResource(iconResId)

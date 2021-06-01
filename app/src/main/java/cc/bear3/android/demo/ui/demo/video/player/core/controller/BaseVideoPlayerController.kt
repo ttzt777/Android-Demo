@@ -9,9 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.FrameLayout
-import cc.bear3.android.demo.ui.demo.video.player.core.PlayerState
+import cc.bear3.android.demo.ui.demo.video.player.core.state.PlayerState
 import cc.bear3.android.demo.ui.demo.video.player.core.proxy.IVideoPlayerProxy
-import cc.bear3.android.demo.util.view.visible
 
 /**
  *
@@ -49,7 +48,15 @@ abstract class BaseVideoPlayerController(
 
         controllerViewShowingFlag = true
 
-        super.onPlayerStateChanged(playerState)
+        when (playerState) {
+            PlayerState.Idle -> changeToIdle()
+            PlayerState.Confirm -> changeToConfirm()
+            PlayerState.Buffering -> changeToBuffering()
+            PlayerState.Playing -> changeToPlaying()
+            PlayerState.Paused -> changeToPaused()
+            PlayerState.Ended -> changeToStop()
+            PlayerState.Error -> changeToError()
+        }
     }
 
     override fun onVolumeUp() {
@@ -64,7 +71,7 @@ abstract class BaseVideoPlayerController(
         removeControllerRunnable()
     }
 
-    override fun onEnterFullScreen() {
+    protected open  fun onEnterFullScreen() {
         if (fullScreenFlag) {
             return
         }
@@ -100,7 +107,7 @@ abstract class BaseVideoPlayerController(
 //            View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE
     }
 
-    override fun onExitFullScreen() {
+    protected open fun onExitFullScreen() {
         if (!fullScreenFlag) {
             return
         }
@@ -208,15 +215,17 @@ abstract class BaseVideoPlayerController(
         }
     }
 
-    protected fun visible(vararg views: View) {
-        for (view in views) {
-            view.visible(true)
-        }
-    }
+    protected abstract fun changeToIdle()
 
-    protected fun gone(vararg views: View) {
-        for (view in views) {
-            view.visible(false)
-        }
-    }
+    protected abstract fun changeToConfirm()
+
+    protected abstract fun changeToBuffering()
+
+    protected abstract fun changeToPlaying()
+
+    protected abstract fun changeToPaused()
+
+    protected abstract fun changeToStop()
+
+    protected abstract fun changeToError()
 }

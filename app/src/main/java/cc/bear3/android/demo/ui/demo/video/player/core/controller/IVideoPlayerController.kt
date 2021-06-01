@@ -9,8 +9,4 @@ import cc.bear3.android.demo.ui.demo.video.player.core.data.VideoEntity
  */
 interface IVideoPlayerController : IExoPlayerController {
     fun onVideoEntityPrepared(entity: VideoEntity)
-
-    fun onEnterFullScreen()
-
-    fun onExitFullScreen()
 }

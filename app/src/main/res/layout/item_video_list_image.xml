@@ -6,11 +6,11 @@
     android:paddingTop="8dp"
     android:paddingBottom="8dp">
 
-    <cc.bear3.android.demo.ui.demo.video.player.view.ListVideoPlayerView
-        android:id="@+id/playerView"
+    <ImageView
+        android:id="@+id/videoCover"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#FF000000"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="h, 16:9"
         app:layout_constraintEnd_toEndOf="parent"

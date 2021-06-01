@@ -8,9 +8,9 @@ import cc.bear3.android.demo.ui.demo.video.player.core.proxy.IExoPlayerProxy
  * @author TT
  * @since 2021-5-20
  */
-open class DefaultAutoplayProcessor(override val controllerParam: AutoplayControllerParam) :
+open class AutoplayProcessor(final override val controllerParam: AutoplayControllerParam) :
     IAutoplayProcessor {
-    override var crtPlayerProxy: IExoPlayerProxy? = null
+    override var crtPlayerProxy: IExoPlayerProxy? = controllerParam.playerProxy
 
     override fun start() {
         crtPlayerProxy?.play()

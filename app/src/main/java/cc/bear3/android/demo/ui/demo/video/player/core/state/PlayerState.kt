@@ -1,4 +1,4 @@
-package cc.bear3.android.demo.ui.demo.video.player.core
+package cc.bear3.android.demo.ui.demo.video.player.core.state
 
 /**
  *
@@ -11,6 +11,6 @@ enum class PlayerState {
     Buffering,
     Playing,
     Paused,
-    Stop,
+    Ended,
     Error
 }

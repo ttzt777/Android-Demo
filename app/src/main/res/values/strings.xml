@@ -17,11 +17,11 @@
 
     <string name="menu_view_button">Button</string>
     <string name="menu_view_textView">TextView</string>
+    <string name="menu_view_imageView">ImageView</string>
     <string name="menu_view_editView">EditView</string>
     <string name="menu_view_smartRefreshLayout">SmartRefreshLayout</string>
     <string name="menu_view_spannableTextView">SpannableTextView</string>
     <string name="menu_view_collapseTextView">CollapseTextView</string>
-    <string name="menu_view_roundView">RoundView</string>
 
     <string name="menu_media_pick">多媒体选择</string>
 
