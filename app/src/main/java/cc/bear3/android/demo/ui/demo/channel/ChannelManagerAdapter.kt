@@ -3,19 +3,17 @@ package cc.bear3.android.demo.ui.demo.channel
 import android.app.Activity
 import android.content.Context
 import android.util.SparseArray
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import cc.bear3.android.demo.R
+import androidx.viewbinding.ViewBinding
 import cc.bear3.android.demo.databinding.ItemChannelManagerOtherBinding
 import cc.bear3.android.demo.databinding.ItemChannelManagerSubscribedBinding
-import cc.bear3.android.demo.ui.base.BaseAdapter
+import cc.bear3.android.demo.ui.base.BindingViewHolder
 import cc.bear3.android.demo.ui.util.ext.onClick
-import cc.bear3.android.demo.ui.util.ext.removeOnClick
-import cc.bear3.android.demo.util.view.visible
 import timber.log.Timber
-import java.util.*
 
 
 /**
@@ -31,7 +29,7 @@ private const val TYPE_SUBSCRIBED = 0
 private const val TYPE_DELETED = 1
 
 class ChannelManagerAdapter(private val context: Context) :
-    RecyclerView.Adapter<ChannelManagerAdapter.ChannelManagerViewHolder>() {
+    RecyclerView.Adapter<ChannelManagerAdapter.ChannelManagerViewHolder<out ViewBinding>>() {
     private val dataList = SparseArray<ChannelManagerData>()
     private var suggestIndex = KEY_SUGGEST_INDEX
 
@@ -125,14 +123,20 @@ class ChannelManagerAdapter(private val context: Context) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChannelManagerViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ChannelManagerViewHolder<out ViewBinding> {
         return when (viewType) {
             TYPE_SUBSCRIBED -> ChannelManagerSubscribedHolder(parent, listener)
             else -> ChannelManagerOtherHolder(parent, listener)
         }
     }
 
-    override fun onBindViewHolder(holder: ChannelManagerViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ChannelManagerViewHolder<out ViewBinding>,
+        position: Int
+    ) {
         holder.bindView(getData(position), inEditMode)
     }
 
@@ -193,8 +197,10 @@ class ChannelManagerAdapter(private val context: Context) :
         parent: ViewGroup,
         private val listener: IChannelOperation
     ) :
-        ChannelManagerViewHolder(parent, R.layout.item_channel_manager_subscribed) {
-        private val binding = ItemChannelManagerSubscribedBinding.bind(itemView)
+        ChannelManagerViewHolder<ItemChannelManagerSubscribedBinding>(
+            parent,
+            ItemChannelManagerSubscribedBinding::inflate
+        ) {
         private val adapter = ChannelManagerItemAdapter(listener)
 
         private val touchHelperCallback = object : ItemTouchHelper.Callback() {
@@ -272,8 +278,11 @@ class ChannelManagerAdapter(private val context: Context) :
         parent: ViewGroup,
         listener: IChannelOperation
     ) :
-        ChannelManagerViewHolder(parent, R.layout.item_channel_manager_other) {
-        private val binding = ItemChannelManagerOtherBinding.bind(itemView)
+        ChannelManagerViewHolder<ItemChannelManagerOtherBinding>(
+            parent,
+            ItemChannelManagerOtherBinding::inflate
+        ) {
+
         private val adapter = ChannelManagerItemAdapter(listener)
 
         init {
@@ -290,8 +299,11 @@ class ChannelManagerAdapter(private val context: Context) :
         }
     }
 
-    abstract class ChannelManagerViewHolder(parent: ViewGroup, resId: Int) :
-        BaseAdapter.ContentViewHolder(parent, resId) {
+    abstract class ChannelManagerViewHolder<VB : ViewBinding>(
+        parent: ViewGroup,
+        inflate: (LayoutInflater, ViewGroup, Boolean) -> VB
+    ) :
+        BindingViewHolder<VB>(parent, inflate) {
         abstract fun bindView(data: ChannelManagerData, inEditMode: Boolean)
     }
 }

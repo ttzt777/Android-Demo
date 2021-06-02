@@ -3,6 +3,7 @@ package cc.bear3.android.demo.ui.base
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import cc.bear3.android.demo.R
 import cc.bear3.android.demo.app.ActivityStackManager
@@ -16,7 +17,7 @@ import timber.log.Timber
  * @author TT
  * @since 2020-12-4
  */
-abstract class BaseActivity<VB : ViewBinding>(private val inflate: (LayoutInflater) -> VB) :
+abstract class BaseActivity<VB : ViewBinding>(private val inflate: (LayoutInflater, ViewGroup?, Boolean) -> VB) :
     LecActivity() {
     protected lateinit var binding: VB
 
@@ -65,7 +66,7 @@ abstract class BaseActivity<VB : ViewBinding>(private val inflate: (LayoutInflat
     }
 
     override fun onCreateContentView(): View {
-        binding = inflate(layoutInflater)
+        binding = inflate(layoutInflater, root, false)
         return binding.root
     }
 

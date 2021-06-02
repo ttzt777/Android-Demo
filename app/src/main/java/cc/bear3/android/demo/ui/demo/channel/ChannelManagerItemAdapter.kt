@@ -2,9 +2,9 @@ package cc.bear3.android.demo.ui.demo.channel
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import cc.bear3.android.demo.R
 import cc.bear3.android.demo.databinding.ItemChannelManagerItemBinding
 import cc.bear3.android.demo.ui.base.BaseAdapter
+import cc.bear3.android.demo.ui.base.BindingViewHolder
 import cc.bear3.android.demo.ui.util.ext.onClick
 import cc.bear3.android.demo.util.view.visible
 import cc.bear3.util.statusadapter.AdapterStatus
@@ -42,10 +42,16 @@ class ChannelManagerItemAdapter(private val listener: IChannelOperation) :
     }
 
     class ChannelManagerItemViewHolder(parent: ViewGroup) :
-        BaseAdapter.ContentViewHolder(parent, R.layout.item_channel_manager_item) {
-        private val binding = ItemChannelManagerItemBinding.bind(itemView)
-
-        fun bindView(data: ChannelData, type: ChannelManagerType, inEditMode: Boolean, listener: IChannelOperation) {
+        BindingViewHolder<ItemChannelManagerItemBinding>(
+            parent,
+            ItemChannelManagerItemBinding::inflate
+        ) {
+        fun bindView(
+            data: ChannelData,
+            type: ChannelManagerType,
+            inEditMode: Boolean,
+            listener: IChannelOperation
+        ) {
             binding.name.text = data.name
 
             binding.delete.visible(type == ChannelManagerType.Subscribed && inEditMode)
