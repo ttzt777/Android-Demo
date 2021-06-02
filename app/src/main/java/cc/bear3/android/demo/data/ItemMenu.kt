@@ -9,6 +9,7 @@ import cc.bear3.android.demo.ui.demo.video.VideoDemoPage
 import cc.bear3.android.demo.ui.media.pick.MediaPickPage
 import cc.bear3.android.demo.ui.util.permission.PermissionPage
 import cc.bear3.android.demo.ui.view.button.ButtonPage
+import cc.bear3.android.demo.ui.view.imageView.ImageViewPage
 import cc.bear3.android.demo.ui.view.textView.TextViewPage
 
 /**
@@ -76,6 +77,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
 
             View_Button -> ButtonPage.invoke(context)
             View_TextView -> TextViewPage.invoke(context)
+            View_ImageView -> ImageViewPage.invoke(context)
 
             Util_Permission -> PermissionPage.invoke(context)
 

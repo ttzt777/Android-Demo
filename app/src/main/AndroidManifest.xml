@@ -59,6 +59,9 @@
             android:name=".ui.view.textView.TextViewPage"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.view.imageView.ImageViewPage"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.demo.video.VideoDemoPage"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />

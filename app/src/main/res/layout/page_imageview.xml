@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:orientation="vertical">
+
+    <cc.bear3.android.demo.view.statusbar.StatusBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <cc.bear3.android.demo.view.toolbar.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tb_has_divide="true"
+        app:tb_title="@string/menu_view_imageView" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="16dp"
+                    android:background="@color/color_accent" />
+
+                <TextView
+                    style="@style/Text.Title"
+                    android:layout_marginStart="8dp"
+                    android:text="本地图片" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/local1"
+                    android:layout_width="160dp"
+                    android:layout_height="90.5dp"
+                    android:src="@mipmap/image_1"
+                    app:shapeAppearance="@style/ShapeImage.Rounded" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/local2"
+                    android:layout_width="150dp"
+                    android:layout_height="102dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@mipmap/image_2"
+                    app:shapeAppearance="@style/ShapeImage.Cut" />
+            </LinearLayout>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/local3"
+                android:layout_width="362dp"
+                android:layout_height="204.5dp"
+                android:layout_marginTop="16dp"
+                android:padding="1dp"
+                android:src="@mipmap/image_3"
+                app:shapeAppearance="@style/ShapeImage.Rounded.32"
+                app:strokeColor="@color/color_accent"
+                app:strokeWidth="2dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="16dp"
+                    android:background="@color/color_accent" />
+
+                <TextView
+                    style="@style/Text.Title"
+                    android:layout_marginStart="8dp"
+                    android:text="网络图片" />
+            </LinearLayout>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/network1"
+                android:layout_width="360dp"
+                android:layout_height="202.5dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/image_3"
+                app:shapeAppearance="@style/ShapeImage.Rounded" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/network2"
+                android:layout_width="360dp"
+                android:layout_height="202.5dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/image_3"
+                app:shapeAppearance="@style/ShapeImage.Rounded.32" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/network3"
+                android:layout_width="360dp"
+                android:layout_height="202.5dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/image_3"
+                app:shapeAppearance="@style/ShapeImage.Cut.32" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
