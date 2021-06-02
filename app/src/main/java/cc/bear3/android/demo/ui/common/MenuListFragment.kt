@@ -1,9 +1,6 @@
 package cc.bear3.android.demo.ui.common
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import cc.bear3.android.demo.data.ItemMenu
 import cc.bear3.android.demo.databinding.FragmentMenuListBinding
@@ -15,12 +12,10 @@ import cc.bear3.android.demo.ui.base.BaseFragment
  * @author TT
  * @since 2020-12-4
  */
-class MenuListFragment : BaseFragment() {
+class MenuListFragment : BaseFragment<FragmentMenuListBinding>(FragmentMenuListBinding::inflate) {
 
     private var target: ItemMenu? = null
     private var canBack: Boolean = true
-
-    private lateinit var binding: FragmentMenuListBinding
 
     private val refreshProxy by lazy {
         RefreshProxy(
@@ -37,11 +32,6 @@ class MenuListFragment : BaseFragment() {
             target = it.getSerializable(ARG_MENU_TARGET) as ItemMenu?
             canBack = it.getBoolean(ARG_CAN_BACK, canBack)
         }
-    }
-
-    override fun onCreateContentView(inflater: LayoutInflater, container: ViewGroup?): View {
-        binding = FragmentMenuListBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun initView(savedInstanceState: Bundle?) {

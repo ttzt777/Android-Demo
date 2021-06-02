@@ -3,6 +3,7 @@ package cc.bear3.android.demo.ui.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.viewbinding.ViewBinding
 import cc.bear3.android.demo.data.ItemMenu
 import cc.bear3.android.demo.databinding.PageHomeBinding
 import cc.bear3.android.demo.ui.base.BaseActivity
@@ -19,7 +20,7 @@ import cc.bear3.android.demo.util.viewpager.ViewPagerAdapter
  */
 class HomePage : BaseActivity<PageHomeBinding>(PageHomeBinding::inflate) {
     private val adapter by lazy {
-        ViewPagerAdapter<BaseFragment>(supportFragmentManager)
+        ViewPagerAdapter<BaseFragment<out ViewBinding>>(supportFragmentManager)
     }
 
     override fun initView(savedInstanceState: Bundle?) {

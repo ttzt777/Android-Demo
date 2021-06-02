@@ -17,7 +17,7 @@ import timber.log.Timber
  */
 abstract class BaseFragment<VB : ViewBinding>(private val inflate: (LayoutInflater) -> VB) :
     LecFragment() {
-    private lateinit var binding: VB
+    protected lateinit var binding: VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,11 +95,5 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: (LayoutInflat
 
     protected open fun getTagName(): String {
         return javaClass.simpleName
-    }
-
-    protected fun useBinding(block: (binding: VB) -> Unit) {
-        if (this::binding.isInitialized) {
-            block(binding)
-        }
     }
 }

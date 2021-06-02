@@ -1,9 +1,6 @@
 package cc.bear3.android.demo.ui.demo.channel
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import cc.bear3.android.demo.databinding.FragmentChannelItemBinding
 import cc.bear3.android.demo.ui.base.BaseFragment
 
@@ -12,9 +9,8 @@ import cc.bear3.android.demo.ui.base.BaseFragment
  * @author TT
  * @since 2021-3-11
  */
-class ChannelItemFragment : BaseFragment() {
-    private lateinit var binding: FragmentChannelItemBinding
-
+class ChannelItemFragment :
+    BaseFragment<FragmentChannelItemBinding>(FragmentChannelItemBinding::inflate) {
     private lateinit var channelData: ChannelData
     private var count = 0
 
@@ -29,11 +25,6 @@ class ChannelItemFragment : BaseFragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putParcelable(ARG_CHANNEL_DATA, channelData)
         super.onSaveInstanceState(outState)
-    }
-
-    override fun onCreateContentView(inflater: LayoutInflater, container: ViewGroup?): View {
-        binding = FragmentChannelItemBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun initView(savedInstanceState: Bundle?) {
