@@ -37,7 +37,7 @@ abstract class LecActivity : AppCompatActivity() {
         root = findViewById(R.id.fl_layout_lec_root)
 
         params.topMargin = 0
-        root.addView(onCreateContentView(layoutInflater, root), params)
+        root.addView(onCreateContentView(), params)
 
         observeLecState(this) {
             when (it) {
@@ -48,10 +48,7 @@ abstract class LecActivity : AppCompatActivity() {
         }
     }
 
-    protected abstract fun onCreateContentView(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ): View
+    protected abstract fun onCreateContentView(): View
 
     protected abstract fun onCreateLoadingView(): View
 

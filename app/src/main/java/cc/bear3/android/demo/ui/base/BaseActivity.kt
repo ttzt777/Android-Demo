@@ -1,7 +1,9 @@
 package cc.bear3.android.demo.ui.base
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import androidx.viewbinding.ViewBinding
 import cc.bear3.android.demo.R
 import cc.bear3.android.demo.app.ActivityStackManager
 import cc.bear3.android.demo.ui.base.lec.LecActivity
@@ -14,7 +16,10 @@ import timber.log.Timber
  * @author TT
  * @since 2020-12-4
  */
-abstract class BaseActivity : LecActivity() {
+abstract class BaseActivity<VB : ViewBinding>(private val inflate: (LayoutInflater) -> VB) :
+    LecActivity() {
+    protected lateinit var binding: VB
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -59,6 +64,11 @@ abstract class BaseActivity : LecActivity() {
         Timber.d("Activity onDestroy: %s", getTagName())
     }
 
+    override fun onCreateContentView(): View {
+        binding = inflate(layoutInflater)
+        return binding.root
+    }
+
     protected abstract fun initView(savedInstanceState: Bundle?)
 
     override fun onCreateLoadingView(): View {
@@ -80,11 +90,11 @@ abstract class BaseActivity : LecActivity() {
             .init()
     }
 
-    protected open fun getTagName() : String {
+    protected open fun getTagName(): String {
         return javaClass.simpleName
     }
 
-    protected fun initParams(savedInstanceState: Bundle?, block: (bundle: Bundle) -> Unit){
+    protected fun initParams(savedInstanceState: Bundle?, block: (bundle: Bundle) -> Unit) {
         val bundle = savedInstanceState
             ?: if (intent.extras != null) {
                 intent.extras

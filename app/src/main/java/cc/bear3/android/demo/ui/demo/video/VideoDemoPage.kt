@@ -3,9 +3,6 @@ package cc.bear3.android.demo.ui.demo.video
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
@@ -24,9 +21,7 @@ import timber.log.Timber
  * @author TT
  * @since 2021-4-25
  */
-class VideoDemoPage : BaseActivity() {
-    private lateinit var binding: PageVideoDemoBinding
-
+class VideoDemoPage : BaseActivity<PageVideoDemoBinding>(PageVideoDemoBinding::inflate) {
     override fun initView(savedInstanceState: Bundle?) {
         with(binding.recyclerView) {
             layoutManager = LinearLayoutManager(this@VideoDemoPage)
@@ -42,11 +37,6 @@ class VideoDemoPage : BaseActivity() {
             .setRecyclerView(binding.recyclerView)
             .setVideoPlayerId(R.id.playerView)
             .monitor(lifecycle)
-    }
-
-    override fun onCreateContentView(inflater: LayoutInflater, container: ViewGroup?): View {
-        binding = PageVideoDemoBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     class Observer : LifecycleEventObserver {

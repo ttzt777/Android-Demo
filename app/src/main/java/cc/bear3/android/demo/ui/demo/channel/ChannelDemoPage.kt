@@ -3,9 +3,6 @@ package cc.bear3.android.demo.ui.demo.channel
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import cc.bear3.android.demo.databinding.PageChannelDemoBinding
@@ -19,18 +16,10 @@ import com.google.android.material.tabs.TabLayoutMediator
  * @author TT
  * @since 2021-3-11
  */
-class ChannelDemoPage : BaseActivity() {
-
-    private lateinit var binding: PageChannelDemoBinding
+class ChannelDemoPage : BaseActivity<PageChannelDemoBinding>(PageChannelDemoBinding::inflate) {
     private lateinit var adapter: ChannelPagerAdapter
 
     private var tabLayoutMediator: TabLayoutMediator? = null
-
-    override fun onCreateContentView(inflater: LayoutInflater, container: ViewGroup?): View {
-        binding = PageChannelDemoBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
 
     override fun initView(savedInstanceState: Bundle?) {
         adapter = ChannelPagerAdapter(this)
@@ -41,7 +30,7 @@ class ChannelDemoPage : BaseActivity() {
             attach()
         }
 
-        binding.pager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+        binding.pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 val data = adapter.getChannelData(position)
                 if (data != ChannelManager.currentChannel.value) {

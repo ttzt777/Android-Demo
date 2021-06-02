@@ -3,9 +3,6 @@ package cc.bear3.android.demo.ui.demo.channel
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import cc.bear3.android.demo.databinding.PageChannelManagerBinding
 import cc.bear3.android.demo.ui.base.BaseActivity
@@ -16,16 +13,10 @@ import cc.bear3.android.demo.util.context.startWithAnim
  * @author TT
  * @since 2021-3-15
  */
-class ChannelManagerPage : BaseActivity() {
-    private lateinit var binding: PageChannelManagerBinding
-
+class ChannelManagerPage :
+    BaseActivity<PageChannelManagerBinding>(PageChannelManagerBinding::inflate) {
     private val adapter by lazy {
         ChannelManagerAdapter(this)
-    }
-
-    override fun onCreateContentView(inflater: LayoutInflater, container: ViewGroup?): View {
-        binding = PageChannelManagerBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun initView(savedInstanceState: Bundle?) {

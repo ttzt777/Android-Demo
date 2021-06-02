@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import cc.bear3.android.demo.R
@@ -39,7 +38,7 @@ abstract class LecFragment : Fragment() {
         root = inflater.inflate(R.layout.layout_lec, container, false) as FrameLayout
 
         params.topMargin = 0
-        root.addView(onCreateContentView(inflater, container), params)
+        root.addView(onCreateContentView(), params)
 
         return root
     }
@@ -56,10 +55,7 @@ abstract class LecFragment : Fragment() {
         }
     }
 
-    protected abstract fun onCreateContentView(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ): View
+    protected abstract fun onCreateContentView(): View
 
     protected abstract fun onCreateLoadingView(): View
 

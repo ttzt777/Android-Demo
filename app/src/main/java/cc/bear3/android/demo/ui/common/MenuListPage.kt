@@ -3,9 +3,6 @@ package cc.bear3.android.demo.ui.common
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import cc.bear3.android.demo.R
 import cc.bear3.android.demo.data.ItemMenu
 import cc.bear3.android.demo.databinding.PageMenuListBinding
@@ -19,15 +16,10 @@ import cc.bear3.android.demo.util.context.startWithAnim
  * @author TT
  * @since 2020-12-4
  */
-class MenuListPage : BaseActivity() {
+class MenuListPage : BaseActivity<PageMenuListBinding>(PageMenuListBinding::inflate) {
 
     private var target: ItemMenu? = null
     private var canBack: Boolean = true
-
-    override fun onCreateContentView(inflater: LayoutInflater, container: ViewGroup?): View {
-        val binding = PageMenuListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun initView(savedInstanceState: Bundle?) {
         initParams(savedInstanceState) {

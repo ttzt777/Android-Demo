@@ -3,9 +3,6 @@ package cc.bear3.android.demo.ui.demo.video
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import cc.bear3.android.demo.R
 import cc.bear3.android.demo.databinding.PageVideoDetailBinding
 import cc.bear3.android.demo.ui.base.BaseActivity
@@ -20,9 +17,7 @@ import com.gyf.immersionbar.ImmersionBar
  * @author TT
  * @since 2021-5-31
  */
-class VideoDetailPage : BaseActivity() {
-    private lateinit var binding: PageVideoDetailBinding
-
+class VideoDetailPage : BaseActivity<PageVideoDetailBinding>(PageVideoDetailBinding::inflate) {
     override fun initView(savedInstanceState: Bundle?) {
         AutoPlayerControllerBuilder.newBuilder(AutoplayController::class.java)
             .setPlayerProxy(binding.playerView.getVideoPlayerProxy())
@@ -33,11 +28,6 @@ class VideoDetailPage : BaseActivity() {
             updateData(entity)
             getVideoPlayerProxy().play()
         }
-    }
-
-    override fun onCreateContentView(inflater: LayoutInflater, container: ViewGroup?): View {
-        binding = PageVideoDetailBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun setImmersionBar() {

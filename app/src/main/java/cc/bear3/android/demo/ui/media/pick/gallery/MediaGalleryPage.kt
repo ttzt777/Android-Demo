@@ -4,9 +4,6 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.GridLayoutManager
@@ -21,16 +18,10 @@ import timber.log.Timber
  * @author TT
  * @since 2021-3-8
  */
-class MediaGalleryPage : BaseActivity(), LoaderManager.LoaderCallbacks<List<MediaData>> {
-    private lateinit var binding: PageMediaGalleryBinding
-
+class MediaGalleryPage : BaseActivity<PageMediaGalleryBinding>(PageMediaGalleryBinding::inflate),
+    LoaderManager.LoaderCallbacks<List<MediaData>> {
     private val adapter by lazy {
         MediaGalleryAdapter()
-    }
-
-    override fun onCreateContentView(inflater: LayoutInflater, container: ViewGroup?): View {
-        binding = PageMediaGalleryBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun initView(savedInstanceState: Bundle?) {

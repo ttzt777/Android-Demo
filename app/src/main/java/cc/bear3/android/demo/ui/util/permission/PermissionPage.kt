@@ -4,9 +4,6 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import cc.bear3.android.demo.databinding.PagePermissionBinding
 import cc.bear3.android.demo.ui.base.BaseActivity
@@ -18,15 +15,7 @@ import com.permissionx.guolindev.PermissionX
  * Description:
  * Author: TT
  */
-class PermissionPage : BaseActivity() {
-    private lateinit var binding: PagePermissionBinding
-
-    override fun onCreateContentView(inflater: LayoutInflater, container: ViewGroup?): View {
-        binding = PagePermissionBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
-
+class PermissionPage : BaseActivity<PagePermissionBinding>(PagePermissionBinding::inflate) {
     override fun initView(savedInstanceState: Bundle?) {
         binding.single.onClick {
             PermissionX.init(this)
