@@ -70,6 +70,10 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
+    implementation project(path: ':status-adapter')
+    implementation project(path: ':collapsed-textview')
+    implementation project(path: ':utils')
+
     implementation "androidx.core:core-ktx:$ktxVersion"
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
@@ -84,9 +88,6 @@ dependencies {
     implementation "com.google.zxing:core:$zxingVersion"
     implementation "com.google.android.exoplayer:exoplayer-core:$exoPlayerVersion"
     implementation "com.google.android.exoplayer:exoplayer-dash:$exoPlayerVersion"
-
-    implementation "cc.bear3.util.statusadapter:statusadapter:$statusAdapterVersion"
-    implementation "cc.bear3.util.utils:utils:$utilsVersion"
 
     implementation "com.scwang.smart:refresh-layout-kernel:$refreshLayoutVersion"
     implementation "com.scwang.smart:refresh-header-classics:$refreshLayoutVersion"

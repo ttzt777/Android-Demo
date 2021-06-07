@@ -5,6 +5,8 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import androidx.loader.content.AsyncTaskLoader
+import cc.bear3.android.demo.util.nonNull
+import timber.log.Timber
 
 /**
  *
@@ -23,6 +25,7 @@ private val PROJECTION_MEDIA = arrayOf(
     MediaStore.MediaColumns.WIDTH,
     MediaStore.MediaColumns.HEIGHT,
     MediaStore.MediaColumns.SIZE,
+//    MediaStore.MediaColumns.ORIENTATION,
     MediaStore.MediaColumns.DURATION
 )
 
@@ -69,8 +72,8 @@ class MediaDataLoader(context: Context) : AsyncTaskLoader<List<MediaData>>(conte
     override fun loadInBackground(): List<MediaData> {
         val resultList = mutableListOf<MediaData>()
         resultList.addAll(queryImages())
-        resultList.addAll(queryVideos())
-        resultList.addAll(queryAudios())
+//        resultList.addAll(queryVideos())
+//        resultList.addAll(queryAudios())
 
         resultList.sortWith(Comparator { o1, o2 -> o2.dateModified.compareTo(o1.dateModified) })
 
@@ -119,9 +122,9 @@ class MediaDataLoader(context: Context) : AsyncTaskLoader<List<MediaData>>(conte
         cursor.use {
             while (cursor.moveToNext()) {
                 val id = it.getLong(it.getColumnIndex(MediaStore.MediaColumns._ID))
-                val name = it.getString(it.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME))
-                val title = it.getString(it.getColumnIndex(MediaStore.MediaColumns.TITLE))
-                val mimeType = it.getString(it.getColumnIndex(MediaStore.MediaColumns.MIME_TYPE))
+                val name = it.getString(it.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME)).nonNull()
+                val title = it.getString(it.getColumnIndex(MediaStore.MediaColumns.TITLE)).nonNull()
+                val mimeType = it.getString(it.getColumnIndex(MediaStore.MediaColumns.MIME_TYPE)).nonNull()
                 val dateAdded = it.getLong(it.getColumnIndex(MediaStore.MediaColumns.DATE_ADDED))
                 val dateModified =
                     it.getLong(it.getColumnIndex(MediaStore.MediaColumns.DATE_MODIFIED))
@@ -142,6 +145,11 @@ class MediaDataLoader(context: Context) : AsyncTaskLoader<List<MediaData>>(conte
                     size,
                     type
                 )
+
+//                val orientation = it.getInt(it.getColumnIndex(MediaStore.MediaColumns.ORIENTATION))
+//                if (orientation != 0) {
+//                    Timber.d("ttzt title is $name, orientation is $orientation")
+//                }
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && (type == MediaData.Type.Video || type == MediaData.Type.Audio)) {
                     val duration =

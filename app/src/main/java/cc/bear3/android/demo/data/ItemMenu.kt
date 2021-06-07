@@ -17,7 +17,7 @@ import cc.bear3.android.demo.ui.view.textView.TextViewPage
  * @author TT
  * @since 2020-12-4
  */
-@Suppress("EnumEntryName")
+@Suppress("EnumEntryName", "unused")
 enum class ItemMenu(@StringRes val stringId: Int) {
     // app级
     App(R.string.app_name),
