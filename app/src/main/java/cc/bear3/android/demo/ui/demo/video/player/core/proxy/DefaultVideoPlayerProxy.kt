@@ -6,15 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cc.bear3.android.demo.BuildConfig
-import cc.bear3.android.demo.ui.demo.video.player.core.state.PlayerState
-import cc.bear3.android.demo.ui.demo.video.player.core.data.VideoEntity
-import cc.bear3.android.demo.ui.demo.video.player.core.controller.IExoPlayerController
 import cc.bear3.android.demo.ui.demo.video.player.core.controller.IVideoPlayerController
+import cc.bear3.android.demo.ui.demo.video.player.core.data.VideoEntity
 import cc.bear3.android.demo.ui.demo.video.player.core.renderer.IVideoPlayerRenderer
+import cc.bear3.android.demo.ui.demo.video.player.core.source.MediaSourceFactory
+import cc.bear3.android.demo.ui.demo.video.player.core.state.PlayerState
 import cc.bear3.android.demo.ui.demo.video.player.core.view.VideoPlayerWrapper
-import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.source.MediaSource
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
@@ -38,7 +36,7 @@ open class DefaultVideoPlayerProxy(
             context,
             callback = this
         )
-    protected var videoEntity : VideoEntity? = null
+    protected var videoEntity: VideoEntity? = null
 
     init {
         val layoutParams = ViewGroup.LayoutParams(
@@ -69,9 +67,7 @@ open class DefaultVideoPlayerProxy(
                     context,
                     Util.getUserAgent(context, BuildConfig.APPLICATION_ID)
                 )
-                val videoSource: MediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
-                    .createMediaSource(MediaItem.fromUri(entity.url))
-                prepare(videoSource)
+                prepare(createMediaSource(entity.url))
                 super.play()
             }
         }
@@ -124,6 +120,10 @@ open class DefaultVideoPlayerProxy(
                 renderer.onViewSizeChanged(width.toFloat(), height.toFloat())
             }
         }
+    }
+
+    protected open fun createMediaSource(url: String): MediaSource {
+        return MediaSourceFactory.createMediaSource(url)
     }
 
     private fun getControllerView(): View {
