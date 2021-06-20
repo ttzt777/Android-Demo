@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:orientation="vertical">
+
+    <cc.bear3.android.demo.view.statusbar.StatusBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <cc.bear3.android.demo.view.toolbar.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tb_has_divide="true"
+        app:tb_title="@string/menu_view_textView" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="16dp"
+                    android:background="@color/color_accent" />
+
+                <TextView
+                    style="@style/Text.Title"
+                    android:layout_marginStart="8dp"
+                    android:text="Lottie动画" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Text.Hint"
+                android:layout_marginTop="4dp"
+                android:text="点击播放动画" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottieLoading"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="8dp"
+                    android:scaleType="centerCrop"
+                    app:lottie_autoPlay="true"
+                    app:lottie_fileName="json_anim/loading/loading.json"
+                    app:lottie_loop="true" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

@@ -19,6 +19,7 @@
     <string name="menu_view_textView">TextView</string>
     <string name="menu_view_imageView">ImageView</string>
     <string name="menu_view_editView">EditView</string>
+    <string name="menu_view_customView">CustomView</string>
     <string name="menu_view_smartRefreshLayout">SmartRefreshLayout</string>
     <string name="menu_view_spannableTextView">SpannableTextView</string>
     <string name="menu_view_collapseTextView">CollapseTextView</string>

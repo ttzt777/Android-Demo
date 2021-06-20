@@ -9,6 +9,7 @@ import cc.bear3.android.demo.ui.demo.video.VideoDemoPage
 import cc.bear3.android.demo.ui.media.pick.MediaPickPage
 import cc.bear3.android.demo.ui.util.permission.PermissionPage
 import cc.bear3.android.demo.ui.view.button.ButtonPage
+import cc.bear3.android.demo.ui.view.custom.CustomViewPage
 import cc.bear3.android.demo.ui.view.imageView.ImageViewPage
 import cc.bear3.android.demo.ui.view.textView.TextViewPage
 
@@ -44,6 +45,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
     View_TextView(R.string.menu_view_textView),
     View_ImageView(R.string.menu_view_imageView),
     View_EditView(R.string.menu_view_editView),
+    View_CustomView(R.string.menu_view_customView),
     View_SmartRefreshLayout(R.string.menu_view_smartRefreshLayout),
     View_SpannableTextView(R.string.menu_view_spannableTextView),
     View_CollapseTextView(R.string.menu_view_collapseTextView),
@@ -78,6 +80,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
             View_Button -> ButtonPage.invoke(context)
             View_TextView -> TextViewPage.invoke(context)
             View_ImageView -> ImageViewPage.invoke(context)
+            View_CustomView -> CustomViewPage.invoke(context)
 
             Util_Permission -> PermissionPage.invoke(context)
 
@@ -97,6 +100,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
                 View_TextView,
                 View_ImageView,
                 View_EditView,
+                View_CustomView,
                 View_SmartRefreshLayout,
                 View_SpannableTextView,
                 View_CollapseTextView
