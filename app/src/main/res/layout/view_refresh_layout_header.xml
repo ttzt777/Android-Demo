@@ -7,13 +7,14 @@
     tools:background="@color/app_background">
 
     <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
         android:layout_width="24dp"
         android:layout_height="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
+        app:lottie_autoPlay="false"
         app:lottie_fileName="json_anim/loading/loading.json"
         app:lottie_loop="true" />
 

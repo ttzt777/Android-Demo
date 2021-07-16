@@ -8,6 +8,7 @@ import cc.bear3.android.demo.manager.http.HttpError
 import cc.bear3.android.demo.ui.base.BaseAdapter
 import cc.bear3.util.statusadapter.AdapterStatus
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
@@ -16,7 +17,8 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 open class RefreshProxy<AD : BaseAdapter<T, *>, T>(
     private val layout: SmartRefreshLayout,
     private val adapter: AD,
-    private val type: Type = Type.Page
+    private val type: Type = Type.Page,
+    private val noMoreEnable: Boolean = true
 ) : IDisposable {
 
     private var enableRefresh = false
@@ -75,6 +77,34 @@ open class RefreshProxy<AD : BaseAdapter<T, *>, T>(
         enableRefresh()
         enableLoadMore()
         layout.setOnRefreshLoadMoreListener(listener)
+    }
+
+    fun setLoadFun(
+        block: () -> Unit,
+        autoLoading: Boolean = true,
+        enableRefresh: Boolean = true,
+        enableLoadMore: Boolean = true
+    ) {
+        if (enableRefresh && enableLoadMore) {
+            val listener = object : OnRefreshLoadMoreListener {
+                override fun onRefresh(refreshLayout: RefreshLayout) {
+                    onRefresh(block)
+                }
+
+                override fun onLoadMore(refreshLayout: RefreshLayout) {
+                    onLoadMore(block)
+                }
+            }
+            setOnRefreshLoadMoreListener(listener)
+        } else if (enableRefresh) {
+            setOnRefreshListener(OnRefreshListener { onRefresh(block) })
+        } else {
+            setOnLoadMoreListener(OnLoadMoreListener { onLoadMore(block) })
+        }
+
+        if (autoLoading) {
+            onLoading(block)
+        }
     }
 
     fun isFirstPage(): Boolean {
@@ -150,7 +180,7 @@ open class RefreshProxy<AD : BaseAdapter<T, *>, T>(
     fun onFinish(
         errorType: HttpError,
         dataList: List<T>? = null,
-        pageSize: Int = -1
+        noMore: Boolean = false
     ) {
         var enableLoadMore = enableLoadMore
         adapter.setErrorStatus(errorType)
@@ -160,15 +190,15 @@ open class RefreshProxy<AD : BaseAdapter<T, *>, T>(
             if (dataList.isNullOrEmpty()) {
                 enableLoadMore = false
                 if (isFirstPage()) {
-                    adapter.dataRefresh(dataList, true)
+                    adapter.dataRefresh(dataList, noMoreEnable)
                 } else {
-                    adapter.dataMore(dataList, true)
+                    adapter.dataMore(dataList, noMoreEnable)
                 }
-            } else if (dataList.size < pageSize) {
+            } else if (noMore) {
                 if (isFirstPage()) {
-                    adapter.dataRefresh(dataList, true)
+                    adapter.dataRefresh(dataList, noMoreEnable)
                 } else {
-                    adapter.dataMore(dataList, true)
+                    adapter.dataMore(dataList, noMoreEnable)
                 }
                 enableLoadMore = false
             } else {
