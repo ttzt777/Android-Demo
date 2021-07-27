@@ -17,6 +17,9 @@
     <color name="app_confirm_text_enable">@color/text_light</color>
     <color name="app_confirm_text_disable">@color/text_hint</color>
 
+    <color name="app_image_place">#FFFFFFFF</color>
+    <color name="app_image_error">#FFFFFFFF</color>
+
     <color name="text_primary">#FF333333</color>
     <color name="text_summary">#FF666666</color>
     <color name="text_secondary">#FF999999</color>

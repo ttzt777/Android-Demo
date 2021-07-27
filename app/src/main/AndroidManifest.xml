@@ -21,6 +21,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,UnusedAttribute">
+
+        <meta-data
+            android:name="cc.bear3.android.demo.util.glide.CustomAppGlideModule"
+            android:value="AppGlideModule" />
+
         <activity android:name=".ui.splash.SplashPage"
             android:theme="@style/AppTheme.Transparent">
             <intent-filter>
