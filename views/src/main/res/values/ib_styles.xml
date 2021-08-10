@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ImageButton">
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:contentDescription">""</item>
+    </style>
+
+    <style name="ImageButton.TitleBar">
+        <item name="android:layout_width">28dp</item>
+        <item name="android:layout_height">28dp</item>
+        <item name="android:padding">4dp</item>
+    </style>
+
+    <style name="ImageButton.TitleBar.Back">
+        <item name="android:src">@mipmap/ic_arrow_left_black</item>
+    </style>
+
+    <style name="ImageButton.Normal">
+        <item name="android:padding">4dp</item>
+    </style>
+</resources>

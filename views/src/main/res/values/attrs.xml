@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ConfirmButton">
+        <attr name="cb_enable_solid_color" format="color" />
+        <attr name="cb_disable_solid_color" format="color" />
+        <attr name="cb_enable_stroke_color" format="color" />
+        <attr name="cb_disable_stroke_color" format="color" />
+        <attr name="cb_enable_text_color" format="color" />
+        <attr name="cb_disable_text_color" format="color" />
+        <attr name="cb_is_half_height_corner" format="boolean" />
+        <attr name="cb_corner_radius" format="dimension" />
+        <attr name="cb_stroke_width" format="dimension" />
+    </declare-styleable>
+</resources>
