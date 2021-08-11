@@ -9,7 +9,7 @@ import cc.bear3.android.demo.databinding.ItemMediaGalleryAudioBinding
 import cc.bear3.android.demo.databinding.ItemMediaGalleryImageBinding
 import cc.bear3.android.demo.databinding.ItemMediaGalleryVideoBinding
 import cc.bear3.android.demo.ui.base.IMultiData
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  *

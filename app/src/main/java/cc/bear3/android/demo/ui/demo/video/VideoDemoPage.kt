@@ -12,12 +12,12 @@ import cc.bear3.android.demo.databinding.ItemVideoListBinding
 import cc.bear3.android.demo.databinding.PageVideoDemoBinding
 import cc.bear3.android.demo.ui.base.BaseActivity
 import cc.bear3.android.demo.ui.base.SingleFastAdapter
-import cc.bear3.android.demo.ui.demo.video.player.autoplay.builder.AutoPlayerControllerBuilder
-import cc.bear3.android.demo.ui.demo.video.player.autoplay.controller.ListAutoplayController
-import cc.bear3.android.demo.ui.demo.video.player.core.data.VideoEntity
-import cc.bear3.android.demo.ui.demo.video.player.core.data.createVideoEntityList
-import cc.bear3.android.demo.ui.util.ext.onClick
+import cc.bear3.android.demo.ui.demo.video.player.VideoEntity
+import cc.bear3.android.demo.ui.demo.video.player.createVideoEntityList
 import cc.bear3.android.demo.util.context.startWithAnim
+import cc.bear3.player.autoplay.builder.AutoPlayerControllerBuilder
+import cc.bear3.player.autoplay.controller.ListAutoplayController
+import cc.bear3.util.utils.view.onClick
 import timber.log.Timber
 
 /**
@@ -27,7 +27,8 @@ import timber.log.Timber
  */
 class VideoDemoPage : BaseActivity<PageVideoDemoBinding>(PageVideoDemoBinding::inflate) {
     private val adapter by lazy {
-        object: SingleFastAdapter<VideoEntity, ItemVideoListBinding>(ItemVideoListBinding::inflate) {
+        object :
+            SingleFastAdapter<VideoEntity, ItemVideoListBinding>(ItemVideoListBinding::inflate) {
             override fun convert(binding: ItemVideoListBinding, data: VideoEntity) {
                 binding.playerView.updateData(data)
 

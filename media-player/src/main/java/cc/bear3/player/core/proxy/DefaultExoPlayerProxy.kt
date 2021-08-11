@@ -3,9 +3,10 @@ package cc.bear3.player.core.proxy
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import cc.bear3.player.BuildConfig
 import cc.bear3.player.core.controller.IExoPlayerController
-import cc.bear3.android.demo.ui.demo.video.player.core.state.IPlayerStateChangeListener
-import cc.bear3.android.demo.ui.demo.video.player.core.state.PlayerState
+import cc.bear3.player.core.state.IPlayerStateChangeListener
+import cc.bear3.player.core.state.PlayerState
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer

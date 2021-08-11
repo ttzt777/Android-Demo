@@ -2,4 +2,7 @@ include ':utils'
 include ':collapsed-textview'
 include ':status-adapter'
 include ':app'
+include ':media-player'
+include ':views'
+include ':dispose'
 rootProject.name = "Android-Demo"

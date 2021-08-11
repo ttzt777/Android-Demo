@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import cc.bear3.android.demo.databinding.ItemChannelManagerItemBinding
 import cc.bear3.android.demo.ui.base.BaseAdapter
 import cc.bear3.android.demo.ui.base.BindingViewHolder
-import cc.bear3.android.demo.ui.util.ext.onClick
-import cc.bear3.android.demo.util.view.visible
 import cc.bear3.util.statusadapter.AdapterStatus
+import cc.bear3.util.utils.view.onClick
+import cc.bear3.util.utils.view.visible
 
 /**
  *

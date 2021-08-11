@@ -1,10 +1,10 @@
-package cc.bear3.android.demo.ui.demo.video.player.autoplay.builder
+package cc.bear3.player.autoplay.builder
 
 import androidx.annotation.IdRes
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
-import cc.bear3.android.demo.ui.demo.video.player.autoplay.controller.AutoplayController
-import cc.bear3.android.demo.ui.demo.video.player.autoplay.data.AutoplayControllerParam
+import cc.bear3.player.autoplay.controller.AutoplayController
+import cc.bear3.player.autoplay.data.AutoplayControllerParam
 import cc.bear3.player.core.proxy.IExoPlayerProxy
 import timber.log.Timber
 import java.lang.Exception
@@ -34,8 +34,6 @@ class AutoPlayerControllerBuilder<T : AutoplayController> private constructor() 
     }
 
     fun monitor(lifecycle: Lifecycle) {
-        val paramValues =
-            arrayOf(lifecycle, controllerParam)
         try {
             val constructor = clazz.getConstructor(Lifecycle::class.java, AutoplayControllerParam::class.java)
             constructor.newInstance(lifecycle, controllerParam)

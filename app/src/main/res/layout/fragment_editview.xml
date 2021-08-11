@@ -5,11 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/app_background"
+    android:fitsSystemWindows="true"
     tools:viewBindingIgnore="true">
-
-    <cc.bear3.android.demo.view.statusbar.StatusBarView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <cc.bear3.android.demo.view.toolbar.TitleBar
         android:layout_width="match_parent"

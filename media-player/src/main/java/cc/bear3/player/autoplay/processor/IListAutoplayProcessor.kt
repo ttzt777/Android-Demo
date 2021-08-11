@@ -1,4 +1,4 @@
-package cc.bear3.android.demo.ui.demo.video.player.autoplay.processor
+package cc.bear3.player.autoplay.processor
 
 /**
  *

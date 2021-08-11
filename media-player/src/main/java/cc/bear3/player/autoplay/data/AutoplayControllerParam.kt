@@ -1,4 +1,4 @@
-package cc.bear3.android.demo.ui.demo.video.player.autoplay.data
+package cc.bear3.player.autoplay.data
 
 import androidx.recyclerview.widget.RecyclerView
 import cc.bear3.player.core.proxy.IExoPlayerProxy

@@ -1,12 +1,12 @@
-package cc.bear3.android.demo.ui.demo.video.player.autoplay.controller
+package cc.bear3.player.autoplay.controller
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
-import cc.bear3.android.demo.manager.IDisposable
-import cc.bear3.android.demo.ui.demo.video.player.autoplay.data.AutoplayControllerParam
-import cc.bear3.android.demo.ui.demo.video.player.autoplay.processor.AutoplayProcessor
-import cc.bear3.android.demo.ui.demo.video.player.autoplay.processor.IAutoplayProcessor
+import cc.bear3.player.autoplay.data.AutoplayControllerParam
+import cc.bear3.player.autoplay.processor.AutoplayProcessor
+import cc.bear3.player.autoplay.processor.IAutoplayProcessor
+import cc.bear3.dispose.IDisposable
 
 /**
  *
@@ -18,7 +18,7 @@ open class AutoplayController(
     val controllerParam: AutoplayControllerParam
 ) : LifecycleEventObserver, IDisposable {
 
-    protected var processor : IAutoplayProcessor = AutoplayProcessor(controllerParam)
+    protected var processor: IAutoplayProcessor = AutoplayProcessor(controllerParam)
 
     init {
         lifecycle.addObserver(this)

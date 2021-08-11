@@ -6,7 +6,7 @@ import cc.bear3.android.demo.databinding.ItemMediaGalleryAudioBinding
 import cc.bear3.android.demo.databinding.ItemMediaGalleryImageBinding
 import cc.bear3.android.demo.databinding.ItemMediaGalleryVideoBinding
 import cc.bear3.android.demo.ui.base.MultiFastAdapter
-import cc.bear3.android.demo.util.date.DateUtil
+import cc.bear3.util.utils.date.DateUtil
 import com.bumptech.glide.Glide
 
 /**
@@ -36,7 +36,7 @@ class MediaGalleryAdapter : MultiFastAdapter<MediaData>() {
         Glide.with(cover).load(data.uri).into(cover)
 
         if (data.duration > 0) {
-            time.text = DateUtil.formatTime(data.duration.toLong())
+            time.text = DateUtil.formatMediaTime(data.duration.toLong())
             time.visibility = View.VISIBLE
         } else {
             time.visibility = View.GONE
@@ -45,7 +45,7 @@ class MediaGalleryAdapter : MultiFastAdapter<MediaData>() {
 
     private fun ItemMediaGalleryAudioBinding.convert(data: MediaData) {
         if (data.duration > 0) {
-            time.text = DateUtil.formatTime(data.duration.toLong())
+            time.text = DateUtil.formatMediaTime(data.duration.toLong())
             time.visibility = View.VISIBLE
         } else {
             time.visibility = View.GONE

@@ -1,13 +1,13 @@
-package cc.bear3.android.demo.ui.demo.video.player.autoplay.processor
+package cc.bear3.player.autoplay.processor
 
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cc.bear3.android.demo.ui.demo.video.player.autoplay.data.AutoplayControllerParam
-import cc.bear3.android.demo.ui.demo.video.player.core.state.PlayerState
+import cc.bear3.player.autoplay.data.AutoplayControllerParam
 import cc.bear3.player.core.proxy.IExoPlayerProxy
-import cc.bear3.android.demo.ui.demo.video.player.view.IVideoPlayerView
+import cc.bear3.player.core.state.PlayerState
+import cc.bear3.player.view.IVideoPlayerView
 import timber.log.Timber
 
 /**

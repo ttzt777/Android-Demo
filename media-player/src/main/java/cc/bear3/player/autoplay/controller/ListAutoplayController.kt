@@ -1,11 +1,11 @@
-package cc.bear3.android.demo.ui.demo.video.player.autoplay.controller
+package cc.bear3.player.autoplay.controller
 
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
-import cc.bear3.android.demo.BuildConfig
-import cc.bear3.android.demo.ui.demo.video.player.autoplay.data.AutoplayControllerParam
-import cc.bear3.android.demo.ui.demo.video.player.autoplay.processor.IListAutoplayProcessor
-import cc.bear3.android.demo.ui.demo.video.player.autoplay.processor.ListAutoplayProcessor
+import cc.bear3.player.BuildConfig
+import cc.bear3.player.autoplay.data.AutoplayControllerParam
+import cc.bear3.player.autoplay.processor.IListAutoplayProcessor
+import cc.bear3.player.autoplay.processor.ListAutoplayProcessor
 
 /**
  *

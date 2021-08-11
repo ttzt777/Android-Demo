@@ -1,10 +1,9 @@
 package cc.bear3.player.core.proxy
 
 import android.content.Context
-import cc.bear3.android.demo.ui.demo.video.player.core.proxy.DefaultVideoPlayerProxy
 import cc.bear3.player.core.controller.IVideoPlayerController
-import cc.bear3.android.demo.ui.demo.video.player.core.renderer.IVideoPlayerRenderer
-import cc.bear3.android.demo.ui.demo.video.player.core.source.MediaSourceFactory
+import cc.bear3.player.core.renderer.IVideoPlayerRenderer
+import cc.bear3.player.core.source.MediaSourceFactory
 import com.google.android.exoplayer2.source.MediaSource
 
 /**
@@ -22,6 +21,6 @@ class ListVideoPlayerProxy (
     }
 
     override fun createMediaSource(url: String): MediaSource {
-        return MediaSourceFactory.createLoopMediaSource(url)
+        return MediaSourceFactory.createLoopMediaSource(context, url)
     }
 }

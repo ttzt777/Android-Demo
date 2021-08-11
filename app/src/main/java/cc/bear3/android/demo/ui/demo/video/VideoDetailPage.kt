@@ -6,10 +6,10 @@ import android.os.Bundle
 import cc.bear3.android.demo.R
 import cc.bear3.android.demo.databinding.PageVideoDetailBinding
 import cc.bear3.android.demo.ui.base.BaseActivity
-import cc.bear3.android.demo.ui.demo.video.player.autoplay.builder.AutoPlayerControllerBuilder
-import cc.bear3.android.demo.ui.demo.video.player.autoplay.controller.AutoplayController
-import cc.bear3.android.demo.ui.demo.video.player.core.data.VideoEntity
+import cc.bear3.android.demo.ui.demo.video.player.VideoEntity
 import cc.bear3.android.demo.util.context.startWithAnim
+import cc.bear3.player.autoplay.builder.AutoPlayerControllerBuilder
+import cc.bear3.player.autoplay.controller.AutoplayController
 import com.gyf.immersionbar.ImmersionBar
 
 /**

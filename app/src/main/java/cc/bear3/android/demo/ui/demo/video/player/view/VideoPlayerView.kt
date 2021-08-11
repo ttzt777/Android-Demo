@@ -4,13 +4,13 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import cc.bear3.android.demo.ui.demo.video.player.core.controller.DefaultVideoPlayerController
-import cc.bear3.android.demo.ui.demo.video.player.core.controller.IVideoPlayerController
-import cc.bear3.android.demo.ui.demo.video.player.core.data.VideoEntity
-import cc.bear3.android.demo.ui.demo.video.player.core.proxy.DefaultVideoPlayerProxy
-import cc.bear3.android.demo.ui.demo.video.player.core.proxy.IVideoPlayerProxy
-import cc.bear3.android.demo.ui.demo.video.player.core.renderer.DefaultVideoRenderer
-import cc.bear3.android.demo.ui.demo.video.player.core.renderer.IVideoPlayerRenderer
+import cc.bear3.android.demo.ui.demo.video.player.VideoEntity
+import cc.bear3.player.core.controller.DefaultVideoPlayerController
+import cc.bear3.player.core.controller.IVideoPlayerController
+import cc.bear3.player.core.proxy.DefaultVideoPlayerProxy
+import cc.bear3.player.core.proxy.IVideoPlayerProxy
+import cc.bear3.player.core.renderer.DefaultVideoRenderer
+import cc.bear3.player.core.renderer.IVideoPlayerRenderer
 
 
 /**
@@ -22,7 +22,7 @@ open class VideoPlayerView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr), IVideoPlayerView {
+) : FrameLayout(context, attrs, defStyleAttr), cc.bear3.player.view.IVideoPlayerView {
 
     private lateinit var playerProxy: IVideoPlayerProxy
 

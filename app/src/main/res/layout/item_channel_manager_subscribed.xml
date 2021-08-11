@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="频道分组" />
 
-    <cc.bear3.android.demo.view.button.ConfirmButton
+    <cc.bear3.views.button.ConfirmButton
         android:id="@+id/edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cc.bear3.android.demo.ui.demo.video.player.core.state.PlayerState
+import cc.bear3.player.core.state.PlayerState
 import cc.bear3.player.R
 import cc.bear3.player.core.data.IVideoProtocol
 import cc.bear3.player.databinding.ViewListVideoPlayerViewControllerBinding

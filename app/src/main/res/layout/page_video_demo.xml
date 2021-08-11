@@ -4,15 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background">
-
-    <cc.bear3.android.demo.view.statusbar.StatusBarView
-        android:id="@+id/statusBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:background="@color/app_background"
+    android:fitsSystemWindows="true">
 
     <cc.bear3.android.demo.view.toolbar.TitleBar
         android:id="@+id/titleBar"
@@ -20,7 +13,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/statusBar"
+        app:layout_constraintTop_toTopOf="parent"
         app:tb_has_divide="true"
         app:tb_title="@string/menu_demo_video" />
 
@@ -31,8 +24,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleBar"
         tools:itemCount="2"
-        tools:listitem="@layout/item_video_list"
-        app:layout_constraintTop_toBottomOf="@id/titleBar" />
+        tools:listitem="@layout/item_video_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

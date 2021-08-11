@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.FrameLayout
-import cc.bear3.android.demo.ui.demo.video.player.core.state.PlayerState
+import cc.bear3.player.core.state.PlayerState
 import cc.bear3.player.core.proxy.IVideoPlayerProxy
 
 /**

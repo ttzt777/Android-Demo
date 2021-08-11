@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import cc.bear3.android.demo.databinding.PageChannelDemoBinding
 import cc.bear3.android.demo.ui.base.BaseActivity
-import cc.bear3.android.demo.ui.util.ext.onClick
+import cc.bear3.util.utils.view.onClick
 import cc.bear3.android.demo.util.context.startWithAnim
 import com.google.android.material.tabs.TabLayoutMediator
 

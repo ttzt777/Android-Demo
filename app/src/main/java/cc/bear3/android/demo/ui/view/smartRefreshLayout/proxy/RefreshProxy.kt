@@ -3,9 +3,9 @@ package cc.bear3.android.demo.ui.view.smartRefreshLayout.proxy
 import android.text.TextUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cc.bear3.android.demo.manager.IDisposable
 import cc.bear3.android.demo.manager.http.HttpError
 import cc.bear3.android.demo.ui.base.BaseAdapter
+import cc.bear3.dispose.IDisposable
 import cc.bear3.util.statusadapter.AdapterStatus
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.api.RefreshLayout

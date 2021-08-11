@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
-import cc.bear3.android.demo.ui.demo.video.player.core.state.PlayerState
-import cc.bear3.android.demo.ui.demo.video.player.core.view.VideoControllerEventView
+import cc.bear3.player.BuildConfig
+import cc.bear3.player.core.state.PlayerState
+import cc.bear3.player.core.view.VideoControllerEventView
 import cc.bear3.player.R
 import cc.bear3.player.core.data.IVideoProtocol
 import cc.bear3.player.databinding.ViewDefaultVideoPlayerViewControllerBinding

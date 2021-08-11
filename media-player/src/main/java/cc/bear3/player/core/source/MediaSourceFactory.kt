@@ -1,8 +1,7 @@
-package cc.bear3.android.demo.ui.demo.video.player.core.source
+package cc.bear3.player.core.source
 
 import android.content.Context
-import cc.bear3.android.demo.BuildConfig
-import cc.bear3.android.demo.app.App
+import cc.bear3.player.PlayerProtocolManager
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.source.LoopingMediaSource
 import com.google.android.exoplayer2.source.MediaSource
@@ -19,15 +18,17 @@ import com.google.android.exoplayer2.util.Util
 class MediaSourceFactory {
     companion object {
         fun createLoopMediaSource(
+            context: Context,
             url: String,
-            dataSourceFactory: DataSource.Factory = createDefaultDataSource(App.sContext)
+            dataSourceFactory: DataSource.Factory = createDefaultDataSource(context)
         ): MediaSource {
-            return LoopingMediaSource(createMediaSource(url, dataSourceFactory))
+            return LoopingMediaSource(createMediaSource(context, url, dataSourceFactory))
         }
 
         fun createMediaSource(
+            context: Context,
             url: String,
-            dataSourceFactory: DataSource.Factory = createDefaultDataSource(App.sContext)
+            dataSourceFactory: DataSource.Factory = createDefaultDataSource(context)
         ): MediaSource {
             return ProgressiveMediaSource.Factory(dataSourceFactory)
                 .createMediaSource(MediaItem.fromUri(url))
@@ -36,7 +37,7 @@ class MediaSourceFactory {
         fun createDefaultDataSource(context: Context): DataSource.Factory {
             return DefaultDataSourceFactory(
                 context,
-                Util.getUserAgent(context, BuildConfig.APPLICATION_ID)
+                Util.getUserAgent(context, PlayerProtocolManager.protocol.getApplicationId())
             )
         }
     }

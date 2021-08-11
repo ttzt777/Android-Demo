@@ -1,6 +1,6 @@
-package cc.bear3.android.demo.ui.demo.video.player.autoplay.processor
+package cc.bear3.player.autoplay.processor
 
-import cc.bear3.android.demo.ui.demo.video.player.autoplay.data.AutoplayControllerParam
+import cc.bear3.player.autoplay.data.AutoplayControllerParam
 import cc.bear3.player.core.proxy.IExoPlayerProxy
 
 /**

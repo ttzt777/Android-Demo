@@ -4,11 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_background"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
-
-    <cc.bear3.android.demo.view.statusbar.StatusBarView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <cc.bear3.android.demo.view.toolbar.TitleBar
         android:layout_width="match_parent"
@@ -43,7 +40,7 @@
                     android:text="图库浏览" />
             </LinearLayout>
 
-            <cc.bear3.android.demo.view.button.ConfirmButton
+            <cc.bear3.views.button.ConfirmButton
                 android:id="@+id/openGallery"
                 android:layout_width="240dp"
                 android:layout_height="36dp"

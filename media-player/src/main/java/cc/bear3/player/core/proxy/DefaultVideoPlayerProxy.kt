@@ -1,19 +1,17 @@
-package cc.bear3.android.demo.ui.demo.video.player.core.proxy
+package cc.bear3.player.core.proxy
 
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cc.bear3.android.demo.BuildConfig
+import cc.bear3.player.PlayerProtocolManager
 import cc.bear3.player.core.controller.IVideoPlayerController
-import cc.bear3.android.demo.ui.demo.video.player.core.data.VideoEntity
-import cc.bear3.android.demo.ui.demo.video.player.core.renderer.IVideoPlayerRenderer
-import cc.bear3.android.demo.ui.demo.video.player.core.source.MediaSourceFactory
-import cc.bear3.android.demo.ui.demo.video.player.core.state.PlayerState
-import cc.bear3.android.demo.ui.demo.video.player.core.view.VideoPlayerWrapper
-import cc.bear3.player.core.proxy.DefaultExoPlayerProxy
-import cc.bear3.player.core.proxy.IVideoPlayerProxy
+import cc.bear3.player.core.data.IVideoProtocol
+import cc.bear3.player.core.renderer.IVideoPlayerRenderer
+import cc.bear3.player.core.source.MediaSourceFactory
+import cc.bear3.player.core.state.PlayerState
+import cc.bear3.player.core.view.VideoPlayerWrapper
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -38,7 +36,7 @@ open class DefaultVideoPlayerProxy(
             context,
             callback = this
         )
-    protected var videoEntity: VideoEntity? = null
+    protected var videoEntity: IVideoProtocol? = null
 
     init {
         val layoutParams = ViewGroup.LayoutParams(
@@ -67,7 +65,7 @@ open class DefaultVideoPlayerProxy(
                 val entity = videoEntity ?: return
                 val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(
                     context,
-                    Util.getUserAgent(context, BuildConfig.APPLICATION_ID)
+                    Util.getUserAgent(context, PlayerProtocolManager.protocol.getApplicationId())
                 )
                 prepare(createMediaSource(entity.url))
                 super.play()
@@ -82,7 +80,7 @@ open class DefaultVideoPlayerProxy(
         }
     }
 
-    override fun prepareVideo(entity: VideoEntity) {
+    override fun prepareVideo(entity: IVideoProtocol) {
         this.videoEntity = entity
         (controller as? IVideoPlayerController)?.onVideoEntityPrepared(entity)
         changePlayerState(PlayerState.Idle)
@@ -125,7 +123,7 @@ open class DefaultVideoPlayerProxy(
     }
 
     protected open fun createMediaSource(url: String): MediaSource {
-        return MediaSourceFactory.createMediaSource(url)
+        return MediaSourceFactory.createMediaSource(context, url)
     }
 
     private fun getControllerView(): View {

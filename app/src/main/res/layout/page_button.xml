@@ -4,11 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_background"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
-
-    <cc.bear3.android.demo.view.statusbar.StatusBarView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <cc.bear3.android.demo.view.toolbar.TitleBar
         android:layout_width="match_parent"
@@ -43,7 +40,7 @@
                     android:text="自定义的点击按钮" />
             </LinearLayout>
 
-            <cc.bear3.android.demo.view.button.ConfirmButton
+            <cc.bear3.views.button.ConfirmButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -55,7 +52,7 @@
                 app:cb_enable_stroke_color="@color/text_hint"
                 app:cb_stroke_width="2dp" />
 
-            <cc.bear3.android.demo.view.button.ConfirmButton
+            <cc.bear3.views.button.ConfirmButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"

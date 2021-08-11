@@ -1,8 +1,8 @@
 package cc.bear3.player.core.proxy
 
 import android.view.View
-import cc.bear3.android.demo.ui.demo.video.player.core.data.VideoEntity
-import cc.bear3.android.demo.ui.demo.video.player.core.renderer.IVideoPlayerRenderer
+import cc.bear3.player.core.renderer.IVideoPlayerRenderer
+import cc.bear3.player.core.data.IVideoProtocol
 
 /**
  *
@@ -15,5 +15,5 @@ interface IVideoPlayerProxy :
 
     fun getWrapperView(): View
 
-    fun prepareVideo(entity: VideoEntity)
+    fun prepareVideo(entity: IVideoProtocol)
 }

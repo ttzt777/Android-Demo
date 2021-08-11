@@ -1,7 +1,7 @@
 package cc.bear3.android.demo.ui.demo.channel
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  *

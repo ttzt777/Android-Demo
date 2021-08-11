@@ -1,4 +1,4 @@
-package cc.bear3.android.demo.ui.util.ext
+package cc.bear3.util.utils.view
 
 import android.view.View
 
@@ -32,6 +32,14 @@ fun View?.removeOnClick() {
 
     setOnClickListener(null)
     isClickable = false
+}
+
+fun View.visible(visible: Boolean) {
+    visibility = if (visible) {
+        View.VISIBLE
+    } else {
+        View.GONE
+    }
 }
 
 fun isAvailableClick(): Boolean {

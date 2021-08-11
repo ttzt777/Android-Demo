@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -9,11 +9,7 @@ android {
     buildToolsVersion rootProject.buildToolsVersion
 
     buildFeatures {
-        viewBinding = true
-    }
-
-    androidExtensions {
-        experimental = true
+        viewBinding true
     }
 
     defaultConfig {
@@ -72,11 +68,13 @@ dependencies {
 
     implementation project(path: ':status-adapter')
     implementation project(path: ':collapsed-textview')
+    implementation project(path: ':dispose')
+    implementation project(path: ':views')
     implementation project(path: ':utils')
+    implementation project(path: ':media-player')
 
     implementation "androidx.core:core-ktx:$ktxVersion"
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
