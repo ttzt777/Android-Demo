@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import cc.bear3.player.BuildConfig
-import cc.bear3.player.core.controller.IExoPlayerController
+import cc.bear3.player.core.controller.IMediaPlayerController
 import cc.bear3.player.core.state.IPlayerStateChangeListener
 import cc.bear3.player.core.state.PlayerState
 import com.google.android.exoplayer2.ExoPlaybackException
@@ -20,10 +20,10 @@ import kotlin.collections.HashSet
  * @author TT
  * @since 2021-4-26
  */
-open class DefaultExoPlayerProxy(
+open class DefaultMediaPlayerProxy(
     protected val context: Context,
-    final override val controller: IExoPlayerController? = null
-) : IExoPlayerProxy, Player.EventListener {
+    final override val controller: IMediaPlayerController? = null
+) : IMediaPlayerProxy, Player.EventListener {
 
     final override val player by lazy { SimpleExoPlayer.Builder(context).build() }
     override var playerState = PlayerState.Idle
@@ -79,13 +79,13 @@ open class DefaultExoPlayerProxy(
     }
 
     override fun volumeUp() {
-        setVolume(IExoPlayerProxy.VOLUME_ON)
+        setVolume(IMediaPlayerProxy.VOLUME_ON)
 
         controller?.onVolumeUp()
     }
 
     override fun volumeOff() {
-        setVolume(IExoPlayerProxy.VOLUME_OFF)
+        setVolume(IMediaPlayerProxy.VOLUME_OFF)
 
         controller?.onVolumeOff()
     }

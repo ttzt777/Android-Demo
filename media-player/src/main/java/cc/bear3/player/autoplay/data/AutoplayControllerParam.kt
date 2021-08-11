@@ -1,7 +1,7 @@
 package cc.bear3.player.autoplay.data
 
 import androidx.recyclerview.widget.RecyclerView
-import cc.bear3.player.core.proxy.IExoPlayerProxy
+import cc.bear3.player.core.proxy.IMediaPlayerProxy
 
 /**
  *
@@ -9,7 +9,7 @@ import cc.bear3.player.core.proxy.IExoPlayerProxy
  * @since 2021-5-20
  */
 class AutoplayControllerParam {
-    var playerProxy: IExoPlayerProxy? = null
+    var playerProxy: IMediaPlayerProxy? = null
     var recyclerView: RecyclerView? = null
     var videoPlayerId: Int = 0
 }

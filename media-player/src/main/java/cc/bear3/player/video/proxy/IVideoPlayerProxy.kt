@@ -1,8 +1,9 @@
-package cc.bear3.player.core.proxy
+package cc.bear3.player.video.proxy
 
 import android.view.View
-import cc.bear3.player.core.renderer.IVideoPlayerRenderer
-import cc.bear3.player.core.data.IVideoProtocol
+import cc.bear3.player.video.renderer.IVideoPlayerRenderer
+import cc.bear3.player.video.data.IVideoProtocol
+import cc.bear3.player.core.proxy.IMediaPlayerProxy
 
 /**
  *
@@ -10,7 +11,7 @@ import cc.bear3.player.core.data.IVideoProtocol
  * @since 2021-4-27
  */
 interface IVideoPlayerProxy :
-    IExoPlayerProxy {
+    IMediaPlayerProxy {
     val renderer: IVideoPlayerRenderer
 
     fun getWrapperView(): View

@@ -5,12 +5,13 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import cc.bear3.android.demo.ui.demo.video.player.VideoEntity
-import cc.bear3.player.core.controller.DefaultVideoPlayerController
-import cc.bear3.player.core.controller.IVideoPlayerController
-import cc.bear3.player.core.proxy.DefaultVideoPlayerProxy
-import cc.bear3.player.core.proxy.IVideoPlayerProxy
-import cc.bear3.player.core.renderer.DefaultVideoRenderer
-import cc.bear3.player.core.renderer.IVideoPlayerRenderer
+import cc.bear3.player.video.controller.DefaultVideoPlayerController
+import cc.bear3.player.video.controller.IVideoPlayerController
+import cc.bear3.player.video.proxy.DefaultVideoPlayerProxy
+import cc.bear3.player.video.proxy.IVideoPlayerProxy
+import cc.bear3.player.video.renderer.DefaultVideoRenderer
+import cc.bear3.player.video.renderer.IVideoPlayerRenderer
+import cc.bear3.player.video.view.IVideoPlayerView
 
 
 /**
@@ -22,7 +23,7 @@ open class VideoPlayerView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr), cc.bear3.player.view.IVideoPlayerView {
+) : FrameLayout(context, attrs, defStyleAttr), IVideoPlayerView {
 
     private lateinit var playerProxy: IVideoPlayerProxy
 

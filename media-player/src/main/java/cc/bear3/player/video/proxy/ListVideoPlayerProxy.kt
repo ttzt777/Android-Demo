@@ -1,8 +1,8 @@
-package cc.bear3.player.core.proxy
+package cc.bear3.player.video.proxy
 
 import android.content.Context
-import cc.bear3.player.core.controller.IVideoPlayerController
-import cc.bear3.player.core.renderer.IVideoPlayerRenderer
+import cc.bear3.player.video.controller.IVideoPlayerController
+import cc.bear3.player.video.renderer.IVideoPlayerRenderer
 import cc.bear3.player.core.source.MediaSourceFactory
 import com.google.android.exoplayer2.source.MediaSource
 

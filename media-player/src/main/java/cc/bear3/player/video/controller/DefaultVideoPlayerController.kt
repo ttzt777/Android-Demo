@@ -1,4 +1,4 @@
-package cc.bear3.player.core.controller
+package cc.bear3.player.video.controller
 
 import android.content.Context
 import android.media.AudioManager
@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import cc.bear3.player.BuildConfig
 import cc.bear3.player.core.state.PlayerState
-import cc.bear3.player.core.view.VideoControllerEventView
+import cc.bear3.player.video.view.VideoControllerEventView
 import cc.bear3.player.R
-import cc.bear3.player.core.data.IVideoProtocol
+import cc.bear3.player.video.data.IVideoProtocol
 import cc.bear3.player.databinding.ViewDefaultVideoPlayerViewControllerBinding
 import cc.bear3.util.utils.date.DateUtil
 import cc.bear3.util.utils.view.onClick

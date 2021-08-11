@@ -5,9 +5,9 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cc.bear3.player.autoplay.data.AutoplayControllerParam
-import cc.bear3.player.core.proxy.IExoPlayerProxy
+import cc.bear3.player.core.proxy.IMediaPlayerProxy
 import cc.bear3.player.core.state.PlayerState
-import cc.bear3.player.view.IVideoPlayerView
+import cc.bear3.player.video.view.IVideoPlayerView
 import timber.log.Timber
 
 /**
@@ -32,7 +32,7 @@ class ListAutoplayProcessor(controllerParam: AutoplayControllerParam) :
             return
         }
 
-        var targetPlayerProxy: IExoPlayerProxy? = null
+        var targetPlayerProxy: IMediaPlayerProxy? = null
 
         for (index in firstItemPos..lastItemPos) {
             val itemView = layoutManager.findViewByPosition(index) ?: continue

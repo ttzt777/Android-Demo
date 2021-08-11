@@ -1,7 +1,7 @@
 package cc.bear3.player.core.source
 
 import android.content.Context
-import cc.bear3.player.PlayerProtocolManager
+import cc.bear3.player.core.manager.PlayerProtocolManager
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.source.LoopingMediaSource
 import com.google.android.exoplayer2.source.MediaSource

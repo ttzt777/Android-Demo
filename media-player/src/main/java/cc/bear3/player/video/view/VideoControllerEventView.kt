@@ -1,4 +1,4 @@
-package cc.bear3.player.core.view
+package cc.bear3.player.video.view
 
 import android.content.Context
 import android.util.AttributeSet

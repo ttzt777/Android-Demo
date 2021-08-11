@@ -5,7 +5,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import cc.bear3.player.autoplay.controller.AutoplayController
 import cc.bear3.player.autoplay.data.AutoplayControllerParam
-import cc.bear3.player.core.proxy.IExoPlayerProxy
+import cc.bear3.player.core.proxy.IMediaPlayerProxy
 import timber.log.Timber
 import java.lang.Exception
 
@@ -18,7 +18,7 @@ class AutoPlayerControllerBuilder<T : AutoplayController> private constructor() 
     private val controllerParam = AutoplayControllerParam()
     private lateinit var clazz: Class<T>
 
-    fun setPlayerProxy(playerProxy: IExoPlayerProxy): AutoPlayerControllerBuilder<T> {
+    fun setPlayerProxy(playerProxy: IMediaPlayerProxy): AutoPlayerControllerBuilder<T> {
         controllerParam.playerProxy = playerProxy
         return this
     }

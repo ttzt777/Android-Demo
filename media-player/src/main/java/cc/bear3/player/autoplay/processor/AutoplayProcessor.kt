@@ -1,7 +1,7 @@
 package cc.bear3.player.autoplay.processor
 
 import cc.bear3.player.autoplay.data.AutoplayControllerParam
-import cc.bear3.player.core.proxy.IExoPlayerProxy
+import cc.bear3.player.core.proxy.IMediaPlayerProxy
 
 /**
  *
@@ -10,7 +10,7 @@ import cc.bear3.player.core.proxy.IExoPlayerProxy
  */
 open class AutoplayProcessor(final override val controllerParam: AutoplayControllerParam) :
     IAutoplayProcessor {
-    override var crtPlayerProxy: IExoPlayerProxy? = controllerParam.playerProxy
+    override var crtPlayerProxy: IMediaPlayerProxy? = controllerParam.playerProxy
 
     override fun start() {
         crtPlayerProxy?.play()

@@ -1,17 +1,18 @@
-package cc.bear3.player.core.proxy
+package cc.bear3.player.video.proxy
 
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cc.bear3.player.PlayerProtocolManager
-import cc.bear3.player.core.controller.IVideoPlayerController
-import cc.bear3.player.core.data.IVideoProtocol
-import cc.bear3.player.core.renderer.IVideoPlayerRenderer
+import cc.bear3.player.core.manager.PlayerProtocolManager
+import cc.bear3.player.video.controller.IVideoPlayerController
+import cc.bear3.player.video.data.IVideoProtocol
+import cc.bear3.player.core.proxy.DefaultMediaPlayerProxy
+import cc.bear3.player.video.renderer.IVideoPlayerRenderer
 import cc.bear3.player.core.source.MediaSourceFactory
 import cc.bear3.player.core.state.PlayerState
-import cc.bear3.player.core.view.VideoPlayerWrapper
+import cc.bear3.player.video.view.VideoPlayerWrapper
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -28,7 +29,7 @@ open class DefaultVideoPlayerProxy(
     context: Context,
     controller: IVideoPlayerController,
     final override val renderer: IVideoPlayerRenderer
-) : DefaultExoPlayerProxy(context, controller),
+) : DefaultMediaPlayerProxy(context, controller),
     IVideoPlayerProxy, VideoListener, VideoPlayerWrapper.Callback {
 
     protected val wrapper =

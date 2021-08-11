@@ -2,9 +2,9 @@ package cc.bear3.android.demo.ui.demo.video.player.view
 
 import android.content.Context
 import android.util.AttributeSet
-import cc.bear3.player.core.controller.ListVideoPlayerController
-import cc.bear3.player.core.proxy.ListVideoPlayerProxy
-import cc.bear3.player.core.renderer.DefaultVideoRenderer
+import cc.bear3.player.video.controller.ListVideoPlayerController
+import cc.bear3.player.video.proxy.ListVideoPlayerProxy
+import cc.bear3.player.video.renderer.DefaultVideoRenderer
 
 /**
  *

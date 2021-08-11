@@ -2,7 +2,7 @@ package cc.bear3.player.autoplay.processor
 
 import cc.bear3.dispose.IDisposable
 import cc.bear3.player.autoplay.data.AutoplayControllerParam
-import cc.bear3.player.core.proxy.IExoPlayerProxy
+import cc.bear3.player.core.proxy.IMediaPlayerProxy
 
 /**
  *
@@ -11,7 +11,7 @@ import cc.bear3.player.core.proxy.IExoPlayerProxy
  */
 interface IAutoplayProcessor : IDisposable {
     val controllerParam: AutoplayControllerParam
-    var crtPlayerProxy: IExoPlayerProxy?
+    var crtPlayerProxy: IMediaPlayerProxy?
 
     fun start()
 

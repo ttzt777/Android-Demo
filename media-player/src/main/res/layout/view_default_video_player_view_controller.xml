@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <cc.bear3.player.core.view.VideoControllerEventView
+    <cc.bear3.player.video.view.VideoControllerEventView
         android:id="@+id/touchView"
         android:layout_width="0dp"
         android:layout_height="0dp"

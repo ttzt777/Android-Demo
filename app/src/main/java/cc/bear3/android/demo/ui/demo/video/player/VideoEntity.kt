@@ -1,7 +1,7 @@
 package cc.bear3.android.demo.ui.demo.video.player
 
 import android.os.Parcelable
-import cc.bear3.player.core.data.IVideoProtocol
+import cc.bear3.player.video.data.IVideoProtocol
 import kotlinx.parcelize.Parcelize
 
 /**

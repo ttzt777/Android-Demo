@@ -3,17 +3,17 @@ package cc.bear3.player.core.controller
 import android.content.Context
 import android.view.View
 import android.widget.SeekBar
-import cc.bear3.player.core.proxy.IExoPlayerProxy
+import cc.bear3.player.core.proxy.IMediaPlayerProxy
 
 /**
  *
  * @author TT
  * @since 2021-4-26
  */
-abstract class BaseExoPlayerController(
+abstract class BaseMediaPlayerController(
     val context: Context
-) : IExoPlayerController, SeekBar.OnSeekBarChangeListener {
-    override lateinit var playerProxy: IExoPlayerProxy
+) : IMediaPlayerController, SeekBar.OnSeekBarChangeListener {
+    override lateinit var playerProxy: IMediaPlayerProxy
 
     protected var seekBarTrackingTouchFlag = false
 

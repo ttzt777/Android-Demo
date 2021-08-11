@@ -1,4 +1,4 @@
-package cc.bear3.player.core.controller
+package cc.bear3.player.video.controller
 
 import android.app.Activity
 import android.content.Context
@@ -9,8 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.FrameLayout
+import cc.bear3.player.core.controller.BaseMediaPlayerController
 import cc.bear3.player.core.state.PlayerState
-import cc.bear3.player.core.proxy.IVideoPlayerProxy
+import cc.bear3.player.video.proxy.IVideoPlayerProxy
 
 /**
  *
@@ -19,7 +20,7 @@ import cc.bear3.player.core.proxy.IVideoPlayerProxy
  */
 abstract class BaseVideoPlayerController(
     context: Context
-) : BaseExoPlayerController(context), IVideoPlayerController {
+) : BaseMediaPlayerController(context), IVideoPlayerController {
 
     protected var fullScreenFlag = false
 

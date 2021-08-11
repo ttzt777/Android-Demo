@@ -1,6 +1,6 @@
-package cc.bear3.player.view
+package cc.bear3.player.video.view
 
-import cc.bear3.player.core.proxy.IVideoPlayerProxy
+import cc.bear3.player.video.proxy.IVideoPlayerProxy
 
 /**
  *

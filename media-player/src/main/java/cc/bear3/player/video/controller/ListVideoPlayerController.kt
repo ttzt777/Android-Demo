@@ -1,4 +1,4 @@
-package cc.bear3.player.core.controller
+package cc.bear3.player.video.controller
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import cc.bear3.player.core.state.PlayerState
 import cc.bear3.player.R
-import cc.bear3.player.core.data.IVideoProtocol
+import cc.bear3.player.core.controller.BaseMediaPlayerController
+import cc.bear3.player.video.data.IVideoProtocol
 import cc.bear3.player.databinding.ViewListVideoPlayerViewControllerBinding
 import cc.bear3.util.utils.date.DateUtil
 import com.bumptech.glide.Glide
@@ -16,7 +17,7 @@ import com.bumptech.glide.Glide
  * @author TT
  * @since 2021-5-24
  */
-class ListVideoPlayerController(context: Context) : BaseExoPlayerController(context),
+class ListVideoPlayerController(context: Context) : BaseMediaPlayerController(context),
     IVideoPlayerController {
 
     private lateinit var binding: ViewListVideoPlayerViewControllerBinding
