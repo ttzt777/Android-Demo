@@ -5,14 +5,16 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cc.bear3.player.core.controller.IMediaPlayerController
 import cc.bear3.player.core.manager.PlayerProtocolManager
-import cc.bear3.player.video.controller.IVideoPlayerController
-import cc.bear3.player.video.data.IVideoProtocol
 import cc.bear3.player.core.proxy.DefaultMediaPlayerProxy
-import cc.bear3.player.video.renderer.IVideoPlayerRenderer
 import cc.bear3.player.core.source.MediaSourceFactory
 import cc.bear3.player.core.state.PlayerState
+import cc.bear3.player.video.controller.IVideoPlayerController
+import cc.bear3.player.video.data.IVideoProtocol
+import cc.bear3.player.video.renderer.IVideoPlayerRenderer
 import cc.bear3.player.video.view.VideoPlayerWrapper
+import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -25,31 +27,33 @@ import timber.log.Timber
  * @author TT
  * @since 2021-4-27
  */
+@Suppress("MemberVisibilityCanBePrivate")
 open class DefaultVideoPlayerProxy(
     context: Context,
-    controller: IVideoPlayerController,
-    final override val renderer: IVideoPlayerRenderer
-) : DefaultMediaPlayerProxy(context, controller),
-    IVideoPlayerProxy, VideoListener, VideoPlayerWrapper.Callback {
+    final override val renderer: IVideoPlayerRenderer,
+    presetController: IVideoPlayerController
+) : DefaultMediaPlayerProxy(context),
+    IVideoPlayerProxy, VideoPlayerWrapper.Callback {
+
+    protected val layoutParams = ViewGroup.LayoutParams(
+        ViewGroup.LayoutParams.MATCH_PARENT,
+        ViewGroup.LayoutParams.MATCH_PARENT
+    )
 
     protected val wrapper =
         VideoPlayerWrapper(
             context,
             callback = this
         )
+
     protected var videoEntity: IVideoProtocol? = null
 
     init {
-        val layoutParams = ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-        )
-
         wrapper.setBackgroundColor(Color.BLACK)
         wrapper.addView(renderer.textureView, layoutParams)
-        wrapper.addView(getControllerView(), layoutParams)
+        addController(presetController)
 
-        player.addVideoListener(this)
+        player.addListener(this)
         player.setVideoTextureView(renderer.textureView)
     }
 
@@ -83,7 +87,9 @@ open class DefaultVideoPlayerProxy(
 
     override fun prepareVideo(entity: IVideoProtocol) {
         this.videoEntity = entity
-        (controller as? IVideoPlayerController)?.onVideoEntityPrepared(entity)
+        controllers.forEach {
+            (it as? IVideoPlayerController)?.onVideoEntityPrepared(entity)
+        }
         changePlayerState(PlayerState.Idle)
     }
 
@@ -92,21 +98,27 @@ open class DefaultVideoPlayerProxy(
         player.removeVideoListener(this)
     }
 
+    override fun addController(controller: IMediaPlayerController) {
+        super.addController(controller)
+
+        val view = controller.getControllerView(LayoutInflater.from(context), null)
+        wrapper.addView(view)
+    }
+
+    override fun removeController(controller: IMediaPlayerController) {
+        super.removeController(controller)
+
+        val view = controller.getControllerView(LayoutInflater.from(context), null)
+        wrapper.removeView(view)
+    }
+
     override fun onVideoSizeChanged(
         width: Int,
         height: Int,
         unappliedRotationDegrees: Int,
         pixelWidthHeightRatio: Float
     ) {
-        super.onVideoSizeChanged(width, height, unappliedRotationDegrees, pixelWidthHeightRatio)
-
         Timber.d("Video size change -- width($width), height($height), unappliedRotationDegress($unappliedRotationDegrees), pixelWidthHeightRatio($pixelWidthHeightRatio)")
-
-        renderer.onVideoSizeChanged(
-            width * pixelWidthHeightRatio,
-            height * pixelWidthHeightRatio,
-            unappliedRotationDegrees
-        )
 
         renderer.onVideoSizeChanged(
             width.toFloat(),
@@ -125,9 +137,5 @@ open class DefaultVideoPlayerProxy(
 
     protected open fun createMediaSource(url: String): MediaSource {
         return MediaSourceFactory.createMediaSource(context, url)
-    }
-
-    private fun getControllerView(): View {
-        return controller!!.getControllerView(LayoutInflater.from(context), null)
     }
 }

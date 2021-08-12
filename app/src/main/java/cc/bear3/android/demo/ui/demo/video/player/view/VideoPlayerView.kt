@@ -46,14 +46,14 @@ open class VideoPlayerView @JvmOverloads constructor(
     }
 
     fun setPlayerControllerAndRenderer(
-        playerController: IVideoPlayerController = DefaultVideoPlayerController(context),
-        playerRenderer: IVideoPlayerRenderer = DefaultVideoRenderer(context)
+        playerRenderer: IVideoPlayerRenderer = DefaultVideoRenderer(context),
+        playerController: IVideoPlayerController = DefaultVideoPlayerController(context)
     ) {
         if (this::playerProxy.isInitialized) {
             removeView(this.playerProxy.getWrapperView())
         }
 
-        createPlayerProxy(playerController, playerRenderer)
+        createPlayerProxy(playerRenderer, playerController)
     }
 
     private fun makeSurePlayerProxy() {
@@ -63,10 +63,10 @@ open class VideoPlayerView @JvmOverloads constructor(
     }
 
     private fun createPlayerProxy(
-        controller: IVideoPlayerController = DefaultVideoPlayerController(context),
-        renderer: IVideoPlayerRenderer = DefaultVideoRenderer(context)
+        renderer: IVideoPlayerRenderer = DefaultVideoRenderer(context),
+        controller: IVideoPlayerController = DefaultVideoPlayerController(context)
     ) {
-        playerProxy = DefaultVideoPlayerProxy(context, controller, renderer)
+        playerProxy = DefaultVideoPlayerProxy(context, renderer, controller)
         addView(playerProxy.getWrapperView(), createLayoutParams())
     }
 

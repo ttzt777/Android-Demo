@@ -20,8 +20,8 @@ class ListVideoPlayerView @JvmOverloads constructor(
         setPlayerProxy(
             ListVideoPlayerProxy(
                 context,
-                ListVideoPlayerController(context),
-                DefaultVideoRenderer(context)
+                DefaultVideoRenderer(context),
+                ListVideoPlayerController(context)
             )
         )
     }

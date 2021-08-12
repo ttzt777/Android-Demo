@@ -21,12 +21,12 @@ import kotlin.collections.HashSet
  * @since 2021-4-26
  */
 open class DefaultMediaPlayerProxy(
-    protected val context: Context,
-    final override val controller: IMediaPlayerController? = null
-) : IMediaPlayerProxy, Player.EventListener {
+    protected val context: Context
+) : IMediaPlayerProxy, Player.Listener {
 
     final override val player by lazy { SimpleExoPlayer.Builder(context).build() }
     override var playerState = PlayerState.Idle
+    final override val controllers = mutableListOf<IMediaPlayerController>()
 
     protected val uiHandler = Handler(Looper.getMainLooper())
     protected var progressTimer: Timer? = null
@@ -39,7 +39,6 @@ open class DefaultMediaPlayerProxy(
     }
 
     init {
-        controller?.playerProxy = this
         player.addListener(this)
     }
 
@@ -81,13 +80,17 @@ open class DefaultMediaPlayerProxy(
     override fun volumeUp() {
         setVolume(IMediaPlayerProxy.VOLUME_ON)
 
-        controller?.onVolumeUp()
+        controllers.forEach {
+            it.onVolumeUp()
+        }
     }
 
     override fun volumeOff() {
         setVolume(IMediaPlayerProxy.VOLUME_OFF)
 
-        controller?.onVolumeOff()
+        controllers.forEach {
+            it.onVolumeOff()
+        }
     }
 
     override fun changePlayerState(targetState: PlayerState) {
@@ -104,7 +107,9 @@ open class DefaultMediaPlayerProxy(
             else -> cancelProgressTimer()
         }
 
-        controller?.onPlayerStateChanged(playerState)
+        controllers.forEach {
+            it.onPlayerStateChanged(playerState)
+        }
 
         notifyPlayerStateChangeListeners()
     }
@@ -168,9 +173,25 @@ open class DefaultMediaPlayerProxy(
         changePlayerState(PlayerState.Error)
     }
 
+    protected open fun addController(controller: IMediaPlayerController) {
+        if (controllers.contains(controller)) {
+            return
+        }
+
+        controller.playerProxy = this
+        controllers.add(controller)
+    }
+
+    protected open fun removeController(controller: IMediaPlayerController) {
+        controller.dispose()
+        controllers.remove(controller)
+    }
+
     protected open fun updateProgress() {
         if (duration != TIME_UNSET) {
-            controller?.onPlayerProgressChanged(player.currentPosition, duration)
+            controllers.forEach {
+                it.onPlayerProgressChanged(player.currentPosition, duration)
+            }
         }
     }
 

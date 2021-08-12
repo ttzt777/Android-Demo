@@ -20,8 +20,8 @@ interface IMediaPlayerProxy : IDisposable {
     }
 
     val player: ExoPlayer
-    val controller: IMediaPlayerController?
     var playerState: PlayerState
+    val controllers: MutableList<IMediaPlayerController>
 
     fun prepare(source: MediaSource)
 

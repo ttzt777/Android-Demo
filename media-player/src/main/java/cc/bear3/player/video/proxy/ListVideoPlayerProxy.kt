@@ -13,9 +13,9 @@ import com.google.android.exoplayer2.source.MediaSource
  */
 class ListVideoPlayerProxy (
     context: Context,
-    controller: IVideoPlayerController,
-    renderer: IVideoPlayerRenderer
-) : DefaultVideoPlayerProxy(context, controller, renderer) {
+    renderer: IVideoPlayerRenderer,
+    presetController: IVideoPlayerController
+) : DefaultVideoPlayerProxy(context, renderer, presetController) {
     init {
         volumeOff()
     }
