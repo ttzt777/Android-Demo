@@ -15,7 +15,7 @@ class ListVideoPlayerProxy (
     context: Context,
     renderer: IVideoPlayerRenderer,
     presetController: IVideoPlayerController
-) : DefaultVideoPlayerProxy(context, renderer, presetController) {
+) : BaseVideoPlayerProxy(context, renderer, presetController) {
     init {
         volumeOff()
     }

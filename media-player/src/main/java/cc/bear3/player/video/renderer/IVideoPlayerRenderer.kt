@@ -1,6 +1,7 @@
 package cc.bear3.player.video.renderer
 
 import android.view.TextureView
+import com.google.android.exoplayer2.video.VideoSize
 
 /**
  *
@@ -19,9 +20,5 @@ interface IVideoPlayerRenderer {
         height: Float
     )
 
-    fun onVideoSizeChanged(
-        width: Float,
-        height: Float,
-        unappliedRotationDegrees: Int
-    )
+    fun onVideoSizeChanged(videoSize: VideoSize)
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.Gravity
 import android.view.TextureView
 import android.widget.FrameLayout
+import com.google.android.exoplayer2.video.VideoSize
 import timber.log.Timber
 
 /**
@@ -11,7 +12,7 @@ import timber.log.Timber
  * @author TT
  * @since 2021-4-27
  */
-open class DefaultVideoRenderer(context: Context) :
+class DefaultVideoRenderer(context: Context) :
     IVideoPlayerRenderer {
     override val textureView: TextureView = TextureView(context)
 
@@ -36,19 +37,15 @@ open class DefaultVideoRenderer(context: Context) :
         updateTextureViewSize()
     }
 
-    override fun onVideoSizeChanged(
-        width: Float,
-        height: Float,
-        unappliedRotationDegrees: Int
-    ) {
-        Timber.d("Video size change -- width($width), height($height), unappliedRotationDegress($unappliedRotationDegrees)")
-        this.videoWidth = width
-        this.videoHeight = height
+    override fun onVideoSizeChanged(videoSize: VideoSize) {
+        Timber.d("Video size change -- width($videoSize.width), height($videoSize.height), unappliedRotationDegress($videoSize.unappliedRotationDegrees)")
+        this.videoWidth = videoSize.width.toFloat()
+        this.videoHeight = videoSize.height.toFloat()
 
         updateTextureViewSize()
     }
 
-    protected open fun updateTextureViewSize() {
+    private fun updateTextureViewSize() {
         if (isParamsInvalid(viewWidth, viewHeight, videoWidth, videoHeight)) {
             return
         }
@@ -77,7 +74,7 @@ open class DefaultVideoRenderer(context: Context) :
         )
     }
 
-    protected open fun updateTextureViewLayoutParams(targetWidth: Int, targetHeight: Int) {
+    private fun updateTextureViewLayoutParams(targetWidth: Int, targetHeight: Int) {
         Timber.d("Update textureView layout params -- width($targetWidth), height($targetHeight)")
 
         textureView.layoutParams = (textureView.layoutParams as FrameLayout.LayoutParams).apply {
@@ -87,7 +84,7 @@ open class DefaultVideoRenderer(context: Context) :
         }
     }
 
-    protected fun isParamsInvalid(vararg params: Float): Boolean {
+    private fun isParamsInvalid(vararg params: Float): Boolean {
         for (param in params) {
             if (param == 0f) {
                 return true

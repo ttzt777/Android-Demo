@@ -7,7 +7,7 @@ import cc.bear3.player.BuildConfig
 import cc.bear3.player.core.controller.IMediaPlayerController
 import cc.bear3.player.core.state.IPlayerStateChangeListener
 import cc.bear3.player.core.state.PlayerState
-import com.google.android.exoplayer2.ExoPlaybackException
+import com.google.android.exoplayer2.PlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
@@ -20,6 +20,7 @@ import kotlin.collections.HashSet
  * @author TT
  * @since 2021-4-26
  */
+@Suppress("MemberVisibilityCanBePrivate")
 open class DefaultMediaPlayerProxy(
     protected val context: Context
 ) : IMediaPlayerProxy, Player.Listener {
@@ -35,11 +36,7 @@ open class DefaultMediaPlayerProxy(
     protected var duration = TIME_UNSET
 
     private val playerStateListeners: MutableSet<IPlayerStateChangeListener> by lazy {
-        HashSet<IPlayerStateChangeListener>()
-    }
-
-    init {
-        player.addListener(this)
+        HashSet()
     }
 
     companion object {
@@ -48,6 +45,7 @@ open class DefaultMediaPlayerProxy(
     }
 
     override fun prepare(source: MediaSource) {
+        player.addListener(this)
         stop()
         reset()
 
@@ -130,6 +128,7 @@ open class DefaultMediaPlayerProxy(
 
     override fun dispose() {
         stop()
+        player.removeListener(this)
         player.release()
     }
 
@@ -168,7 +167,7 @@ open class DefaultMediaPlayerProxy(
         changePlayerState(PlayerState.Paused)
     }
 
-    override fun onPlayerError(error: ExoPlaybackException) {
+    override fun onPlayerError(error: PlaybackException) {
         Timber.e("On player error -- ${error.message ?: ""}")
         changePlayerState(PlayerState.Error)
     }
