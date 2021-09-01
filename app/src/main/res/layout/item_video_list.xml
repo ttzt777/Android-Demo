@@ -6,7 +6,7 @@
     android:paddingTop="8dp"
     android:paddingBottom="8dp">
 
-    <cc.bear3.android.demo.ui.demo.video.player.view.ListVideoPlayerView
+    <cc.bear3.player.ext.video.view.ListVideoPlayerView
         android:id="@+id/playerView"
         android:layout_width="0dp"
         android:layout_height="0dp"

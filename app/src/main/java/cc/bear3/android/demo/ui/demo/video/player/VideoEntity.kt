@@ -1,7 +1,7 @@
 package cc.bear3.android.demo.ui.demo.video.player
 
 import android.os.Parcelable
-import cc.bear3.player.video.data.IVideoProtocol
+import cc.bear3.player.kernal.protocol.IVideoEntity
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -11,11 +11,11 @@ import kotlinx.parcelize.Parcelize
  */
 @Parcelize
 data class VideoEntity(
-    override val url: String,
+    override val videoUrl: String,
     val width: Int = 0,
     val height: Int = 0,
-    override val imgUrl: String = ""
-) : IVideoProtocol, Parcelable
+    override val coverUrl: String = videoUrl
+) : Parcelable, IVideoEntity
 
 fun createVideoEntityList(): MutableList<VideoEntity> {
     val resultList = mutableListOf<VideoEntity>()

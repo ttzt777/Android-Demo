@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="video_play_now">立即播放</string>
+    <string name="video_network_hint">当前是移动网络，是否继续播放</string>
+    <string name="video_error_source">资源错误，无法播放</string>
+</resources>

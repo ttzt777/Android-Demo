@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/drawable/shape_video_player_controller_bottom_bg.xml" value="0.390625" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/fragment_editview.xml" value="0.19429347826086957" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/item_channel_manager_subscribed.xml" value="0.19429347826086957" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/item_media_gallery_image.xml" value="0.19429347826086957" />
+        <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/item_video_list.xml" value="0.20364583333333333" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/page_button.xml" value="0.19429347826086957" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/page_channel_demo.xml" value="0.19429347826086957" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/page_channel_manager.xml" value="0.19429347826086957" />
@@ -23,7 +25,12 @@
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/page_video_detail.xml" value="0.19429347826086957" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/view_default_video_player_view_controller.xml" value="0.19429347826086957" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/view_list_video_player_view_controller.xml" value="0.19429347826086957" />
-        <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/media-player/src/main/res/layout/view_default_video_player_view_controller.xml" value="0.19429347826086957" />
+        <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/media-player-ext/src/main/res/layout/view_list_video_player_view_controller.xml" value="0.22447916666666667" />
+        <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/media-player-kernal/src/main/res/drawable/shape_video_player_controller_bottom_bg.xml" value="0.240625" />
+        <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/media-player-kernal/src/main/res/layout/view_default_video_player_view_controller.xml" value="0.22447916666666667" />
+        <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/media-player-kernal/src/main/res/layout/view_list_video_player_view_controller.xml" value="0.20364583333333333" />
+        <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/media-player/src/main/res/drawable/shape_video_play_now_bg.xml" value="0.390625" />
+        <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/media-player/src/main/res/layout/view_default_video_player_view_controller.xml" value="0.5" />
       </map>
     </option>
   </component>

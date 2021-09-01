@@ -71,7 +71,9 @@ dependencies {
     implementation project(path: ':dispose')
     implementation project(path: ':views')
     implementation project(path: ':utils')
-    implementation project(path: ':media-player')
+    implementation project(path: ':media-player-kernal')
+    implementation project(path: ':media-player-ext')
+    implementation project(path: ':media-player-autoplay')
 
     implementation "androidx.core:core-ktx:$ktxVersion"
     implementation "androidx.appcompat:appcompat:$appcompatVersion"

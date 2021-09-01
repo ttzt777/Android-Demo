@@ -29,6 +29,7 @@ class VideoDemoPage : BaseActivity<PageVideoDemoBinding>(PageVideoDemoBinding::i
     private val adapter by lazy {
         object :
             SingleFastAdapter<VideoEntity, ItemVideoListBinding>(ItemVideoListBinding::inflate) {
+
             override fun convert(binding: ItemVideoListBinding, data: VideoEntity) {
                 binding.playerView.updateData(data)
 

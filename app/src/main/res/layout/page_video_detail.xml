@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/app_background">
 
-    <cc.bear3.android.demo.ui.demo.video.player.view.VideoPlayerView
+    <cc.bear3.player.kernal.view.VideoPlayerView
         android:id="@+id/playerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
