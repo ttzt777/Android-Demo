@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import cc.bear3.android.demo.R
-import cc.bear3.android.demo.ui.base.lec.LecFragment
-import cc.bear3.android.demo.ui.base.lec.LecState
+import cc.bear3.lec.LecFragment
+import cc.bear3.lec.LecState
 import com.gyf.immersionbar.ImmersionBar
 import timber.log.Timber
 

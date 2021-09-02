@@ -42,7 +42,4 @@
     <string name="http_data">似乎已断开与互联网的链接</string>
     <string name="http_timeout">连接超时</string>
     <string name="http_permission">登录超时</string>
-
-    <string name="adapter_empty">没有数据，下拉刷新重试</string>
-    <string name="adapter_no_more">已经到底了哦\(^o^)/~</string>
 </resources>

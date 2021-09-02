@@ -11,7 +11,7 @@ import cc.bear3.android.demo.R
 import cc.bear3.android.demo.databinding.ItemVideoListBinding
 import cc.bear3.android.demo.databinding.PageVideoDemoBinding
 import cc.bear3.android.demo.ui.base.BaseActivity
-import cc.bear3.android.demo.ui.base.SingleFastAdapter
+import cc.bear3.adapter.fast.SingleFastAdapter
 import cc.bear3.android.demo.ui.demo.video.player.VideoEntity
 import cc.bear3.android.demo.ui.demo.video.player.createVideoEntityList
 import cc.bear3.android.demo.util.context.startWithAnim

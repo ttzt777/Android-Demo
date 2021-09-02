@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import cc.bear3.android.demo.databinding.ItemChannelManagerOtherBinding
 import cc.bear3.android.demo.databinding.ItemChannelManagerSubscribedBinding
-import cc.bear3.android.demo.ui.base.BindingViewHolder
+import cc.bear3.adapter.fast.BindingViewHolder
 import cc.bear3.util.utils.view.onClick
 import timber.log.Timber
 

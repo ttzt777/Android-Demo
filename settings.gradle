@@ -1,6 +1,6 @@
 include ':utils'
 include ':collapsed-textview'
-include ':status-adapter'
+include ':adapter-kernal'
 include ':app'
 include ':media-player-kernal'
 include ':media-player-autoplay'
@@ -8,3 +8,5 @@ include ':media-player-ext'
 include ':views'
 include ':dispose'
 rootProject.name = "Android-Demo"
+include ':lec-page'
+include ':adapter-fast'

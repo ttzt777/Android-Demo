@@ -39,15 +39,14 @@ class ChannelDemoPage : BaseActivity<PageChannelDemoBinding>(PageChannelDemoBind
             }
         })
 
-        ChannelManager.observeChannelList(this) {
+        ChannelManager.channelList.observe(this) {
             adapter.updateData(it)
             moveToTab(ChannelManager.currentChannel.value)
         }
 
-        ChannelManager.currentChannel.observe(this,
-            Observer {
-                moveToTab(it)
-            })
+        ChannelManager.currentChannel.observe(this) {
+            moveToTab(it)
+        }
 
         binding.channelManager.onClick {
             ChannelManagerPage.invoke(this)

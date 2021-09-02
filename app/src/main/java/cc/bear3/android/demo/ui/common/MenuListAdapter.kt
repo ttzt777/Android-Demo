@@ -7,8 +7,8 @@ import cc.bear3.android.demo.R
 import cc.bear3.android.demo.data.ItemMenu
 import cc.bear3.android.demo.databinding.ItemMenuListBinding
 import cc.bear3.android.demo.ui.base.BaseAdapter
-import cc.bear3.android.demo.ui.base.getView
-import cc.bear3.util.statusadapter.AContentViewHolder
+import cc.bear3.adapter.kernal.AContentViewHolder
+import cc.bear3.adapter.kernal.inflate
 
 /**
  *
@@ -26,7 +26,7 @@ class MenuListAdapter : BaseAdapter<ItemMenu, MenuListAdapter.MenuViewHolder>() 
         parent: ViewGroup,
         viewType: Int
     ): MenuViewHolder {
-        return MenuViewHolder(getView(parent, R.layout.item_menu_list))
+        return MenuViewHolder(parent.inflate(R.layout.item_menu_list))
     }
 
     class MenuViewHolder(view: View) : AContentViewHolder(view) {

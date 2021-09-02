@@ -5,7 +5,7 @@ import androidx.viewbinding.ViewBinding
 import cc.bear3.android.demo.databinding.ItemMediaGalleryAudioBinding
 import cc.bear3.android.demo.databinding.ItemMediaGalleryImageBinding
 import cc.bear3.android.demo.databinding.ItemMediaGalleryVideoBinding
-import cc.bear3.android.demo.ui.base.MultiFastAdapter
+import cc.bear3.adapter.fast.MultiFastAdapter
 import cc.bear3.util.utils.date.DateUtil
 import com.bumptech.glide.Glide
 

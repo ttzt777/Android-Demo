@@ -1,10 +1,13 @@
 package cc.bear3.android.demo.manager.refresh
 
 import android.text.TextUtils
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import cc.bear3.adapter.kernal.AStatusAdapter
+import cc.bear3.adapter.kernal.AdapterStatus
 import cc.bear3.android.demo.manager.http.HttpError
-import cc.bear3.android.demo.ui.base.BaseAdapter
-import cc.bear3.util.statusadapter.AdapterStatus
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
@@ -22,12 +25,12 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
  * time: 2019/3/14
  * *-*
  */
-class RefreshProxy<AD : BaseAdapter<T, *>, T>(
+class RefreshProxy<AD : AStatusAdapter<T, *>, T>(
     val layout: SmartRefreshLayout,
     val adapter: AD,
     private val type: Type = Type.Page,
     private val noMore: Boolean = true
-)  {
+) {
 
     private var enableRefresh = false
     private var enableLoadMore = false
@@ -58,6 +61,7 @@ class RefreshProxy<AD : BaseAdapter<T, *>, T>(
     private var loadingFlag = false
 
     init {
+        initRecyclerView()
         disableRefresh()
         disableLoadMore()
     }
@@ -82,6 +86,34 @@ class RefreshProxy<AD : BaseAdapter<T, *>, T>(
         layout.setOnRefreshLoadMoreListener(listener)
     }
 
+    fun setLoadFun(
+        block: () -> Unit,
+        autoLoading: Boolean = true,
+        enableRefresh: Boolean = true,
+        enableLoadMore: Boolean = true
+    ) {
+        if (enableRefresh && enableLoadMore) {
+            val listener = object : OnRefreshLoadMoreListener {
+                override fun onRefresh(refreshLayout: RefreshLayout) {
+                    onRefresh(block)
+                }
+
+                override fun onLoadMore(refreshLayout: RefreshLayout) {
+                    onLoadMore(block)
+                }
+            }
+            setOnRefreshLoadMoreListener(listener)
+        } else if (enableRefresh) {
+            setOnRefreshListener { onRefresh(block) }
+        } else {
+            setOnLoadMoreListener { onLoadMore(block) }
+        }
+
+        if (autoLoading) {
+            onLoading(block)
+        }
+    }
+
     fun isFirstPage(): Boolean {
         return when (type) {
             Type.Page -> pageNum == 1
@@ -100,6 +132,16 @@ class RefreshProxy<AD : BaseAdapter<T, *>, T>(
         layout.autoRefresh(0, 500, 1.0f, false)
 
         return true
+    }
+
+    private fun initRecyclerView() {
+        val count = layout.childCount
+        for (index in 0 until count) {
+            val recyclerView = layout.getChildAt(index) as? RecyclerView ?: continue
+            recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+            recyclerView.adapter = adapter
+            break
+        }
     }
 
     private fun resetParams() {
@@ -231,5 +273,20 @@ class RefreshProxy<AD : BaseAdapter<T, *>, T>(
         Page,
         Uuid,
         PageAndUuid
+    }
+}
+
+private fun AStatusAdapter<*, *>.setErrorStatus(error: HttpError) {
+    if (status != AdapterStatus.Null && status != AdapterStatus.Loading) {
+        return
+    }
+    status = when (error) {
+        HttpError.Success -> AdapterStatus.Content
+        HttpError.Server, HttpError.Data -> {
+            AdapterStatus.Error
+        }
+        HttpError.NetWork, HttpError.Timeout, HttpError.Default, HttpError.Permission -> {
+            AdapterStatus.Error
+        }
     }
 }

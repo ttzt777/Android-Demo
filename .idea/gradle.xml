@@ -12,13 +12,15 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/adapter-fast" />
+            <option value="$PROJECT_DIR$/adapter-kernal" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/collapsed-textview" />
             <option value="$PROJECT_DIR$/dispose" />
+            <option value="$PROJECT_DIR$/lec-page" />
             <option value="$PROJECT_DIR$/media-player-autoplay" />
             <option value="$PROJECT_DIR$/media-player-ext" />
             <option value="$PROJECT_DIR$/media-player-kernal" />
-            <option value="$PROJECT_DIR$/status-adapter" />
             <option value="$PROJECT_DIR$/utils" />
             <option value="$PROJECT_DIR$/views" />
           </set>

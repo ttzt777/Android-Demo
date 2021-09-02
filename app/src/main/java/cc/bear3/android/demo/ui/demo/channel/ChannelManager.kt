@@ -1,8 +1,6 @@
 package cc.bear3.android.demo.ui.demo.channel
 
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 
 /**
  *
@@ -20,15 +18,6 @@ object ChannelManager {
         channelList.value = originChannelList
     }
 
-    fun observeChannelList(owner: LifecycleOwner, onChanged: (List<ChannelData>) -> Unit) {
-        val wrappedObserver = Observer<List<ChannelData>> { t -> onChanged.invoke(t) }
-        channelList.observe(owner, wrappedObserver)
-    }
-
-    fun removeObserveChannelList(onChanged: (List<ChannelData>) -> Unit) {
-        channelList.removeObserver(onChanged)
-    }
-
     /**
      * 从本地拉取
      */
@@ -43,7 +32,7 @@ object ChannelManager {
 
     }
 
-    fun requestSuggestChannelList() : List<ChannelData> {
+    fun requestSuggestChannelList(): List<ChannelData> {
         val targetChannelList = mutableListOf<ChannelData>().apply {
             addAll(testChannelList)
         }
@@ -61,7 +50,7 @@ object ChannelManager {
 
     }
 
-    private fun getAllChannelList() : List<ChannelData> {
+    private fun getAllChannelList(): List<ChannelData> {
         return listOf(
             ChannelData(0, "推荐"),
             ChannelData(1, "我的最爱"),
