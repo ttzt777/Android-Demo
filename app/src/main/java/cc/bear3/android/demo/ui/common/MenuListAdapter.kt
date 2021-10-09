@@ -7,8 +7,8 @@ import cc.bear3.android.demo.R
 import cc.bear3.android.demo.data.ItemMenu
 import cc.bear3.android.demo.databinding.ItemMenuListBinding
 import cc.bear3.android.demo.ui.base.BaseAdapter
-import cc.bear3.adapter.kernal.AContentViewHolder
-import cc.bear3.adapter.kernal.inflate
+import cc.bear3.adapter.kernel.AContentViewHolder
+import cc.bear3.adapter.kernel.inflate
 
 /**
  *

@@ -24,8 +24,7 @@ allprojects {
         mavenCentral()
         jcenter()
 
-        maven { url 'https://dl.bintray.com/ttzt777/util' }
-        maven { url 'https://dl.bintray.com/ttzt777/view' }
+        maven { url 'https://jitpack.io' }
     }
 }
 

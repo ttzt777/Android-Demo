@@ -3,8 +3,8 @@ package cc.bear3.android.demo.manager.refresh
 import android.text.TextUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cc.bear3.adapter.kernal.AStatusAdapter
-import cc.bear3.adapter.kernal.AdapterStatus
+import cc.bear3.adapter.kernel.AStatusAdapter
+import cc.bear3.adapter.kernel.AdapterStatus
 import cc.bear3.android.demo.manager.http.HttpError
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.api.RefreshLayout

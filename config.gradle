@@ -19,7 +19,9 @@ ext {
     viewpager2Version = '1.0.0'
 
     gradleVersion = "4.1.1"
-    bintrayVersion = "1.8.5"
+
+    statusAdapterVersion = "1.0.0"
+    lecPageVersion = "1.0.0"
 
     materialVersion = '1.4.0'
     zxingVersion = '3.4.0'

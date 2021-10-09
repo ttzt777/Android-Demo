@@ -1,7 +1,7 @@
 package cc.bear3.android.demo.ui.base
 
-import cc.bear3.adapter.kernal.AContentViewHolder
-import cc.bear3.adapter.kernal.BaseStatusAdapter
+import cc.bear3.adapter.kernel.AContentViewHolder
+import cc.bear3.adapter.kernel.BaseStatusAdapter
 
 /**
  * Description:
