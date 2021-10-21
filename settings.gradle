@@ -1,5 +1,4 @@
 include ':utils'
-include ':collapsed-textview'
 include ':app'
 include ':media-player-kernal'
 include ':media-player-autoplay'

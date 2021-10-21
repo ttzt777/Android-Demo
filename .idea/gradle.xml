@@ -13,7 +13,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/collapsed-textview" />
             <option value="$PROJECT_DIR$/dispose" />
             <option value="$PROJECT_DIR$/media-player-autoplay" />
             <option value="$PROJECT_DIR$/media-player-ext" />

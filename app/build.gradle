@@ -66,7 +66,6 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
-    implementation project(path: ':collapsed-textview')
     implementation project(path: ':dispose')
     implementation project(path: ':views')
     implementation project(path: ':utils')
@@ -87,6 +86,8 @@ dependencies {
     implementation "com.github.ttzt777.Android-StatusAdapter:adapter-kernel:$statusAdapterVersion"
     implementation "com.github.ttzt777.Android-StatusAdapter:adapter-fast:$statusAdapterVersion"
     implementation "com.github.ttzt777.Android-LecPage:lec-kernel:$lecPageVersion"
+    implementation "com.github.ttzt777.Android-SpanTextView:span-kernel:$spanTextVersion"
+    implementation "com.github.ttzt777.Android-SpanTextView:span-collapsed:$spanTextVersion"
 
     // google二维码
     implementation "com.google.zxing:core:$zxingVersion"
