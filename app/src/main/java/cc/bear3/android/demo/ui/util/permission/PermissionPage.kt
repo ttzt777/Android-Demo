@@ -15,7 +15,7 @@ import com.permissionx.guolindev.PermissionX
  * Description:
  * Author: TT
  */
-class PermissionPage : BaseActivity<PagePermissionBinding>(PagePermissionBinding::inflate) {
+class PermissionPage : BaseActivity<PagePermissionBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         binding.single.onClick {
             PermissionX.init(this)

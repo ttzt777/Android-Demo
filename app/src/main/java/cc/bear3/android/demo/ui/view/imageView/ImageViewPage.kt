@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide
  * @author TT
  * @since 2021-6-2
  */
-class ImageViewPage : BaseActivity<PageImageviewBinding>(PageImageviewBinding::inflate) {
+class ImageViewPage : BaseActivity<PageImageviewBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         Glide.with(this).load(R.mipmap.image_1).into(binding.local1)
         Glide.with(this).load(R.mipmap.image_2).into(binding.local2)

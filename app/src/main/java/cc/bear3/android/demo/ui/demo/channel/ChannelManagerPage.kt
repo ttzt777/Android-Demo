@@ -14,7 +14,7 @@ import cc.bear3.android.demo.util.context.startWithAnim
  * @since 2021-3-15
  */
 class ChannelManagerPage :
-    BaseActivity<PageChannelManagerBinding>(PageChannelManagerBinding::inflate) {
+    BaseActivity<PageChannelManagerBinding>() {
     private val adapter by lazy {
         ChannelManagerAdapter(this)
     }

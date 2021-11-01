@@ -10,13 +10,14 @@ import cc.bear3.lec.LecFragment
 import cc.bear3.lec.LecState
 import com.gyf.immersionbar.ImmersionBar
 import timber.log.Timber
+import java.lang.reflect.ParameterizedType
 
 /**
  *
  * @author TT
  * @since 2020-12-4
  */
-abstract class BaseFragment<VB : ViewBinding>(private val inflate: (LayoutInflater, ViewGroup?, Boolean) -> VB) :
+abstract class BaseFragment<VB : ViewBinding>() :
     LecFragment() {
     protected lateinit var binding: VB
 
@@ -65,7 +66,10 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: (LayoutInflat
     protected abstract fun initView(savedInstanceState: Bundle?)
 
     override fun onCreateContentView(): View {
-        binding = inflate(layoutInflater, root, false)
+        val type = javaClass.genericSuperclass
+        val clazz = (type as ParameterizedType).actualTypeArguments[0] as Class<VB>
+        val method = clazz.getMethod("inflate", LayoutInflater::class.java, ViewGroup::class.java, Boolean::class.java)
+        binding = method.invoke(null, layoutInflater, root, false) as VB
         return binding.root
     }
 

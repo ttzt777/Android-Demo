@@ -18,7 +18,7 @@ import cc.bear3.android.demo.util.viewpager.ViewPagerAdapter
  * @author TT
  * @since 2020-12-8
  */
-class HomePage : BaseActivity<PageHomeBinding>(PageHomeBinding::inflate) {
+class HomePage : BaseActivity<PageHomeBinding>() {
     private val adapter by lazy {
         ViewPagerAdapter<BaseFragment<out ViewBinding>>(supportFragmentManager)
     }

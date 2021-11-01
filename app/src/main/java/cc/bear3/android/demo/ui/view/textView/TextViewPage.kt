@@ -12,7 +12,7 @@ import cc.bear3.android.demo.util.context.startWithAnim
  * @author TT
  * @since 2020-12-9
  */
-class TextViewPage : BaseActivity<PageTextviewBinding>(PageTextviewBinding::inflate) {
+class TextViewPage : BaseActivity<PageTextviewBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
     }
 

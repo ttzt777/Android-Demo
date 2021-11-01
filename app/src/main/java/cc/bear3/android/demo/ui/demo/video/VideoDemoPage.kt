@@ -25,7 +25,7 @@ import timber.log.Timber
  * @author TT
  * @since 2021-4-25
  */
-class VideoDemoPage : BaseActivity<PageVideoDemoBinding>(PageVideoDemoBinding::inflate) {
+class VideoDemoPage : BaseActivity<PageVideoDemoBinding>() {
     private val adapter by lazy {
         object :
             SingleFastAdapter<VideoEntity, ItemVideoListBinding>(ItemVideoListBinding::inflate) {

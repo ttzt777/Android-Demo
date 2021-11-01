@@ -9,7 +9,7 @@ import cc.bear3.android.demo.ui.base.BaseFragment
  * @author TT
  * @since 2020-12-8
  */
-class TodoFragment : BaseFragment<FragmentTodoBinding>(FragmentTodoBinding::inflate) {
+class TodoFragment : BaseFragment<FragmentTodoBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
 
     }

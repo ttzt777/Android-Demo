@@ -10,7 +10,7 @@ import cc.bear3.android.demo.ui.base.BaseFragment
  * @since 2021-3-11
  */
 class ChannelItemFragment :
-    BaseFragment<FragmentChannelItemBinding>(FragmentChannelItemBinding::inflate) {
+    BaseFragment<FragmentChannelItemBinding>() {
     private lateinit var channelData: ChannelData
     private var count = 0
 

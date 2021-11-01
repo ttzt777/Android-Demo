@@ -12,7 +12,7 @@ import cc.bear3.android.demo.ui.base.BaseFragment
  * @author TT
  * @since 2020-12-4
  */
-class MenuListFragment : BaseFragment<FragmentMenuListBinding>(FragmentMenuListBinding::inflate) {
+class MenuListFragment : BaseFragment<FragmentMenuListBinding>() {
 
     private var target: ItemMenu? = null
     private var canBack: Boolean = true

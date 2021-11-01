@@ -16,7 +16,7 @@ import com.google.android.material.tabs.TabLayoutMediator
  * @author TT
  * @since 2021-3-11
  */
-class ChannelDemoPage : BaseActivity<PageChannelDemoBinding>(PageChannelDemoBinding::inflate) {
+class ChannelDemoPage : BaseActivity<PageChannelDemoBinding>() {
     private lateinit var adapter: ChannelPagerAdapter
 
     private var tabLayoutMediator: TabLayoutMediator? = null

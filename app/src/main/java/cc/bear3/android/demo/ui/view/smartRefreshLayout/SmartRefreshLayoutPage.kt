@@ -25,7 +25,7 @@ import io.reactivex.schedulers.Schedulers
  * @since 2021-6-21
  */
 class SmartRefreshLayoutPage :
-    BaseActivity<PageSmartRefreshLayoutBinding>(PageSmartRefreshLayoutBinding::inflate) {
+    BaseActivity<PageSmartRefreshLayoutBinding>() {
     private val adapter = object :
         SingleFastAdapter<String, ItemSmartRefreshLayoutBinding>(ItemSmartRefreshLayoutBinding::inflate) {
         override fun convert(binding: ItemSmartRefreshLayoutBinding, data: String) {

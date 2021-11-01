@@ -16,7 +16,7 @@ import cc.bear3.android.demo.util.context.startWithAnim
  * @author TT
  * @since 2020-12-4
  */
-class MenuListPage : BaseActivity<PageMenuListBinding>(PageMenuListBinding::inflate) {
+class MenuListPage : BaseActivity<PageMenuListBinding>() {
 
     private var target: ItemMenu? = null
     private var canBack: Boolean = true

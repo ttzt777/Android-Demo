@@ -17,7 +17,7 @@ import com.gyf.immersionbar.ImmersionBar
  * @author TT
  * @since 2021-5-31
  */
-class VideoDetailPage : BaseActivity<PageVideoDetailBinding>(PageVideoDetailBinding::inflate) {
+class VideoDetailPage : BaseActivity<PageVideoDetailBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         AutoPlayerControllerBuilder.newBuilder(AutoplayController::class.java)
             .setPlayerProxy(binding.playerView.getVideoPlayerProxy())

@@ -14,7 +14,7 @@ import cc.bear3.android.demo.util.context.startWithAnim
  * @author TT
  * @since 2021-3-4
  */
-class MediaPickPage : BaseActivity<PageMediaPickBinding>(PageMediaPickBinding::inflate) {
+class MediaPickPage : BaseActivity<PageMediaPickBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         binding.openGallery.onClick {
             MediaGalleryPage.invoke(this)

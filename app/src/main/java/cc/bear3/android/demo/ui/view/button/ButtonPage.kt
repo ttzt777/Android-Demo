@@ -12,7 +12,7 @@ import cc.bear3.android.demo.util.context.startWithAnim
  * @author TT
  * @since 2021-3-3
  */
-class ButtonPage : BaseActivity<PageButtonBinding>(PageButtonBinding::inflate) {
+class ButtonPage : BaseActivity<PageButtonBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
 
     }

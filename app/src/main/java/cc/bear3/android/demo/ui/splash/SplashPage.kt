@@ -11,7 +11,7 @@ import cc.bear3.android.demo.ui.home.HomePage
  * @author TT
  * @since 2021-5-24
  */
-class SplashPage : BaseActivity<PageSplashBinding>(PageSplashBinding::inflate) {
+class SplashPage : BaseActivity<PageSplashBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         if (ActivityStackManager.isAppRunning()) {
             finish()

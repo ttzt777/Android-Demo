@@ -18,7 +18,7 @@ import timber.log.Timber
  * @author TT
  * @since 2021-3-8
  */
-class MediaGalleryPage : BaseActivity<PageMediaGalleryBinding>(PageMediaGalleryBinding::inflate),
+class MediaGalleryPage : BaseActivity<PageMediaGalleryBinding>(),
     LoaderManager.LoaderCallbacks<List<MediaData>> {
     private val adapter by lazy {
         MediaGalleryAdapter()

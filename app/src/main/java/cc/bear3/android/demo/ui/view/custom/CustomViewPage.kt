@@ -12,7 +12,7 @@ import cc.bear3.android.demo.util.context.startWithAnim
  * @author TT
  * @since 2020-12-9
  */
-class CustomViewPage : BaseActivity<PageCustomviewBinding>(PageCustomviewBinding::inflate) {
+class CustomViewPage : BaseActivity<PageCustomviewBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
     }
 

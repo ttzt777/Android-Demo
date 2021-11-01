@@ -11,13 +11,14 @@ import cc.bear3.lec.LecActivity
 import cc.bear3.lec.LecState
 import com.gyf.immersionbar.ImmersionBar
 import timber.log.Timber
+import java.lang.reflect.ParameterizedType
 
 /**
  *
  * @author TT
  * @since 2020-12-4
  */
-abstract class BaseActivity<VB : ViewBinding>(private val inflate: (LayoutInflater, ViewGroup?, Boolean) -> VB) :
+abstract class BaseActivity<VB : ViewBinding>() :
     LecActivity() {
     protected lateinit var binding: VB
 
@@ -66,7 +67,10 @@ abstract class BaseActivity<VB : ViewBinding>(private val inflate: (LayoutInflat
     }
 
     override fun onCreateContentView(): View {
-        binding = inflate(layoutInflater, root, false)
+        val type = javaClass.genericSuperclass
+        val clazz = (type as ParameterizedType).actualTypeArguments[0] as Class<VB>
+        val method = clazz.getMethod("inflate", LayoutInflater::class.java)
+        binding = method.invoke(null, layoutInflater) as VB
         return binding.root
     }
 
