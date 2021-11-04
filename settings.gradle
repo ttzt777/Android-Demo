@@ -6,3 +6,4 @@ include ':media-player-ext'
 include ':views'
 include ':dispose'
 rootProject.name = "Android-Demo"
+include ':richeditor'

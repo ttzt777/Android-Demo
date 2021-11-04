@@ -10,6 +10,7 @@ import cc.bear3.android.demo.ui.media.pick.MediaPickPage
 import cc.bear3.android.demo.ui.util.permission.PermissionPage
 import cc.bear3.android.demo.ui.view.button.ButtonPage
 import cc.bear3.android.demo.ui.view.custom.CustomViewPage
+import cc.bear3.android.demo.ui.view.editView.EditTextPage
 import cc.bear3.android.demo.ui.view.imageView.ImageViewPage
 import cc.bear3.android.demo.ui.view.smartRefreshLayout.SmartRefreshLayoutPage
 import cc.bear3.android.demo.ui.view.textView.TextViewPage
@@ -81,6 +82,7 @@ enum class ItemMenu(@StringRes val stringId: Int) {
             View_Button -> ButtonPage.invoke(context)
             View_TextView -> TextViewPage.invoke(context)
             View_ImageView -> ImageViewPage.invoke(context)
+            View_EditView -> EditTextPage.invoke(context)
             View_CustomView -> CustomViewPage.invoke(context)
             View_SmartRefreshLayout -> SmartRefreshLayoutPage.invoke(context)
 

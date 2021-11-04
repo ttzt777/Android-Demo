@@ -67,6 +67,9 @@
             android:name=".ui.view.imageView.ImageViewPage"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.view.editView.EditTextPage"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.view.custom.CustomViewPage"
             android:screenOrientation="portrait" />
         <activity

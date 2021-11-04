@@ -17,6 +17,7 @@
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/page_channel_demo.xml" value="0.19429347826086957" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/page_channel_manager.xml" value="0.19429347826086957" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/page_customview.xml" value="0.19429347826086957" />
+        <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/page_edittext.xml" value="0.3536458333333333" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/page_home.xml" value="0.1125" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/page_imageview.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/app/src/main/res/layout/page_media_gallery.xml" value="0.19429347826086957" />
@@ -38,6 +39,7 @@
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/media-player-kernal/src/main/res/layout/view_list_video_player_view_controller.xml" value="0.20364583333333333" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/media-player/src/main/res/drawable/shape_video_play_now_bg.xml" value="0.390625" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/media-player/src/main/res/layout/view_default_video_player_view_controller.xml" value="0.5" />
+        <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/richeditor/src/main/res/drawable/icon_text_bold.xml" value="0.3697916666666667" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/status-adapter/src/main/res/layout/adapter_loading.xml" value="0.3536458333333333" />
         <entry key="..\:/AndroidStudioProjects/Personal/Android-Demo/status-adapter/src/main/res/layout/adapter_no_more.xml" value="0.3536458333333333" />
       </map>

@@ -72,6 +72,7 @@ dependencies {
     implementation project(path: ':media-player-kernal')
     implementation project(path: ':media-player-ext')
     implementation project(path: ':media-player-autoplay')
+    implementation project(path: ':richeditor')
 
     implementation "androidx.core:core-ktx:$ktxVersion"
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
