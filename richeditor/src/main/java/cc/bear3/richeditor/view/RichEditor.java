@@ -8,17 +8,22 @@ import android.view.inputmethod.EditorInfo;
 
 import androidx.appcompat.widget.AppCompatEditText;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import cc.bear3.richeditor.action.ActionItem;
+import cc.bear3.richeditor.tool.IToolItemCallback;
+import cc.bear3.richeditor.tool.ToolFlagItem;
+import cc.bear3.richeditor.tool.ToolItem;
 
 /**
  * @author TT
  * @since 2021-11-4
  */
-public class RichEditor extends AppCompatEditText {
-    private final List<ActionItem> actionItems = new ArrayList<>();
+public class RichEditor extends AppCompatEditText implements IToolItemCallback {
+    private final Set<ToolItem> tools = new HashSet<>();
+
+    // 状态改变的回调
+    private IToolItemCallback listener;
 
     public RichEditor(Context context) {
         this(context, null);
@@ -43,18 +48,60 @@ public class RichEditor extends AppCompatEditText {
     protected void onSelectionChanged(int selStart, int selEnd) {
         super.onSelectionChanged(selStart, selEnd);
 
-        if (getEditableText() == null || actionItems == null || actionItems.size() == 0) {
+        if (getEditableText() == null || tools == null || tools.size() == 0) {
             return;
         }
 
-        for (ActionItem action : actionItems) {
+        for (ToolItem action : tools) {
             action.onSelectionChanged(selStart, selEnd);
         }
     }
 
-    public void addActionItem(ActionItem action) {
-        action.attach(this);
-        actionItems.add(action);
+    @Override
+    public void onToolStateChange(ToolItem tool) {
+        if (tools == null || tools.size() == 0 || listener == null) {
+            return;
+        }
+
+        listener.onToolStateChange(tool);
+    }
+
+    public void addToolItems(ToolItem... toolItems) {
+        for (ToolItem tool : toolItems) {
+            if (tools.add(tool)) {
+                tool.attach(this);
+            }
+        }
+    }
+
+    public ToolItem getToolItem(Class<? extends ToolItem> clazz) {
+        if (tools == null || tools.size() == 0) {
+            return null;
+        }
+
+        for (ToolItem temp : tools) {
+            if (temp.getClass() == clazz) {
+                return temp;
+            }
+        }
+
+        return null;
+    }
+
+    public void setToolStateCallback(IToolItemCallback listener) {
+        this.listener = listener;
+    }
+
+    public void toggleToolFlag(Class<? extends ToolFlagItem> clazz) {
+        if (tools == null || tools.size() == 0) {
+            return;
+        }
+
+        for (ToolItem tool : tools) {
+            if (tool instanceof ToolFlagItem && tool.getClass() == clazz) {
+                ((ToolFlagItem) tool).toggleFlag();
+            }
+        }
     }
 
     private void registerTextWatcher() {
@@ -81,7 +128,7 @@ public class RichEditor extends AppCompatEditText {
                 }
 
                 if (input_end > input_start) {
-                    for (ActionItem action : actionItems) {
+                    for (ToolItem action : tools) {
                         action.applyStyle(input_start, input_end);
                     }
                 }

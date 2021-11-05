@@ -54,6 +54,63 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_text_bold"
                     app:tint="@color/text_summary" />
+
+                <ImageButton
+                    android:id="@+id/action_italic"
+                    style="@style/ImageButton.Normal"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/icon_text_italic"
+                    app:tint="@color/text_summary" />
+
+                <ImageButton
+                    android:id="@+id/action_underline"
+                    style="@style/ImageButton.Normal"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/icon_text_underline"
+                    app:tint="@color/text_summary" />
+
+                <ImageButton
+                    android:id="@+id/action_strikethrough"
+                    style="@style/ImageButton.Normal"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/icon_text_strikethrough"
+                    app:tint="@color/text_summary" />
+
+                <TextView
+                    android:id="@+id/action_size_small"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:gravity="center"
+                    android:src="@drawable/icon_text_strikethrough"
+                    android:text="小"
+                    android:textColor="@color/text_summary"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/action_size_mid"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:gravity="center"
+                    android:src="@drawable/icon_text_strikethrough"
+                    android:text="中"
+                    android:textColor="@color/text_summary"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/action_size_big"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:gravity="center"
+                    android:src="@drawable/icon_text_strikethrough"
+                    android:text="大"
+                    android:textColor="@color/text_summary"
+                    android:textSize="13sp" />
             </LinearLayout>
         </HorizontalScrollView>
 
@@ -79,7 +136,8 @@
             android:id="@+id/editor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="24dp"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

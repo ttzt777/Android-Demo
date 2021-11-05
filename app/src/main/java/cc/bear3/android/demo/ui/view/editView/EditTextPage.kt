@@ -9,7 +9,7 @@ import cc.bear3.android.demo.R
 import cc.bear3.android.demo.databinding.PageEdittextBinding
 import cc.bear3.android.demo.ui.base.BaseActivity
 import cc.bear3.android.demo.util.context.startWithAnim
-import cc.bear3.richeditor.action.ActionBold
+import cc.bear3.richeditor.tool.*
 import cc.bear3.util.utils.view.onClick
 
 /**
@@ -19,24 +19,76 @@ import cc.bear3.util.utils.view.onClick
  */
 class EditTextPage : BaseActivity<PageEdittextBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
-        val actionBold = ActionBold().apply {
-            setActionCallback {
-                binding.actionBold.imageTintList = ColorStateList.valueOf(
-                    ContextCompat.getColor(
-                        this@EditTextPage,
-                        if (it.flag) {
-                            R.color.color_accent
-                        } else {
-                            R.color.text_summary
+        with(binding) {
+            val listenerImpl = IToolItemCallback {
+                when (it) {
+                    is ToolBold -> actionBold.imageTintList = getTintList(it.flag)
+                    is ToolItalic -> actionItalic.imageTintList = getTintList(it.flag)
+                    is ToolUnderline -> actionUnderline.imageTintList = getTintList(it.flag)
+                    is ToolStrikethrough -> actionStrikethrough.imageTintList = getTintList(it.flag)
+                    is ToolTextSize -> {
+                        actionSizeSmall.setTextColor(getTintList(false))
+                        actionSizeMid.setTextColor(getTintList(false))
+                        actionSizeBig.setTextColor(getTintList(false))
+                        when (it.textSize) {
+                            13 -> actionSizeSmall.setTextColor(getTintList(true))
+                            16 -> actionSizeMid.setTextColor(getTintList(true))
+                            20 -> actionSizeBig.setTextColor(getTintList(true))
                         }
-                    )
-                )
+                    }
+                }
+            }
+
+            fun <T : ToolItem> T.withListener(): T {
+                this.setToolStateCallback(listenerImpl)
+                return this
+            }
+
+            val toolBold = ToolBold().withListener()
+            val toolItalic = ToolItalic().withListener()
+            val toolUnderline = ToolUnderline().withListener()
+            val toolStrikethrough = ToolStrikethrough().withListener()
+            val toolTextSize = ToolTextSize().withListener()
+
+            editor.addToolItems(
+                toolBold, toolItalic, toolUnderline, toolStrikethrough, toolTextSize
+            )
+
+            actionBold.setOnClickListener() {
+                toolBold.toggleFlag()
+            }
+            actionItalic.setOnClickListener() {
+                toolItalic.toggleFlag()
+            }
+            actionUnderline.setOnClickListener() {
+                toolUnderline.toggleFlag()
+            }
+            actionStrikethrough.setOnClickListener() {
+                toolStrikethrough.toggleFlag()
+            }
+            actionSizeSmall.setOnClickListener() {
+                toolTextSize.textSize = 13
+            }
+            actionSizeMid.setOnClickListener() {
+                toolTextSize.textSize = 16
+            }
+            actionSizeBig.setOnClickListener() {
+                toolTextSize.textSize = 20
             }
         }
-        binding.editor.addActionItem(actionBold)
-        binding.actionBold.onClick {
-            actionBold.toggleFlag()
-        }
+    }
+
+    private fun getTintList(flag: Boolean): ColorStateList {
+        return ColorStateList.valueOf(
+            ContextCompat.getColor(
+                this@EditTextPage,
+                if (flag) {
+                    R.color.color_accent
+                } else {
+                    R.color.text_summary
+                }
+            )
+        )
     }
 
     companion object {
