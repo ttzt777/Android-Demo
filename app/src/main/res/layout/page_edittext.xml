@@ -111,6 +111,15 @@
                     android:text="大"
                     android:textColor="@color/text_summary"
                     android:textSize="13sp" />
+
+                <ImageButton
+                    android:id="@+id/action_image"
+                    style="@style/ImageButton.Normal"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/icon_text_image"
+                    app:tint="@color/text_summary" />
             </LinearLayout>
         </HorizontalScrollView>
 

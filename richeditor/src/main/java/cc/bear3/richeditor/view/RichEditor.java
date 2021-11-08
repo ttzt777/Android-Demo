@@ -11,6 +11,8 @@ import androidx.appcompat.widget.AppCompatEditText;
 import java.util.HashSet;
 import java.util.Set;
 
+import cc.bear3.richeditor.helper.HelperItem;
+import cc.bear3.richeditor.movement.SpanClickableLinkMovementMethod;
 import cc.bear3.richeditor.tool.IToolItemCallback;
 import cc.bear3.richeditor.tool.ToolFlagItem;
 import cc.bear3.richeditor.tool.ToolItem;
@@ -21,6 +23,7 @@ import cc.bear3.richeditor.tool.ToolItem;
  */
 public class RichEditor extends AppCompatEditText implements IToolItemCallback {
     private final Set<ToolItem> tools = new HashSet<>();
+    private final Set<HelperItem> helpers = new HashSet<>();
 
     // 状态改变的回调
     private IToolItemCallback listener;
@@ -42,6 +45,7 @@ public class RichEditor extends AppCompatEditText implements IToolItemCallback {
         this.setInputType(EditorInfo.TYPE_CLASS_TEXT | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE
                 | EditorInfo.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         registerTextWatcher();
+        this.setMovementMethod(new SpanClickableLinkMovementMethod());
     }
 
     @Override
@@ -80,6 +84,28 @@ public class RichEditor extends AppCompatEditText implements IToolItemCallback {
         }
 
         for (ToolItem temp : tools) {
+            if (temp.getClass() == clazz) {
+                return temp;
+            }
+        }
+
+        return null;
+    }
+
+    public void addHelperItems(HelperItem... helperItems) {
+        for (HelperItem helper : helperItems) {
+            if (helpers.add(helper)) {
+                helper.attach(this);
+            }
+        }
+    }
+
+    public HelperItem getHelperItem(Class<? extends HelperItem> clazz) {
+        if (helpers == null || helpers.size() == 0) {
+            return null;
+        }
+
+        for (HelperItem temp : helpers) {
             if (temp.getClass() == clazz) {
                 return temp;
             }

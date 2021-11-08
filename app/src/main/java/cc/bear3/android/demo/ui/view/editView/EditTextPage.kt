@@ -3,12 +3,14 @@ package cc.bear3.android.demo.ui.view.editView
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import cc.bear3.android.demo.R
 import cc.bear3.android.demo.databinding.PageEdittextBinding
 import cc.bear3.android.demo.ui.base.BaseActivity
 import cc.bear3.android.demo.util.context.startWithAnim
+import cc.bear3.richeditor.helper.HelperBlockImage
 import cc.bear3.richeditor.tool.*
 import cc.bear3.util.utils.view.onClick
 
@@ -54,6 +56,10 @@ class EditTextPage : BaseActivity<PageEdittextBinding>() {
                 toolBold, toolItalic, toolUnderline, toolStrikethrough, toolTextSize
             )
 
+            val helperImage = HelperBlockImage()
+
+            editor.addHelperItems(helperImage)
+
             actionBold.setOnClickListener() {
                 toolBold.toggleFlag()
             }
@@ -74,6 +80,10 @@ class EditTextPage : BaseActivity<PageEdittextBinding>() {
             }
             actionSizeBig.setOnClickListener() {
                 toolTextSize.textSize = 20
+            }
+            actionImage.onClick {
+                val bitmap = BitmapFactory.decodeResource(resources, R.mipmap.image_3)
+                helperImage.insertImage("0", bitmap)
             }
         }
     }
