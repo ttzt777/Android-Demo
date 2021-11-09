@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:background="#3FFFCE25">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/content"
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="6dp"
+        android:background="@android:color/transparent"
+        android:elevation="0dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardPreventCornerOverlap="false"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:id="@+id/cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <View
+            android:id="@+id/hint_background"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom"
+            android:alpha="0.5"
+            android:background="#03132C" />
+
+        <TextView
+            android:id="@+id/hint_text"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingStart="12dp"
+            android:textColor="#FFF6F8FD"
+            android:textSize="12sp"
+            tools:text="正在上传...10%" />
+
+        <View
+            android:id="@+id/progress"
+            android:layout_width="50dp"
+            android:layout_height="2.5dp"
+            android:background="#FFFF4646"
+            android:layout_gravity="bottom" />
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:layout_width="18.5dp"
+        android:layout_height="18.5dp"
+        android:layout_gravity="end"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_close" />
+
+</FrameLayout>

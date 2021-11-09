@@ -52,9 +52,17 @@ public abstract class HelperItem {
 
     protected int dp2px(int dp) {
         if (editText == null || editText.getContext() == null) {
-            return 0;
+            return dp;
         }
 
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, editText.getContext().getResources().getDisplayMetrics());
+    }
+
+    protected int sp2px(int sp) {
+        if (editText == null || editText.getContext() == null) {
+            return sp;
+        }
+
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, editText.getContext().getResources().getDisplayMetrics());
     }
 }

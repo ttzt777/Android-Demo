@@ -4,7 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.core.content.ContextCompat
 import cc.bear3.android.demo.R
 import cc.bear3.android.demo.databinding.PageEdittextBinding
@@ -83,7 +86,17 @@ class EditTextPage : BaseActivity<PageEdittextBinding>() {
             }
             actionImage.onClick {
                 val bitmap = BitmapFactory.decodeResource(resources, R.mipmap.image_3)
-                helperImage.insertImage("0", bitmap)
+                helperImage.insertImage("0", BitmapDrawable(resources, bitmap))
+
+                var progress = 0
+
+                val runnable = {
+                    helperImage.changeProgress("0", ++progress)
+                }
+                val handler = Handler(Looper.getMainLooper())
+                repeat(100) {
+                    handler.postDelayed(runnable, (it + 1) * 200L)
+                }
             }
         }
     }

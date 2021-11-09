@@ -21,16 +21,12 @@ public class MediaImageSpan extends BlockImageSpan implements ISpanClickable {
     private long id;
     private String uri;
 
-    public MediaImageSpan(@NonNull Drawable drawable, long id, String uri) {
-        super(drawable);
-        this.id = id;
-        this.uri = uri;
-    }
+    private Drawable originDrawable;
+    private Bitmap targetBitmap;
 
-    public MediaImageSpan(@NonNull Context context, @NonNull Bitmap bitmap, long id, String uri) {
+    public MediaImageSpan(@NonNull Context context, @NonNull Bitmap bitmap) {
         super(context, bitmap);
-        this.id = id;
-        this.uri = uri;
+        this.targetBitmap = bitmap;
     }
 
     @Override
@@ -48,5 +44,41 @@ public class MediaImageSpan extends BlockImageSpan implements ISpanClickable {
     @Override
     public void onViewClicked(View view) {
         Toast.makeText(view.getContext(), "点了删除", Toast.LENGTH_SHORT).show();
+    }
+
+    public void setParams(long id, String uri, @NonNull Drawable drawable) {
+        this.id = id;
+        this.uri = uri;
+        this.originDrawable = drawable;
+    }
+
+    public void setParams(MediaImageSpan span) {
+        this.id = span.getId();
+        this.uri = span.getUri();
+        this.originDrawable = span.getOriginDrawable();
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public Drawable getOriginDrawable() {
+        return originDrawable;
+    }
+
+    public void recycle() {
+        originDrawable = null;
+
+        if (targetBitmap != null) {
+            if (!targetBitmap.isRecycled()) {
+                targetBitmap.recycle();
+            }
+
+            targetBitmap = null;
+        }
     }
 }
